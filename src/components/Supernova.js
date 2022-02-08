@@ -34,6 +34,7 @@ export const Supernova = ({
   disableIcon,
   loadLayout,
   titleBarStyle,
+  onLoaded,
   log = defaultLogger,
 }) => {
   const { generator, theme: themeFn } = NebulaInternals;
@@ -154,10 +155,6 @@ export const Supernova = ({
         };
         setToolTipConfig({ config });
       });
-    });
-
-    e.addEventListener("onDoubleTap", () => {
-      onDoubleTap();
     });
 
     setElement(e);
@@ -309,6 +306,9 @@ export const Supernova = ({
       snComponent.current = component;
       snComponent.current.created();
       snComponent.current.mounted(element);
+      if (onLoaded) {
+        onLoaded();
+      }
     }
 
     return () => {
