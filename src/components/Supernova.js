@@ -33,6 +33,7 @@ export const Supernova = ({
   onLongPress,
   disableIcon,
   loadLayout,
+  titleBarStyle,
   log = defaultLogger,
 }) => {
   const { generator, theme: themeFn } = NebulaInternals;
@@ -396,6 +397,7 @@ export const Supernova = ({
   return (
     <View style={[styles.layer, style]} ref={bodyRef} collapsable={false}>
       <Title
+        syle={titleBarStyle}
         layout={layout}
         onLayout={handleTitleLayout}
         topPadding={topPadding}

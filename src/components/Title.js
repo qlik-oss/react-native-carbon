@@ -23,7 +23,14 @@ const getSubtitleStyle = (theme) => {
   return { color, fontSize };
 };
 
-export const Title = ({ layout, onLayout, topPadding, disableIcon, theme }) => {
+export const Title = ({
+  layout,
+  onLayout,
+  topPadding,
+  disableIcon,
+  theme,
+  style,
+}) => {
   const titleStyle = getTitleStyle(theme);
   const subtitleStyle = getSubtitleStyle(theme);
   return layout?.showTitles ? (
@@ -32,7 +39,8 @@ export const Title = ({ layout, onLayout, topPadding, disableIcon, theme }) => {
       style={[
         styles.titleBar,
         // eslint-disable-next-line react-native/no-inline-styles
-        { minHeight: topPadding === "none" ? undefined : 36 },
+        { minHeight: topPadding === "none" ? undefined : 40 },
+        style,
       ]}
     >
       {disableIcon ? null : (
@@ -40,11 +48,15 @@ export const Title = ({ layout, onLayout, topPadding, disableIcon, theme }) => {
           style={styles.icon}
           name="touch-app"
           color={titleStyle.color}
-          size={18}
+          size={20}
         />
       )}
       {layout?.title?.length > 0 ? (
-        <Text numberOfLines={1} style={[styles.title, { ...titleStyle }]}>
+        <Text
+          numberOfLines={1}
+          ellipsizeMode={"middle"}
+          style={[styles.title, { ...titleStyle }]}
+        >
           {layout.title}
         </Text>
       ) : null}
