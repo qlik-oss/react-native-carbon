@@ -18,14 +18,6 @@
     "!**/__mocks__",
     "!**/node_modules"
   ],
-  "watch": {
-    "dev": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "js, jsx, ts, tsx"
-    }
-  },
   "scripts": {
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -34,7 +26,7 @@
     "ci:install": "yarn install --frozen-lockfile"
   },
   "repository": {
-    "url": "git://git@github.com:qlik-oss/react-native-carbon.git"
+    "url": "git@github.com:qlik-oss/react-native-carbon.git"
   },
   "author": "Qlik",
   "license": "MIT",
@@ -44,25 +36,28 @@
   "homepage": "git://git@github.com:qlik-trial/carbon.git",
   "devDependencies": {
     "@react-native-community/eslint-config": "3.0.1",
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/git": "10.0.1",
     "@types/jest": "26.0.24",
     "@types/react": "17.0.14",
     "@types/react-native": "0.64.11",
     "@types/react-test-renderer": "17.0.1",
+    "color-rgba": "2.2.3",
     "commitlint": "11.0.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
     "husky": "4.2.5",
     "jest": "26.0.1",
-    "prettier": "2.5.1",
-    "typescript": "4.1.3",
-    "color-rgba": "2.2.3",
     "picasso-plugin-q": "1.2.1",
     "picasso.js": "1.2.1",
+    "prettier": "2.5.1",
     "react": "*",
     "react-native": "*",
     "react-native-uuid": "2.0.1",
-    "string-pixel-width": "1.10.0"
+    "semantic-release": "19.0.2",
+    "string-pixel-width": "1.10.0",
+    "typescript": "4.1.3"
   },
   "jest": {
     "preset": "react-native",
@@ -70,12 +65,5 @@
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn lint"
-    }
-  },
-  "gitHead": "9aa7e3c03c63da7ed8f9e0ae6a568a5b7c9b33c4"
+  }
 }
