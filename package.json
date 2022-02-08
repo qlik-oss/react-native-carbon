@@ -1,6 +1,6 @@
 {
-  "name": "@qlik-oss/react-native-carbon",
-  "version": "4.0.1",
+  "name": "@qlik/react-native-carbon",
+  "version": "0.0.1",
   "description": "React Native nebula engine",
   "main": "src/index.js",
   "files": [
@@ -31,7 +31,7 @@
   "author": "Qlik",
   "license": "MIT",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://registry.npmjs.org"
   },
   "homepage": "git://git@github.com:qlik-trial/carbon.git",
   "devDependencies": {
