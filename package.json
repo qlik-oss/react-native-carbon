@@ -29,10 +29,8 @@
   "scripts": {
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "example": "yarn --cwd example",
     "clean": "rm -rf node_modules",
-    "dev": "ditto src ../../apps/CarbonViewer/node_modules/@qlik-trial/react-native-carbon/src",
-    "watch": "npm-watch"
+    "ci:install": "yarn install --frozen-lockfile"
   },
   "repository": {
     "url": "git://git@github.com:qlik-oss/react-native-carbon.git"
