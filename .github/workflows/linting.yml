@@ -1,0 +1,15 @@
+name: Code Quality Checks
+
+on: [workflow_dispatch, push]
+
+jobs:
+  ESLint:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/cancel_workflow
+      - uses: ./.github/actions/yarn_install
+      - uses: sibiraj-s/action-eslint@v2

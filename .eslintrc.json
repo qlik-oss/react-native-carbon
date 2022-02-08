@@ -1,0 +1,15 @@
+{
+    "env": {
+        "node": true
+    },
+    "extends": ["@react-native-community", "plugin:prettier/recommended"],
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": ["error", {}, {
+            "usePrettierrc": false
+          }],
+          "no-unused-vars":["error", {"argsIgnorePattern": "^_"}]
+    }
+}
