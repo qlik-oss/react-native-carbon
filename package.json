@@ -30,6 +30,7 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "rm -rf node_modules",
+    "test": "npx jest",
     "ci:install": "yarn install --frozen-lockfile"
   },
   "repository": {
