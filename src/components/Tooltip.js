@@ -1,7 +1,7 @@
 import {
   supernovaToolTipStateAtom,
   supernovaToolTipVisible,
-} from "@qlik-trial/react-native-carbon/src/carbonAtoms";
+} from "@qlik/react-native-carbon/src/carbonAtoms";
 import { useAtomValue, useResetAtom } from "jotai/utils";
 import { useAtom } from "jotai";
 import React, { useEffect, useRef, useState, useCallback } from "react";
