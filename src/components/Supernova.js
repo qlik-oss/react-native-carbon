@@ -397,7 +397,7 @@ export const Supernova = ({
   return (
     <View style={[styles.layer, style]} ref={bodyRef} collapsable={false}>
       <Title
-        syle={titleBarStyle}
+        style={titleBarStyle}
         layout={layout}
         onLayout={handleTitleLayout}
         topPadding={topPadding}
@@ -422,7 +422,7 @@ export const Supernova = ({
       {showLegend ? <CatLegend layout={layout} element={element} /> : null}
       <Footer layout={layout} theme={theme} />
       {layout === undefined ? (
-        <ActivityIndicator style={styles.loader} />
+        <ActivityIndicator style={styles.loader} size="large" color="grey" />
       ) : null}
     </View>
   );

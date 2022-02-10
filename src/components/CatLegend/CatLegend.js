@@ -14,7 +14,7 @@ export const CatLegend = ({ element, layout }) => {
       });
     }
   }, [element]);
-  return layout?.legend?.show && element.catLegendMounted ? (
+  return layout?.legend?.show && element?.catLegendMounted ? (
     <View style={[styles.main, { bottom }]}>
       {layout.legend.showTitle ? (
         <Text numberOfLines={1} style={styles.title}>
