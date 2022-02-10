@@ -30,6 +30,7 @@ export const Title = ({
   disableIcon,
   theme,
   style,
+  disableSubTitle,
 }) => {
   const titleStyle = getTitleStyle(theme);
   const subtitleStyle = getSubtitleStyle(theme);
@@ -58,7 +59,7 @@ export const Title = ({
           {layout.title}
         </Text>
       ) : null}
-      {layout?.subtitle?.length > 0 ? (
+      {!disableSubTitle && layout?.subtitle?.length > 0 ? (
         <Text numberOfLines={1} style={[styles.subtitle, {...subtitleStyle}]}>
           {layout.subtitle}
         </Text>
