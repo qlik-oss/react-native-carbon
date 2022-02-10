@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from 'react';
 import {
   requireNativeComponent,
   ViewProps,
@@ -6,10 +6,10 @@ import {
   StyleSheet,
   LayoutChangeEvent,
   Platform,
-} from "react-native";
-import { ElementProxy } from "./ElementProxy";
-import uuid from "react-native-uuid";
-import Element from "./Element";
+} from 'react-native';
+import {ElementProxy} from './ElementProxy';
+import uuid from 'react-native-uuid';
+import Element from './Element';
 
 export type QRNLayerProps = {
   style: any;
@@ -44,8 +44,8 @@ const LayerView: React.FC<QRNLayerProps> = ({
     };
   }, []);
 
-  const onLayout = ({ nativeEvent }: LayoutChangeEvent) => {
-    const { layout } = nativeEvent;
+  const onLayout = ({nativeEvent}: LayoutChangeEvent) => {
+    const {layout} = nativeEvent;
 
     if (!element && !rootElementId.current) {
       const id = uuid.v4();
@@ -56,15 +56,15 @@ const LayerView: React.FC<QRNLayerProps> = ({
         layout.y,
         layout.width,
         layout.height,
-        nodeHandle.current
+        nodeHandle.current,
       );
       ElementProxy.createRootElement(nodeHandle.current, id);
       onElement(el);
       setElement(el);
     } else if (element) {
       element?.clear();
-      element?.setClientRect({ ...layout });
-      if (Platform.OS === "android") {
+      element?.setClientRect({...layout});
+      if (Platform.OS === 'android') {
         onLayoutChanged();
       } else {
         element?.draw();
@@ -94,9 +94,9 @@ const LayerView: React.FC<QRNLayerProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
 });
 
-var QRNLayerView = requireNativeComponent<ViewProps>("QRNLayer");
+var QRNLayerView = requireNativeComponent<ViewProps>('QRNLayer');
 export default LayerView;

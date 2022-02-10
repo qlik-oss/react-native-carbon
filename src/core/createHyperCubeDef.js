@@ -1,4 +1,4 @@
-export const createHyperCubeDef = ({ fields, type }) => {
+export const createHyperCubeDef = ({fields, type}) => {
   const qDimensions = fields?.map((field) => ({
     qDef: {
       qFieldDefs: [field],

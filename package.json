@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "typescript": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint": "eslint . --fix",
     "clean": "rm -rf node_modules",
     "test": "npx jest",
     "ci:install": "yarn install --frozen-lockfile"

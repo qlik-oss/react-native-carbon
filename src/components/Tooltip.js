@@ -1,13 +1,13 @@
 import {
   supernovaToolTipStateAtom,
   supernovaToolTipVisible,
-} from "@qlik/react-native-carbon/src/carbonAtoms";
-import { useAtomValue, useResetAtom } from "jotai/utils";
-import { useAtom } from "jotai";
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import { View, StyleSheet, Animated, Easing } from "react-native";
-import { IconButton } from "react-native-paper";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+} from '@qlik/react-native-carbon/src/carbonAtoms';
+import {useAtomValue, useResetAtom} from 'jotai/utils';
+import {useAtom} from 'jotai';
+import React, {useEffect, useRef, useState, useCallback} from 'react';
+import {View, StyleSheet, Animated, Easing} from 'react-native';
+import {IconButton} from 'react-native-paper';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const animationConfig = {
   duration: 150,
@@ -15,7 +15,7 @@ const animationConfig = {
   useNativeDriver: true,
 };
 
-export const Tooltip = ({ duration, insets }) => {
+export const Tooltip = ({duration, insets}) => {
   const deviceInsets = useSafeAreaInsets();
   const tooltipState = useAtomValue(supernovaToolTipStateAtom);
   const [visible, setVisible] = useAtom(supernovaToolTipVisible);
@@ -94,8 +94,8 @@ export const Tooltip = ({ duration, insets }) => {
     }
   }, [tooltipState.config, insets?.top, deviceInsets.top, visible]);
 
-  const onLayout = ({ nativeEvent }) => {
-    cachedShowState.current = { ...nativeEvent.layout };
+  const onLayout = ({nativeEvent}) => {
+    cachedShowState.current = {...nativeEvent.layout};
     calcluatePos();
   };
 
@@ -107,10 +107,10 @@ export const Tooltip = ({ duration, insets }) => {
   return (
     <View
       pointerEvents="box-none"
-      style={[styles.talkBubble, { ...showState }]}
+      style={[styles.talkBubble, {...showState}]}
       onLayout={onLayout}
     >
-      <Animated.View style={[{ opacity, transform: [{ scale }] }]}>
+      <Animated.View style={[{opacity, transform: [{scale}]}]}>
         <View style={styles.talkBubbleSquare}>
           {tooltipState?.config?.content?.display() || null}
           <IconButton
@@ -124,7 +124,7 @@ export const Tooltip = ({ duration, insets }) => {
         <View
           style={[
             styles.talkBubbleTriangle,
-            { left: showState.triangleLeft, bottom: showState.triangleBottom },
+            {left: showState.triangleLeft, bottom: showState.triangleBottom},
           ]}
         />
       </Animated.View>
@@ -134,10 +134,10 @@ export const Tooltip = ({ duration, insets }) => {
 
 const styles = StyleSheet.create({
   talkBubble: {
-    backgroundColor: "transparent",
-    position: "absolute",
+    backgroundColor: 'transparent',
+    position: 'absolute',
     zIndex: 1000,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,
@@ -148,20 +148,20 @@ const styles = StyleSheet.create({
   },
   talkBubbleSquare: {
     padding: 8,
-    backgroundColor: "#595959",
+    backgroundColor: '#595959',
     borderRadius: 4,
   },
   talkBubbleTriangle: {
-    position: "absolute",
+    position: 'absolute',
     bottom: -5,
     left: 0,
     height: 10,
     width: 10,
-    backgroundColor: "#595959",
-    transform: [{ rotate: "45deg" }],
+    backgroundColor: '#595959',
+    transform: [{rotate: '45deg'}],
   },
   close: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     right: 0,
   },

@@ -1,26 +1,26 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Text} from 'react-native-paper';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const getTitleStyle = (theme) => {
   let color = theme?.object?.title?.main?.color;
-  let fontSize = theme?.object?.title?.main?.fontSize || "5px";
+  let fontSize = theme?.object?.title?.main?.fontSize || '5px';
   fontSize = parseInt(fontSize, 10);
   if (color) {
     color = theme?._variables[color] || color;
   }
-  return { color, fontSize };
+  return {color, fontSize};
 };
 
 const getSubtitleStyle = (theme) => {
   let color = theme?.object?.title?.subTitle?.color;
-  let fontSize = theme?.object?.title?.subTitle?.fontSize || "5px";
+  let fontSize = theme?.object?.title?.subTitle?.fontSize || '5px';
   fontSize = parseInt(fontSize, 10);
   if (color) {
     color = theme?._variables[color] || color;
   }
-  return { color, fontSize };
+  return {color, fontSize};
 };
 
 export const Title = ({
@@ -40,7 +40,7 @@ export const Title = ({
       style={[
         styles.titleBar,
         // eslint-disable-next-line react-native/no-inline-styles
-        { minHeight: topPadding === "none" ? undefined : 40 },
+        {minHeight: topPadding === 'none' ? undefined : 40},
         style,
         marginRight,
       ]}
@@ -54,31 +54,31 @@ export const Title = ({
         />
       )}
       {layout?.title?.length > 0 ? (
-        <Text numberOfLines={1} style={[styles.title, { ...titleStyle }]}>
+        <Text numberOfLines={1} style={[styles.title, {...titleStyle}]}>
           {layout.title}
         </Text>
       ) : null}
       {layout?.subtitle?.length > 0 ? (
-        <Text numberOfLines={1} style={[styles.subtitle, { ...subtitleStyle }]}>
+        <Text numberOfLines={1} style={[styles.subtitle, {...subtitleStyle}]}>
           {layout.subtitle}
         </Text>
       ) : null}
     </View>
-  ) : topPadding === "none" ? null : (
+  ) : topPadding === 'none' ? null : (
     <View onLayout={onLayout} style={styles.filler} />
   );
 };
 
 const styles = StyleSheet.create({
   title: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 16,
-    color: "#404040",
+    color: '#404040',
     margin: 0,
     flex: 1,
   },
   subtitle: {
-    color: "#404040",
+    color: '#404040',
     fontSize: 12,
     marginLeft: 4,
   },
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
   titleBar: {
     minHeight: 40,
     paddingLeft: 8,
-    alignItems: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   icon: {
     marginRight: 8,

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { createHyperCubeDef, ModelConfig } from "../core/createHyperCubeDef";
+import {useEffect, useState} from 'react';
+import {createHyperCubeDef, ModelConfig} from '../core/createHyperCubeDef';
 
 export const useModelFromId = (config: ModelConfig) => {
   const [model, setModel] = useState(undefined);
@@ -42,5 +42,5 @@ export const useModelFromId = (config: ModelConfig) => {
       mounted = false;
     };
   }, [config]);
-  return { model };
+  return {model};
 };

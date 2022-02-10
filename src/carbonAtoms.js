@@ -1,5 +1,5 @@
-import { atom } from "jotai";
-import { atomWithReset } from "jotai/utils";
+import {atom} from 'jotai';
+import {atomWithReset} from 'jotai/utils';
 
 export const supernovaStateAtom = atomWithReset({
   toggleLasso: () => {},

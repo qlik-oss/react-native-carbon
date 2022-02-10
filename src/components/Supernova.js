@@ -1,21 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import { StyleSheet, Animated, View } from "react-native";
-import { __DO_NOT_USE__ as NebulaInternals } from "@nebula.js/stardust";
-import LayerView from "./LayerView";
-import { SelectionsApi } from "../core/selectionsApi";
-import { Title } from "./Title";
-import { Footer } from "./Footer";
-import { defaultLogger } from "../defaultLogger";
-import { createHyperCubeDef } from "../core/createHyperCubeDef";
-import { CatLegend } from "./CatLegend";
-import { useResetAtom, useUpdateAtom } from "jotai/utils";
+import React, {useEffect, useRef, useState, useCallback} from 'react';
+import {StyleSheet, Animated, View} from 'react-native';
+import {__DO_NOT_USE__ as NebulaInternals} from '@nebula.js/stardust';
+import LayerView from './LayerView';
+import {SelectionsApi} from '../core/selectionsApi';
+import {Title} from './Title';
+import {Footer} from './Footer';
+import {defaultLogger} from '../defaultLogger';
+import {createHyperCubeDef} from '../core/createHyperCubeDef';
+import {CatLegend} from './CatLegend';
+import {useResetAtom, useUpdateAtom} from 'jotai/utils';
 import {
   supernovaStateAtom,
   supernovaToolTipStateAtom,
   supernovaToolTipVisible,
-} from "../carbonAtoms";
-import { ActivityIndicator } from "react-native-paper";
+} from '../carbonAtoms';
+import {ActivityIndicator} from 'react-native-paper';
 
 export const Supernova = ({
   sn,
@@ -37,8 +37,8 @@ export const Supernova = ({
   onLoaded,
   log = defaultLogger,
 }) => {
-  const { generator, theme: themeFn } = NebulaInternals;
-  const translator = { add: () => {}, language: () => "english" };
+  const {generator, theme: themeFn} = NebulaInternals;
+  const translator = {add: () => {}, language: () => 'english'};
   const [element, setElement] = useState(undefined);
   const [snRenderContext, setSnRenderContext] = useState(undefined);
   const [layout, setLayout] = useState(loadLayout);
@@ -64,7 +64,7 @@ export const Supernova = ({
         const m = await app.getObject(id);
         setModel(m);
       } catch (error) {
-        log.error("Error fetching model", error);
+        log.error('Error fetching model', error);
       }
     };
     if (object) {
@@ -78,11 +78,11 @@ export const Supernova = ({
     const fetchModel = async () => {
       try {
         const type = Math.random().toString(32).substring(8);
-        const props = createHyperCubeDef({ fields, type });
+        const props = createHyperCubeDef({fields, type});
         const m = await app.createSessionObject(props);
         setModel(m);
       } catch (error) {
-        log.error("error", error);
+        log.error('error', error);
       }
     };
     if (fields && app) {
@@ -135,11 +135,11 @@ export const Supernova = ({
       e.disableLoadAnimations();
     }
 
-    e.addEventListener("renderComponentWithData", (data) => {
+    e.addEventListener('renderComponentWithData', (data) => {
       setComponentData(data);
     });
 
-    e.addEventListener("onTooltipData", (event) => {
+    e.addEventListener('onTooltipData', (event) => {
       containerRef.current.measure((x, y, width, height, pageX, pageY) => {
         const config = {
           ...event,
@@ -153,7 +153,7 @@ export const Supernova = ({
             titleLayout: titleLayout.current,
           },
         };
-        setToolTipConfig({ config });
+        setToolTipConfig({config});
       });
     });
 
@@ -169,12 +169,12 @@ export const Supernova = ({
           selectionsApiImpl?.current?.isActive()
         ) {
           selectionsApiImpl.current.noModal();
-          selectionsApiImpl.current.eventEmitter.emit("aborted");
+          selectionsApiImpl.current.eventEmitter.emit('aborted');
         }
         setLayout(l);
       } catch (error) {
         if (error.code !== 15) {
-          log.error("Failed to get layout", error);
+          log.error('Failed to get layout', error);
         }
       }
     };
@@ -201,7 +201,7 @@ export const Supernova = ({
           await model.endSelections(true);
           firstLayout = await model.getLayout();
         } catch (error) {
-          log.error("complete fail");
+          log.error('complete fail');
         }
       }
       return firstLayout;
@@ -210,13 +210,13 @@ export const Supernova = ({
     const initialize = async () => {
       try {
         const initialLayout = await getInitialLayout();
-        selectionsApiImpl.current = SelectionsApi({ model, app, log });
-        selectionsApiImpl.current.eventEmitter.addListener("activated", () => {
+        selectionsApiImpl.current = SelectionsApi({model, app, log});
+        selectionsApiImpl.current.eventEmitter.addListener('activated', () => {
           // check for position here to avoid the data race when
           // initialized is called before onlayout
           bodyRef.current.measure((x, y, width, height, pageX, pageY) => {
             let py = pageY;
-            if (topPadding === "none") {
+            if (topPadding === 'none') {
               py = pageY - 30;
             }
             const position = {
@@ -241,10 +241,10 @@ export const Supernova = ({
             setSelectionsConfig(config);
           });
         });
-        selectionsApiImpl.current.on("canceled", () => {
+        selectionsApiImpl.current.on('canceled', () => {
           resetConfig();
         });
-        model.on("changed", changed);
+        model.on('changed', changed);
         setSnRenderContext({
           app,
           model,
@@ -257,7 +257,7 @@ export const Supernova = ({
           setLayout(loadLayout);
         }
       } catch (error) {
-        log.error("Failed to initialize", error);
+        log.error('Failed to initialize', error);
       }
     };
 
@@ -268,7 +268,7 @@ export const Supernova = ({
 
     return () => {
       if (!mounted.current && model) {
-        model.removeListener("changed", changed);
+        model.removeListener('changed', changed);
         if (selectionsApiImpl.current) {
           selectionsApiImpl.current.destroy();
         }
@@ -284,13 +284,13 @@ export const Supernova = ({
 
     if (sn && snRenderContext && element && !snComponent.current) {
       const options = {
-        renderer: "carbon",
+        renderer: 'carbon',
         carbon: true,
         showLegend,
-        invalidMessage: invalidMessage || "Undefined",
+        invalidMessage: invalidMessage || 'Undefined',
       };
       const t = themeFn();
-      t.internalAPI.setTheme(theme, "horizon");
+      t.internalAPI.setTheme(theme, 'horizon');
       themeRef.current = t;
       const supernova = generator(sn, {
         translator,
@@ -298,7 +298,7 @@ export const Supernova = ({
         theme: t.externalAPI,
         ...options,
       });
-      const { component } = supernova.create({
+      const {component} = supernova.create({
         ...snRenderContext,
         selections,
         theme: t,
@@ -336,7 +336,7 @@ export const Supernova = ({
           await snComponent.current.render({
             ...snRenderContext,
             context,
-            layout: { ...renderLayout },
+            layout: {...renderLayout},
           });
           if (
             renderLayout &&
@@ -346,17 +346,17 @@ export const Supernova = ({
             element?.draw();
           }
         } catch (error) {
-          log.error("error while rendering");
+          log.error('error while rendering');
         }
       }
       if (snComponent.current && renderLayout !== undefined) {
         renderSupernova();
       }
     },
-    [element, lasso]
+    [element, lasso],
   );
 
-  const handleTitleLayout = ({ nativeEvent }) => {
+  const handleTitleLayout = ({nativeEvent}) => {
     titleLayout.current = nativeEvent.layout;
   };
 
@@ -437,8 +437,8 @@ const styles = StyleSheet.create({
   },
   loader: {
     ...StyleSheet.absoluteFill,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
 });

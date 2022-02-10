@@ -1,2 +1,2 @@
-import { CatLegend } from "./CatLegend";
-export { CatLegend };
+import {CatLegend} from './CatLegend';
+export {CatLegend};

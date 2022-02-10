@@ -1,9 +1,9 @@
-import { ElementProxy } from "./ElementProxy";
-import rgba from "color-rgba";
-import uuid from "react-native-uuid";
-import getPixelWidth from "string-pixel-width";
-import EventEmitter from "eventemitter3";
-import { transformEvent } from "../core/transformEvent";
+import {ElementProxy} from './ElementProxy';
+import rgba from 'color-rgba';
+import uuid from 'react-native-uuid';
+import getPixelWidth from 'string-pixel-width';
+import EventEmitter from 'eventemitter3';
+import {transformEvent} from '../core/transformEvent';
 
 type ElementBoundingRect = {
   width: number;
@@ -42,7 +42,7 @@ export default class Element {
     y: number,
     width: number,
     height: number,
-    nativeHandle?: any
+    nativeHandle?: any,
   ) {
     this.throttle = 30;
     this.immediate = false;
@@ -57,7 +57,7 @@ export default class Element {
     this.catLegendData = undefined;
     this.catLegendListener = undefined;
     this.catLegendMounted = false;
-    this.catLegendTitle = "";
+    this.catLegendTitle = '';
     this.nativeHandle = nativeHandle;
     this.boundingRect = {
       x,
@@ -87,12 +87,12 @@ export default class Element {
     if (opacity !== undefined) {
       colors[3] = opacity;
     }
-    return { type: "color", colors };
+    return {type: 'color', colors};
   }
 
   getColorGradientFrom(fill: any) {
     const gradient = {
-      type: "gradient",
+      type: 'gradient',
       degree: fill.degree,
       stops: fill.stops.map((stop: any) => ({
         color: this.getColorFromString(stop.color, undefined),
@@ -104,22 +104,22 @@ export default class Element {
 
   measureText(opt: any) {
     if (!opt.text) {
-      return { width: getPixelWidth(opt, { size: 12 }), height: 12 };
+      return {width: getPixelWidth(opt, {size: 12}), height: 12};
     }
     let size = parseInt(opt.fontSize, 10);
     if (isNaN(size)) {
       size = 12;
     }
 
-    let sourceFont = opt.fontFamily || "arial";
+    let sourceFont = opt.fontFamily || 'arial';
 
     const fontFamily = sourceFont
-      .split(",")
+      .split(',')
       .map((s: any) => s?.trim()?.toLowerCase());
     const font = fontFamily.length > 1 ? fontFamily[1] : fontFamily[0];
     const dims = opt.fontSize
-      ? { width: getPixelWidth(opt.text, { size, font }), height: size }
-      : { width: getPixelWidth(opt.text, { size: 12, font }) };
+      ? {width: getPixelWidth(opt.text, {size, font}), height: size}
+      : {width: getPixelWidth(opt.text, {size: 12, font})};
     return dims;
   }
 
@@ -178,11 +178,11 @@ export default class Element {
     height: number,
     fill: any,
     opacity = 1.0,
-    stroke = "white",
-    strokeWidth = 0.0
+    stroke = 'white',
+    strokeWidth = 0.0,
   ) {
     let colors;
-    if (fill.type === "gradient") {
+    if (fill.type === 'gradient') {
       colors = this.getColorGradientFrom(fill);
     } else {
       colors = this.getColorFromString(fill, opacity);
@@ -198,16 +198,16 @@ export default class Element {
       height,
       colors,
       strokeColors,
-      strokeWidth
+      strokeWidth,
     );
   }
 
   updateShape(composite: any) {
     const colors = this.getColorFromString(composite.fill, composite.opacity);
-    const stroke = composite?.stroke || "white";
+    const stroke = composite?.stroke || 'white';
     const strokeWidth = composite?.strokeWidth || 0.0;
     const strokeColors = this.getColorFromString(stroke, undefined);
-    return { colors, strokeColors, strokeWidth, id: composite.shapeId };
+    return {colors, strokeColors, strokeWidth, id: composite.shapeId};
   }
 
   addLine(
@@ -217,7 +217,7 @@ export default class Element {
     y1: number,
     y2: number,
     stroke: string,
-    strokeWidth: number
+    strokeWidth: number,
   ) {
     const strokeColor = this.getColorFromString(stroke, undefined);
     ElementProxy.addLine(
@@ -228,7 +228,7 @@ export default class Element {
       y1,
       y2,
       strokeColor,
-      strokeWidth
+      strokeWidth,
     );
   }
 
@@ -239,8 +239,8 @@ export default class Element {
     r: number,
     fill: string,
     opacity: number | undefined,
-    stroke = "white",
-    strokeWidth = 0.0
+    stroke = 'white',
+    strokeWidth = 0.0,
   ) {
     const colors = this.getColorFromString(fill, opacity);
     const strokeColors = this.getColorFromString(stroke, undefined);
@@ -252,7 +252,7 @@ export default class Element {
       r,
       colors,
       strokeColors,
-      strokeWidth
+      strokeWidth,
     );
   }
 
@@ -261,8 +261,8 @@ export default class Element {
     textObj: any,
     fill: string,
     opacity: number | undefined,
-    stroke = "white",
-    strokeWidth = 0.0
+    stroke = 'white',
+    strokeWidth = 0.0,
   ) {
     const colors = this.getColorFromString(fill, opacity);
     const strokeColors = this.getColorFromString(stroke, undefined);
@@ -272,7 +272,7 @@ export default class Element {
       textObj,
       colors,
       strokeColors,
-      strokeWidth
+      strokeWidth,
     );
   }
 
@@ -297,7 +297,7 @@ export default class Element {
         child.draw();
       });
 
-      this.shapesBuffer = this.composites.map((c) => ({ ...c }));
+      this.shapesBuffer = this.composites.map((c) => ({...c}));
     }
   }
 
@@ -306,7 +306,7 @@ export default class Element {
     // these objects are transfered over the bridge.  The bridge
     // serializes the object into JSON, when there's 1000's of objects, every little bit helps.
     switch (shape.type) {
-      case "line": {
+      case 'line': {
         this.addLine(
           shape.shapeId,
           shape.x1,
@@ -314,11 +314,11 @@ export default class Element {
           shape.y1,
           shape.y2,
           shape.stroke,
-          shape.strokeWidth
+          shape.strokeWidth,
         );
         break;
       }
-      case "path": {
+      case 'path': {
         const obj = {} as any;
         if (shape.d) {
           obj.path = shape.d;
@@ -336,7 +336,7 @@ export default class Element {
         }
         break;
       }
-      case "circle": {
+      case 'circle': {
         this.addCircle(
           shape.shapeId,
           shape.cx,
@@ -345,11 +345,11 @@ export default class Element {
           shape.fill,
           shape.opacity,
           shape.stroke,
-          shape.strokeWidth
+          shape.strokeWidth,
         );
         break;
       }
-      case "text": {
+      case 'text': {
         const obj = {} as any;
         if (shape.text && shape.text.length > 0) {
           obj.text = shape.text;
@@ -381,23 +381,23 @@ export default class Element {
             shape.fill,
             shape.opacity,
             shape.stroke,
-            shape.strokeWidth
+            shape.strokeWidth,
           );
         }
         break;
       }
-      case "rect": {
+      case 'rect': {
         this.addRect(
           shape.shapeId,
-          shape?.data?.path || "",
+          shape?.data?.path || '',
           shape.x,
           shape.y,
           shape.width,
           shape.height,
           shape.fill,
           shape.opacity === undefined ? 1.0 : shape.opacity,
-          shape?.stroke || "white",
-          shape?.strokeWidth || 0.0
+          shape?.stroke || 'white',
+          shape?.strokeWidth || 0.0,
         );
         break;
       }
@@ -418,7 +418,7 @@ export default class Element {
 
   destroy() {
     this.children.forEach((child) => child.destroy());
-    this.eventEmitter.emit("destroyed");
+    this.eventEmitter.emit('destroyed');
     this.eventEmitter.removeAllListeners();
     ElementProxy.destroy(this.id);
   }
@@ -479,7 +479,7 @@ export default class Element {
   }
 
   renderComponent(data: any) {
-    this.eventEmitter.emit("renderComponentWithData", data);
+    this.eventEmitter.emit('renderComponentWithData', data);
   }
 
   getJsxComponent() {

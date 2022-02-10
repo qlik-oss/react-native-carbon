@@ -1,12 +1,12 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import { Text } from "react-native-paper";
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
+import {Text} from 'react-native-paper';
 
-export const LegendItem = ({ item }) => {
+export const LegendItem = ({item}) => {
   const backgroundColor = item.color;
   return (
     <View style={styles.main}>
-      <View style={[styles.box, { backgroundColor }]} />
+      <View style={[styles.box, {backgroundColor}]} />
       <Text style={styles.label} numberOfLines={1}>
         {item.label}
       </Text>
@@ -16,9 +16,9 @@ export const LegendItem = ({ item }) => {
 
 const styles = StyleSheet.create({
   main: {
-    flexDirection: "row",
+    flexDirection: 'row',
     margin: 4,
-    alignItems: "center",
+    alignItems: 'center',
   },
   label: {
     marginRight: 8,

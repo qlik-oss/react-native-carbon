@@ -1,10 +1,10 @@
-import { LegendItem } from "./LegendItem";
-import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
-import { Text } from "react-native-paper";
-import { ScrollView } from "react-native-gesture-handler";
+import {LegendItem} from './LegendItem';
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet} from 'react-native';
+import {Text} from 'react-native-paper';
+import {ScrollView} from 'react-native-gesture-handler';
 
-export const CatLegend = ({ element, layout }) => {
+export const CatLegend = ({element, layout}) => {
   const [data, setData] = useState(undefined);
   const bottom = layout?.showTitles && layout?.footnote?.length > 0 ? 36 : 0;
   useEffect(() => {
@@ -15,7 +15,7 @@ export const CatLegend = ({ element, layout }) => {
     }
   }, [element]);
   return layout?.legend?.show && element?.catLegendMounted ? (
-    <View style={[styles.main, { bottom }]}>
+    <View style={[styles.main, {bottom}]}>
       {layout.legend.showTitle ? (
         <Text numberOfLines={1} style={styles.title}>
           {element.catLegendTitle}
@@ -36,24 +36,24 @@ export const CatLegend = ({ element, layout }) => {
 
 const styles = StyleSheet.create({
   main: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 36,
     left: 0,
     right: 0,
     height: 64,
-    width: "100%",
+    width: '100%',
     marginTop: 8,
   },
   scroll: {
     flex: 1,
   },
   content: {
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "space-evenly",
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
   },
   title: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 12,
   },
 });

@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
-import { View, StyleSheet, Animated } from "react-native";
-import { Button, IconButton, ToggleButton } from "react-native-paper";
-import { useAtomValue } from "jotai/utils";
-import { supernovaStateAtom } from "../carbonAtoms";
+import React, {useRef, useEffect, useState} from 'react';
+import {View, StyleSheet, Animated} from 'react-native';
+import {Button, IconButton, ToggleButton} from 'react-native-paper';
+import {useAtomValue} from 'jotai/utils';
+import {supernovaStateAtom} from '../carbonAtoms';
 
 const SelectionsToolbar = ({
   style,
@@ -15,11 +15,11 @@ const SelectionsToolbar = ({
   const selectionsConfig = useAtomValue(supernovaStateAtom);
   const [lasso, setLasso] = useState(false);
   const viewRef = useRef(undefined);
-  const layout = useRef({ width: 0, height: 0 });
+  const layout = useRef({width: 0, height: 0});
   const padding = 4;
   const coords =
     selectionsConfig?.position === undefined
-      ? { pageX: 0, pageY: 0, width: 0, height: 0 }
+      ? {pageX: 0, pageY: 0, width: 0, height: 0}
       : selectionsConfig?.position;
   const animationProgress = useRef(new Animated.Value(0));
 
@@ -61,7 +61,7 @@ const SelectionsToolbar = ({
     onClear();
   };
 
-  const onLayout = ({ nativeEvent }) => {
+  const onLayout = ({nativeEvent}) => {
     layout.current = nativeEvent.layout;
   };
 
@@ -71,7 +71,7 @@ const SelectionsToolbar = ({
     if (top < bounds) {
       top = bounds;
     }
-    return { top, left };
+    return {top, left};
   };
 
   return (
@@ -85,15 +85,15 @@ const SelectionsToolbar = ({
         style={[
           styles.toolbar,
           style,
-          { padding },
-          { opacity },
-          { transform: [{ scale: opacity }] },
+          {padding},
+          {opacity},
+          {transform: [{scale: opacity}]},
         ]}
       >
         <ToggleButton
           icon="lasso"
           onPress={handleLasso}
-          status={lasso ? "checked" : "unchecked"}
+          status={lasso ? 'checked' : 'unchecked'}
         />
         <IconButton icon="clear-selections" onPress={handleClear} />
         <View style={styles.seperator} />
@@ -118,9 +118,9 @@ const SelectionsToolbar = ({
 
 const styles = StyleSheet.create({
   conatiner: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1000000,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -131,10 +131,10 @@ const styles = StyleSheet.create({
   toolbar: {
     flex: 0,
     height: 36,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    backgroundColor: "white",
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: 'white',
     borderRadius: 4,
     elevation: 5,
   },
@@ -143,8 +143,8 @@ const styles = StyleSheet.create({
   },
   seperator: {
     width: 2,
-    backgroundColor: "lightgrey",
-    height: "100%",
+    backgroundColor: 'lightgrey',
+    height: '100%',
     borderRadius: 1,
   },
 });
