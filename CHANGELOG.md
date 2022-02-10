@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.0...v1.1.1) (2022-02-10)
+
+
+### Bug Fixes
+
+* migrate changes from original repo ([#4](https://github.com/qlik-oss/react-native-carbon/issues/4)) ([713f324](https://github.com/qlik-oss/react-native-carbon/commit/713f324be6336001828bd4ab1bd3e7d6061ac4ac))
+
 # [1.1.0](https://github.com/qlik-oss/react-native-carbon/compare/v1.0.1...v1.1.0) (2022-02-08)
 
 
