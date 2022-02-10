@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#404040",
     margin: 0,
+    flex: 1,
   },
   subtitle: {
     color: "#404040",
@@ -82,17 +83,16 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   filler: {
-    height: 36,
-    backgroundColor: "white",
+    height: 40,
   },
   titleBar: {
-    minHeight: 36,
-    padding: 4,
+    minHeight: 40,
+    paddingLeft: 8,
     alignItems: "center",
     flexDirection: "row",
-    width: "88%",
   },
   icon: {
     marginRight: 8,
+    paddingBottom: 2,
   },
 });
