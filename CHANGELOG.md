@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.3...v1.1.4) (2022-02-10)
+
+
+### Bug Fixes
+
+* **MD-2978:** fix missed subtitle prop ([#5](https://github.com/qlik-oss/react-native-carbon/issues/5)) ([242bb6f](https://github.com/qlik-oss/react-native-carbon/commit/242bb6fd6527e95f25d456869607b410621fef9e))
+
 ## [1.1.3](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.2...v1.1.3) (2022-02-10)
 
 
