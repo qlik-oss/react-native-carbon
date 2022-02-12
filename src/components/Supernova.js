@@ -31,7 +31,6 @@ export const Supernova = ({
   onDoubleTap,
   topPadding,
   onLongPress,
-  disableIcon,
   loadLayout,
   titleBarStyle,
   onLoaded,
@@ -401,7 +400,6 @@ export const Supernova = ({
         layout={layout}
         onLayout={handleTitleLayout}
         topPadding={topPadding}
-        disableIcon={disableIcon}
         theme={theme}
       />
       <Animated.View style={[styles.layer]} ref={containerRef}>

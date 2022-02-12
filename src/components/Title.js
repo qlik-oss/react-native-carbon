@@ -27,14 +27,12 @@ export const Title = ({
   layout,
   onLayout,
   topPadding,
-  disableIcon,
   theme,
   style,
   disableSubTitle,
 }) => {
   const titleStyle = getTitleStyle(theme);
   const subtitleStyle = getSubtitleStyle(theme);
-  const marginRight = disableIcon ? 4 : 6;
   return layout?.showTitles ? (
     <View
       onLayout={onLayout}
@@ -43,17 +41,8 @@ export const Title = ({
         // eslint-disable-next-line react-native/no-inline-styles
         {minHeight: topPadding === 'none' ? undefined : 40},
         style,
-        marginRight,
       ]}
     >
-      {disableIcon ? null : (
-        <MaterialIcons
-          style={styles.icon}
-          name="touch-app"
-          color={titleStyle.color}
-          size={20}
-        />
-      )}
       {layout?.title?.length > 0 ? (
         <Text numberOfLines={1} style={[styles.title, {...titleStyle}]}>
           {layout.title}
