@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.4...v1.1.5) (2022-02-12)
+
+
+### Bug Fixes
+
+* let user resolve icon ([#13](https://github.com/qlik-oss/react-native-carbon/issues/13)) ([bcaaff9](https://github.com/qlik-oss/react-native-carbon/commit/bcaaff9f4c7c03232ac5a93a9e412e37c8d7182f))
+
 ## [1.1.4](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.3...v1.1.4) (2022-02-10)
 
 
