@@ -1,5 +1,9 @@
 package com.reactnativecarbon.photon;
 
+
+import static com.facebook.react.bridge.UiThreadUtil.runOnUiThread;
+
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -14,11 +18,16 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.os.Build;
 import android.util.Log;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.RequiresApi;
 
@@ -42,13 +51,12 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     private Thread drawThread;
     private boolean surfaceReady = false;
     private boolean drawingActive = false;
-    private static final String LOGTAG = "surface";
+    private static final String LOGTAG = "LayerSurfaceView";
     private BlockingDeque<Task> taskQueue = new LinkedBlockingDeque<Task>();
     private List<LayerElement> elements = Collections.synchronizedList(new ArrayList<>());
     private Bitmap presentBitmap = null;
     private Paint presentPaint;
     private Paint clearPaint;
-    private Rect presentRect;
     private DrawBuffer drawBuffer;
     private boolean firstDraw = true;
     private GestureDetector gestureDetector;
@@ -57,6 +65,7 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     private boolean lasso = false;
     private LassoPaintTask currentLasso = null;
     ExecutorService threadPool = Executors.newFixedThreadPool(16);
+    Rect currentRect = new Rect(0, 0, 0, 0);
 
     private SelectionsEngine selectionsEngine = new SelectionsEngine();
     class TapListener extends GestureDetector.SimpleOnGestureListener {
@@ -91,7 +100,7 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     public void setLasso(boolean value) {
         this.lasso = value;
     }
-    
+
     public void setContextView(View view) {
       this.contextView = view;
     }
@@ -118,9 +127,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         if (!lasso) {
-//            if(e.getAction() == MotionEvent.ACTION_DOWN) {
-//                sendTouches(e.getX(), e.getY());
-//            }
             gestureDetector.onTouchEvent(e);
         } else {
             if(e.getAction() == MotionEvent.ACTION_DOWN) {
@@ -198,7 +204,7 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
             Log.d(LOGTAG, "exe");
         }
     }
-    
+
     public void clearScreen() {
       try {
         RenderTask task = new RenderTask(this, true);
@@ -245,21 +251,22 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        Log.d(LOGTAG, "surfaceCreated");
         this.holder = surfaceHolder;
         if (drawThread != null) {
             try{
                 drawThread.join();
             } catch (InterruptedException e) {
-                Log.d(LOGTAG, "Interupted");
+                Log.d(LOGTAG, "Interrupted");
             }
         }
-        createSurfaces(surfaceHolder);
-        surfaceReady = true;
+
 
         Log.d(LOGTAG, "Started.");
     }
 
     private void createSurfaces(SurfaceHolder surfaceHolder) {
+<<<<<<< HEAD
         Rect newRect = surfaceHolder.getSurfaceFrame();
         boolean frameUpdated = presentRect == null || newRect.width() != presentRect.width() || newRect.height() != presentRect.height();
         if (presentBitmap == null || frameUpdated) {
@@ -272,9 +279,23 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
             clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             presentRect = rect;
             presentPaint.setShader(new BitmapShader(presentBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
-          
+
             drawBuffer = new DrawBuffer(rect.width(), rect.height());
         }
+=======
+        Rect rect = surfaceHolder.getSurfaceFrame();
+        Log.d("LayerSurfaceView", "Surface createSurfaces");
+        currentRect = rect;
+        presentBitmap = Bitmap.createBitmap(rect.width(), rect.height(), Bitmap.Config.ARGB_8888);
+        presentPaint = new Paint();
+        clearPaint = new Paint();
+        clearPaint.setStyle(Paint.Style.FILL);
+        clearPaint.setColor(Color.WHITE);
+        clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        presentPaint.setShader(new BitmapShader(presentBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+        drawBuffer = new DrawBuffer(rect.width(), rect.height());
+        surfaceReady = true;
+>>>>>>> de272ae (fix: refactor to ts)
     }
 
     public void startDrawThread() {
@@ -287,27 +308,29 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-        Canvas canvas = holder.lockCanvas();
-        if (canvas != null) {
-
-            createSurfaces(surfaceHolder);
-            if (firstDraw) {
-                canvas.drawARGB(255, 255, 255, 255);
-                draw();
-            } else {
-                drawBuffer.draw(canvas);
+        Log.d("LayerSurfaceView", "Surface surfaceChanged");
+        try {
+            Log.d(LOGTAG, "WFT");
+            stopDrawThread();
+            if (drawThread != null) {
+                drawThread.join();
             }
+        }catch (InterruptedException e) {}
+        createSurfaces(surfaceHolder);
+        Canvas canvas = holder.lockCanvas();
+        if(canvas != null) {
+            canvas.drawARGB(255, 255, 255, 255);
             holder.unlockCanvasAndPost(canvas);
             startDrawThread();
+            draw();
             Log.d(LOGTAG, "Started.");
         }
-
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         Canvas canvas = holder.lockCanvas();
-
+        Log.d("LayerSurfaceView", "Surface destroyed");
         stopDrawThread();
         if (canvas != null) {
             holder.unlockCanvasAndPost(canvas);
@@ -341,7 +364,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         drawThread = null;
     }
 
-
     @Override
     public void run() {
         Log.d(LOGTAG, "Thread started");
@@ -349,7 +371,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
             if(holder == null) {
                 return;
             }
-
             try {
                 Task task = taskQueue.take();
                 if (task != null && !task.quite() ) {
@@ -378,7 +399,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         if (!elements.isEmpty()) {
             LayerElement element = elements.get(0);
             element.resize(x, y, width, height);
-            draw();
         }
     }
 

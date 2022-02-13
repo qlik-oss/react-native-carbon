@@ -5,7 +5,6 @@ import {
   findNodeHandle,
   StyleSheet,
   LayoutChangeEvent,
-  Platform,
 } from 'react-native';
 import {ElementProxy} from './ElementProxy';
 import uuid from 'react-native-uuid';
@@ -14,9 +13,8 @@ import Element from './Element';
 export type QRNLayerProps = {
   style: any;
   onElement: (_element: Element) => void;
-  onLayoutChanged: () => void;
-  onSelection: (_event: any) => void;
-  onDoubleTap?: (_event: any) => void;
+  onLayoutChanged: (renderLayout: any) => void;
+  onSelection: (event: any) => void;
   onTouchesBegan?: (_event: any) => void;
   onLongPress?: (_event: any) => void;
   lasso?: boolean;
@@ -27,7 +25,6 @@ const LayerView: React.FC<QRNLayerProps> = ({
   onElement,
   onLayoutChanged,
   onSelection,
-  onDoubleTap,
   onTouchesBegan,
   onLongPress,
   lasso,
@@ -35,6 +32,7 @@ const LayerView: React.FC<QRNLayerProps> = ({
   const nodeHandle = useRef<any>();
   const rootElementId = useRef<any>(undefined);
   const [element, setElement] = useState<Element>();
+  const timer = useRef<any>(undefined);
 
   useEffect(() => {
     return () => {
@@ -62,22 +60,20 @@ const LayerView: React.FC<QRNLayerProps> = ({
       onElement(el);
       setElement(el);
     } else if (element) {
-      element?.clear();
       element?.setClientRect({...layout});
-      if (Platform.OS === 'android') {
-        onLayoutChanged();
-      } else {
-        element?.draw();
+      if (timer.current) {
+        clearTimeout(timer.current);
       }
+      timer.current = setTimeout(() => {
+        onLayoutChanged(undefined);
+      }, 200);
     }
   };
-
   return (
     <QRNLayerView
       style={[styles.container, style]}
       onLayout={onLayout}
       onSelection={onSelection}
-      onDoubleTap={onDoubleTap}
       onLongPress={onLongPress}
       onTouchesBegan={onTouchesBegan}
       lasso={lasso}
