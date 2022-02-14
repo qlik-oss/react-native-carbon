@@ -48,7 +48,7 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
     "husky": "4.2.5",
-    "jest": "26.0.1",
+    "jest": "27.5.1",
     "picasso-plugin-q": "1.2.1",
     "picasso.js": "1.2.1",
     "prettier": "2.5.1",
