@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.6...v1.1.7) (2022-02-15)
+
+
+### Bug Fixes
+
+* **QB-9089:** subtitle on different lines ([#15](https://github.com/qlik-oss/react-native-carbon/issues/15)) ([aa46cc0](https://github.com/qlik-oss/react-native-carbon/commit/aa46cc0f7e714906e414ca24521cd225435f7b21))
+
 ## [1.1.6](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.5...v1.1.6) (2022-02-15)
 
 
