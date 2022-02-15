@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.7...v1.1.8) (2022-02-15)
+
+
+### Bug Fixes
+
+* align tooltips ([#16](https://github.com/qlik-oss/react-native-carbon/issues/16)) ([1588a7c](https://github.com/qlik-oss/react-native-carbon/commit/1588a7cf07fdfa9ec56c1b8c706400f75c49b887))
+
 ## [1.1.7](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.6...v1.1.7) (2022-02-15)
 
 
