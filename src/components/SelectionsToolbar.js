@@ -79,7 +79,7 @@ const SelectionsToolbar = ({
       onLayout={onLayout}
       ref={viewRef}
       style={[styles.conatiner, getPosition()]}
-      pointerEvents="box-none"
+      pointerEvents={selectionsConfig?.active ? 'auto' : 'none'}
     >
       <Animated.View
         style={[
