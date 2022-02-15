@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     minHeight: 40,
   },
   titleBar: {
-    // minHeight: 40,
     paddingLeft: 8,
     justifyContent: 'center',
+    paddingTop: 4,
   },
 });
