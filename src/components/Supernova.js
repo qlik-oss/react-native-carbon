@@ -35,6 +35,7 @@ export const Supernova = ({
   titleBarStyle,
   onLoaded,
   log = defaultLogger,
+  disableLasso = false,
 }) => {
   const {generator, theme: themeFn} = NebulaInternals;
   const translator = {add: () => {}, language: () => 'english'};
@@ -236,6 +237,7 @@ export const Supernova = ({
               position,
               id,
               active: true,
+              disableLasso,
             };
             setSelectionsConfig(config);
           });
@@ -402,7 +404,7 @@ export const Supernova = ({
         topPadding={topPadding}
         theme={theme}
       />
-      <Animated.View style={[styles.layer]} ref={containerRef}>
+      <Animated.View style={[styles.supernovaView]} ref={containerRef}>
         <LayerView
           style={styles.layer}
           onElement={onElement}
@@ -432,6 +434,9 @@ const styles = StyleSheet.create({
   },
   components: {
     ...StyleSheet.absoluteFillObject,
+  },
+  supernovaView: {
+    flex: 1,
   },
   loader: {
     ...StyleSheet.absoluteFill,
