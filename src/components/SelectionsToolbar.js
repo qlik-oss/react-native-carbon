@@ -91,7 +91,7 @@ const SelectionsToolbar = ({
           {transform: [{scale: opacity}]},
         ]}
       >
-        {selectionsConfig.disableLasso ? null : (
+        {selectionsConfig?.disableLasso ? null : (
           <ToggleButton
             icon="lasso"
             onPress={handleLasso}
