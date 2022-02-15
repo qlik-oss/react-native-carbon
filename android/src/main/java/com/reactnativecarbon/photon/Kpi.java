@@ -106,8 +106,8 @@ public class Kpi extends Composite {
     private void createMainTitle(JSONObject jsonObject) throws JSONException {
         JSONObject mainObject = jsonObject.getJSONObject("main");
         if (mainObject.has("title")) {
-            float titleHeight = Math.min(toPx(25), (this.height * 0.18f) - toPx(8));
-            titleHeight = Math.max(toPx(12), titleHeight);
+            float titleHeight = Math.min(toPx(25), (this.height * 0.20f) - toPx(8));
+            titleHeight = Math.max(toPx(10), titleHeight);
             float mainHeight = (this.height * 0.80f) + toPx(4);
             String sColor = mainObject.getString("titleColor");
             String text =   mainObject.getString("title");
@@ -149,8 +149,12 @@ public class Kpi extends Composite {
                 secondTitle.drawRightVCentered(canvas, (int)toPx(8));
               }
             }
-            float th = mainTitle.getTextHeight() + toPx(16);
-            mainTitle.setPos(0, (int)(mainElement.getTop() - th));
+            int th = (int)mainTitle.getHeight();
+            int top = (int)toPx(6);
+            if (th < 56 ) {
+              top = (int)toPx(56-th) / 2;
+            }
+            mainTitle.setPos(0, top);
             // calc top
             mainTitle.drawAt(canvas, true);
 
