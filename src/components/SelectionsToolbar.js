@@ -67,12 +67,11 @@ const SelectionsToolbar = ({
 
   const getPosition = () => {
     let top = coords.pageY;
-    let left = coords.pageX + coords.width - layout.current.width;
-    left += selectionsConfig.disableLasso ? 40 : 0;
+    let right = 4;
     if (top < bounds) {
       top = bounds;
     }
-    return {top, left};
+    return {top, right};
   };
 
   return (
