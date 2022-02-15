@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const getTitleStyle = (theme) => {
   let color = theme?.object?.title?.main?.color;
@@ -33,6 +32,7 @@ export const Title = ({
 }) => {
   const titleStyle = getTitleStyle(theme);
   const subtitleStyle = getSubtitleStyle(theme);
+  const marginBottom = !disableSubTitle && layout?.subtitle?.length > 0 ? 8 : 0;
   return layout?.showTitles ? (
     <View
       onLayout={onLayout}
@@ -40,6 +40,7 @@ export const Title = ({
         styles.titleBar,
         // eslint-disable-next-line react-native/no-inline-styles
         {minHeight: topPadding === 'none' ? undefined : 40},
+        {marginBottom},
         style,
       ]}
     >
@@ -64,25 +65,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     color: '#404040',
-    margin: 0,
-    flex: 1,
   },
   subtitle: {
     color: '#404040',
     fontSize: 12,
-    marginLeft: 4,
   },
   filler: {
-    height: 40,
+    minHeight: 40,
   },
   titleBar: {
-    minHeight: 40,
+    // minHeight: 40,
     paddingLeft: 8,
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  icon: {
-    marginRight: 8,
-    paddingBottom: 2,
+    justifyContent: 'center',
   },
 });
