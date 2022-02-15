@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.5...v1.1.6) (2022-02-15)
+
+
+### Bug Fixes
+
+* **MD-2926:** kpi title alignment ([#14](https://github.com/qlik-oss/react-native-carbon/issues/14)) ([0a8b60d](https://github.com/qlik-oss/react-native-carbon/commit/0a8b60dbc186b39123c4d4a61d9be558124755fa))
+
 ## [1.1.5](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.4...v1.1.5) (2022-02-12)
 
 
