@@ -1,3 +1,10 @@
+## [1.1.9](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.8...v1.1.9) (2022-02-16)
+
+
+### Bug Fixes
+
+* revert selections tool placment ([#18](https://github.com/qlik-oss/react-native-carbon/issues/18)) ([7ac70df](https://github.com/qlik-oss/react-native-carbon/commit/7ac70df62d0129bf8883f3bd87255e955562195a))
+
 ## [1.1.8](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.7...v1.1.8) (2022-02-15)
 
 
