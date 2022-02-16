@@ -265,6 +265,8 @@ export const Supernova = ({
     if (model && element && !initialized.current) {
       initialized.current = true;
       initialize();
+    } else {
+      changed();
     }
 
     return () => {

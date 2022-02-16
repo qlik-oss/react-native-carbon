@@ -67,11 +67,11 @@ const SelectionsToolbar = ({
 
   const getPosition = () => {
     let top = coords.pageY;
-    let right = 4;
+    let left = coords.pageX + coords.width - layout.current.width;
     if (top < bounds) {
       top = bounds;
     }
-    return {top, right};
+    return {top, left};
   };
 
   return (
@@ -90,13 +90,12 @@ const SelectionsToolbar = ({
           {transform: [{scale: opacity}]},
         ]}
       >
-        {selectionsConfig?.disableLasso ? null : (
           <ToggleButton
             icon="lasso"
+            disabled={selectionsConfig?.disableLasso}
             onPress={handleLasso}
             status={lasso ? 'checked' : 'unchecked'}
           />
-        )}
         <IconButton icon="clear-selections" onPress={handleClear} />
         <View style={styles.seperator} />
         <Button
