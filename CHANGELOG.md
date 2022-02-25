@@ -1,3 +1,10 @@
+## [1.1.13](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.12...v1.1.13) (2022-02-25)
+
+
+### Bug Fixes
+
+* remove border ([#21](https://github.com/qlik-oss/react-native-carbon/issues/21)) ([2aad593](https://github.com/qlik-oss/react-native-carbon/commit/2aad593f6ae76dd3934ef18c0dc471601abc46a8))
+
 ## [1.1.12](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.11...v1.1.12) (2022-02-25)
 
 
