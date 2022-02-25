@@ -1,8 +1,5 @@
 package com.reactnativecarbon.photon;
 
-
-import static com.facebook.react.bridge.UiThreadUtil.runOnUiThread;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -15,12 +12,15 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Shader;
+import android.os.Build;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableArray;
@@ -32,7 +32,6 @@ import com.reactnativecarbon.SelectionsEngine;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;;
@@ -47,13 +46,10 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     private BlockingDeque<Task> taskQueue = new LinkedBlockingDeque<Task>();
     private List<LayerElement> elements = Collections.synchronizedList(new ArrayList<>());
     private Bitmap presentBitmap = null;
-    private Canvas presentCanvas = null;
     private Paint presentPaint;
     private Paint clearPaint;
     private Rect presentRect;
     private DrawBuffer drawBuffer;
-    private DrawBuffer d0;
-    private DrawBuffer d1;
     private boolean firstDraw = true;
     private GestureDetector gestureDetector;
     private View contextView;
@@ -187,6 +183,7 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         elements.remove(element);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void render(Canvas canvas) {
         for(LayerElement element: elements) {
             element.draw(canvas);
@@ -268,7 +265,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         if (presentBitmap == null || frameUpdated) {
             Rect rect = surfaceHolder.getSurfaceFrame();
             presentBitmap = Bitmap.createBitmap(rect.width(), rect.height(), Bitmap.Config.ARGB_8888);
-            presentCanvas = new Canvas(presentBitmap);
             presentPaint = new Paint();
             clearPaint = new Paint();
             clearPaint.setStyle(Paint.Style.FILL);
@@ -276,9 +272,8 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
             clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             presentRect = rect;
             presentPaint.setShader(new BitmapShader(presentBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
-            d0 = new DrawBuffer(rect.width(), rect.height());
-            d1 = new DrawBuffer(rect.width(), rect.height());
-            drawBuffer = d0;
+          
+            drawBuffer = new DrawBuffer(rect.width(), rect.height());
         }
     }
 
@@ -350,7 +345,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     @Override
     public void run() {
         Log.d(LOGTAG, "Thread started");
-        List<Task> pending = new ArrayList<>();
         while (drawingActive) {
             if(holder == null) {
                 return;
@@ -359,7 +353,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
             try {
                 Task task = taskQueue.take();
                 if (task != null && !task.quite() ) {
-//                    taskQueue.drainTo(pending);
                         Canvas canvas = holder.lockCanvas();
                         if (task.clearsScreen()) {
                           drawBuffer.clear();
@@ -367,7 +360,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
                         task.execute(drawBuffer.getCanvas());
                         if (canvas != null && drawingActive) {
                             try {
-//                                if (ta)
                                 drawBuffer.draw(canvas);
                             } finally {
                                 holder.unlockCanvasAndPost(canvas);
