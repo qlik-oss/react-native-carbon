@@ -505,7 +505,6 @@ const styles = StyleSheet.create({
   },
   supernovaView: {
     flex: 1,
-    borderWidth: 1,
   },
   overlay: {
     ...(StyleSheet.absoluteFill as {}),
