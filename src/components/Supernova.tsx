@@ -310,7 +310,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
               pageX: any,
               pageY: number,
             ) => {
-              console.log(x, y, width, height, pageX, pageY);
               let py = pageY;
               if (topPadding === 'none') {
                 py = pageY - 30;
