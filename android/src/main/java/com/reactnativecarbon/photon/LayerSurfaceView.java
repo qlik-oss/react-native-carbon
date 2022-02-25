@@ -266,23 +266,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     }
 
     private void createSurfaces(SurfaceHolder surfaceHolder) {
-<<<<<<< HEAD
-        Rect newRect = surfaceHolder.getSurfaceFrame();
-        boolean frameUpdated = presentRect == null || newRect.width() != presentRect.width() || newRect.height() != presentRect.height();
-        if (presentBitmap == null || frameUpdated) {
-            Rect rect = surfaceHolder.getSurfaceFrame();
-            presentBitmap = Bitmap.createBitmap(rect.width(), rect.height(), Bitmap.Config.ARGB_8888);
-            presentPaint = new Paint();
-            clearPaint = new Paint();
-            clearPaint.setStyle(Paint.Style.FILL);
-            clearPaint.setColor(Color.WHITE);
-            clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            presentRect = rect;
-            presentPaint.setShader(new BitmapShader(presentBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
-
-            drawBuffer = new DrawBuffer(rect.width(), rect.height());
-        }
-=======
         Rect rect = surfaceHolder.getSurfaceFrame();
         Log.d("LayerSurfaceView", "Surface createSurfaces");
         currentRect = rect;
@@ -295,7 +278,6 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         presentPaint.setShader(new BitmapShader(presentBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
         drawBuffer = new DrawBuffer(rect.width(), rect.height());
         surfaceReady = true;
->>>>>>> de272ae (fix: refactor to ts)
     }
 
     public void startDrawThread() {
