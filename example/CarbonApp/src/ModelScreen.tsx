@@ -60,7 +60,6 @@ const ModelScreen = () => {
   };
 
   const handleSuspend = async () => {
-    console.log('app', connection?.app.session);
     const session = connection?.app.session;
     if (session) {
       if (session.suspendResume.isSuspended) {
