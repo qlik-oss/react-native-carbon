@@ -1,8 +1,8 @@
 #include <jni.h>
-#include "example.h"
+
 
 extern "C"
-JNIEXPORT jint JNICALL
-Java_com_reactnativecarbon_CarbonModule_nativeMultiply(JNIEnv *env, jclass type, jint a, jint b) {
-    return example::multiply(a, b);
+JNIEXPORT void JNICALL
+Java_com_reactnativecarbon_ElementProxyModule_nativeInstall(JNIEnv *env, jobject thiz, jlong jsi) {
+    // TODO: implement nativeInstall()
 }

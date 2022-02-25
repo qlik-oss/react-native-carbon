@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 
+import com.facebook.react.bridge.JavaScriptContextHolder;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -32,6 +33,22 @@ public class ElementProxyModule extends ReactContextBaseJavaModule {
     public static final String NAME = "ElementProxy";
     protected HashMap<String, LayerElement> elementMap = new HashMap<>();
     protected HashMap<String, LayerSurfaceView> rootElements = new HashMap<>();
+
+    static {
+        try {
+            System.loadLibrary("carbon");
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private native void nativeInstall(long jsi);
+
+    public void installLib(JavaScriptContextHolder reactContext) {
+        if(reactContext.get() != 0) {
+            this.nativeInstall(reactContext.get());
+        }
+    }
 
     ElementProxyHandler handler = null;
     private static ReactApplicationContext reactApplicationContext;

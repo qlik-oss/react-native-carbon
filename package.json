@@ -2,28 +2,33 @@
   "name": "@qlik/react-native-carbon",
   "version": "1.1.10",
   "description": "React Native nebula engine",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "files": [
     "src",
     "lib",
     "android",
     "ios",
     "cpp",
-    "react-native-carbon.podspec",
-    "!lib/typescript/example",
-    "!android/build",
-    "!ios/build",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/node_modules"
+    "react-native-carbon.podspec"
   ],
   "scripts": {
     "typescript": "tsc --noEmit",
     "lint": "eslint . --fix",
     "clean": "rm -rf node_modules",
     "test": "npx jest",
-    "ci:install": "yarn install --frozen-lockfile"
+    "ci:install": "yarn install --frozen-lockfile",
+    "dev": "ditto src ./example/CarbonApp/node_modules/@qlik/react-native-carbon/src",
+    "watch": "npm-watch",
+    "tsc-build": "tsc src/**/* --declaration --allowJs --emitDeclarationOnly && yarn lint --fix",
+    "dev-setup": "yarn && yarn pack --filename qlik-react-native-carbon-dev.3.tgz && cd example/CarbonApp && yarn && cd ios && pod install"
+  },
+  "watch": {
+    "dev": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js, jsx, ts, tsx"
+    }
   },
   "repository": {
     "url": "git@github.com:qlik-oss/react-native-carbon.git"
@@ -49,11 +54,16 @@
     "eslint-plugin-prettier": "4.0.0",
     "husky": "4.2.5",
     "jest": "27.5.1",
+    "jotai": "^1.6.0",
+    "lodash": "^4.17.21",
+    "npm-watch": "^0.11.0",
     "picasso-plugin-q": "1.2.1",
     "picasso.js": "1.2.1",
     "prettier": "2.5.1",
     "react": "*",
     "react-native": "*",
+    "react-native-paper": "^4.11.2",
+    "react-native-reanimated": "^2.4.1",
     "react-native-uuid": "2.0.1",
     "semantic-release": "19.0.2",
     "string-pixel-width": "1.10.0",

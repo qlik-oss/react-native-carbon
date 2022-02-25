@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
-import {createHyperCubeDef, ModelConfig} from '../core/createHyperCubeDef';
+import {createHyperCubeDef} from '../core/createHyperCubeDef';
 
-export const useModelFromId = (config: ModelConfig) => {
+export const useModelFromId = (config: any) => {
   const [model, setModel] = useState(undefined);
 
   useEffect(() => {
