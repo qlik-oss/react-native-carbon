@@ -1,3 +1,10 @@
+## [1.1.15](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.14...v1.1.15) (2022-02-26)
+
+
+### Bug Fixes
+
+* destroy subscriptions ([#28](https://github.com/qlik-oss/react-native-carbon/issues/28)) ([9c988db](https://github.com/qlik-oss/react-native-carbon/commit/9c988dbfe2f925c3c2094ff5878f904d6b75e459))
+
 ## [1.1.14](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.13...v1.1.14) (2022-02-25)
 
 
