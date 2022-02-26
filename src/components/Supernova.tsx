@@ -80,12 +80,36 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const setTooltipVisible = useUpdateAtom(supernovaToolTipVisible);
   const [suspended, setSuspended] = useState(false);
 
+  const changed = useCallback( async () => {
+    try {
+      const l = await model.getLayout();
+      if (
+        !l?.qSelectionInfo.qInSelections &&
+        selectionsApiImpl?.current?.isActive()
+      ) {
+        selectionsApiImpl.current.noModal();
+        selectionsApiImpl.current.eventEmitter.emit('aborted');
+      }
+      setLayout(l);
+    } catch (error: any) {
+      if (error.code !== 15) {
+        log.error('Failed to get layout', error);
+      }
+    }
+  }, [model]);
+
   useEffect(() => {
     const onResumed = () => {
       setSuspended(false);
+      if( model) {
+        model.on('changed', changed);
+      }
     };
     const onSuspended = () => {
-      log.debug('suspended');
+      log.debug('Supernova suspended');
+      if( model) {
+        model.removeListener('changed', changed);
+      }
       setSuspended(true);
     };
     if (app.session) {
@@ -248,23 +272,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   };
 
   useEffect(() => {
-    const changed = async () => {
-      try {
-        const l = await model.getLayout();
-        if (
-          !l?.qSelectionInfo.qInSelections &&
-          selectionsApiImpl?.current?.isActive()
-        ) {
-          selectionsApiImpl.current.noModal();
-          selectionsApiImpl.current.eventEmitter.emit('aborted');
-        }
-        setLayout(l);
-      } catch (error: any) {
-        if (error.code !== 15) {
-          log.error('Failed to get layout', error);
-        }
-      }
-    };
+
 
     const getInitialLayout = async () => {
       let needend = false;
@@ -297,6 +305,9 @@ export const Supernova: React.FC<SupernovaProps> = ({
     const initialize = async () => {
       try {
         const initialLayout = await getInitialLayout();
+        if(selectionsApiImpl.current) {
+          selectionsApiImpl.current.destroy();
+        }
         selectionsApiImpl.current = SelectionsApi({model, app, log});
         selectionsApiImpl.current.eventEmitter.addListener('activated', () => {
           // check for position here to avoid the data race when
