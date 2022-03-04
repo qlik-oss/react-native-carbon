@@ -114,7 +114,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
           status={lasso ? 'checked' : 'unchecked'}
         />
         <IconButton
-          icon={icons?.clear || 'clear-selections'}
+          icon={icons?.clear || 'clear_selections'}
           onPress={handleClear}
         />
         <View style={styles.separator} />
