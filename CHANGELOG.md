@@ -1,3 +1,10 @@
+## [1.1.16](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.15...v1.1.16) (2022-03-04)
+
+
+### Bug Fixes
+
+* update the icon name ([#29](https://github.com/qlik-oss/react-native-carbon/issues/29)) ([e14234a](https://github.com/qlik-oss/react-native-carbon/commit/e14234a1a0a1a65851581acaeb379812b8550f4b))
+
 ## [1.1.15](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.14...v1.1.15) (2022-02-26)
 
 
