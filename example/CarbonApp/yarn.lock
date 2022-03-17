@@ -1053,9 +1053,9 @@
   resolved "https://registry.yarnpkg.com/@qlik/carbon-core/-/carbon-core-1.0.6.tgz#0e3accd17928623b6fdd7ce0ab84ea2156b781d7"
   integrity sha512-xfAzXJopa5rQ/VrbBsLkzvjlEIVy1pNdje0SH09sTDJE/+F28TnjFHTI77weMAvbOFlsZoCkuC44APc99P1SlA==
 
-"@qlik/react-native-carbon@file:../../qlik-react-native-carbon-dev.3.tgz":
-  version "1.1.9"
-  resolved "file:../../qlik-react-native-carbon-dev.3.tgz#58acbe159f1b092450353adc5ed2b0b808481c20"
+"@qlik/react-native-carbon@file:../../react-native-carbon.dev.0.tgz":
+  version "1.1.16"
+  resolved "file:../../react-native-carbon.dev.0.tgz#871d1fdac5035de3ff017ad4b6aef7fcf99b3930"
 
 "@react-native-async-storage/async-storage@^1.16.1":
   version "1.16.1"
