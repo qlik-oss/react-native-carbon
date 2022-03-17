@@ -20,7 +20,8 @@
     "dev": "ditto src ./example/CarbonApp/node_modules/@qlik/react-native-carbon/src",
     "watch": "npm-watch",
     "tsc-build": "tsc src/**/* --declaration --allowJs --emitDeclarationOnly && yarn lint --fix",
-    "dev-setup": "yarn && yarn pack --filename qlik-react-native-carbon-dev.3.tgz && cd example/CarbonApp && yarn && cd ios && pod install"
+    "build:dev": "node ./tools/build.js",
+    "dev-setup": "yarn && yarn build:dev && cd example/CarbonApp && yarn && cd ios && pod install"
   },
   "watch": {
     "dev": {
@@ -75,5 +76,6 @@
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
     ]
-  }
+  },
+  "dev-build": null
 }
