@@ -485,7 +485,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
         topPadding={topPadding}
         theme={theme}
       />
-      <View style={[styles.supernovaView]} ref={containerRef}>
+      <View style={[styles.supernovaView]} ref={containerRef} collapsable={false}>
         <LayerView
           style={styles.layer}
           onElement={onElement}
