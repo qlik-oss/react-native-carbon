@@ -1,3 +1,10 @@
+## [1.1.17](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.16...v1.1.17) (2022-03-17)
+
+
+### Bug Fixes
+
+* build script ([#30](https://github.com/qlik-oss/react-native-carbon/issues/30)) ([7dabe83](https://github.com/qlik-oss/react-native-carbon/commit/7dabe83d486a9b8e694469d8dd0ad43f8312f5c9))
+
 ## [1.1.16](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.15...v1.1.16) (2022-03-04)
 
 
