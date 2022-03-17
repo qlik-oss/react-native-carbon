@@ -77,5 +77,5 @@
       "<rootDir>/lib/"
     ]
   },
-  "dev-build": null
+  "dev-build": 1
 }
