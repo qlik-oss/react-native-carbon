@@ -1,3 +1,10 @@
+## [1.1.18](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.17...v1.1.18) (2022-03-17)
+
+
+### Bug Fixes
+
+* **QB-9592:** add collapsable=false ([#31](https://github.com/qlik-oss/react-native-carbon/issues/31)) ([3b4782b](https://github.com/qlik-oss/react-native-carbon/commit/3b4782b09f8049438b278db10ca0c43a761d8754))
+
 ## [1.1.17](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.16...v1.1.17) (2022-03-17)
 
 
