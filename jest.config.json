@@ -1,0 +1,19 @@
+{
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+        "<rootDir>/example/node_modules",
+        "<rootDir>/lib/"
+    ],
+    "collectCoverageFrom": [
+        "src/**/*.{ts,js,jsx,tsx}",
+        "!**/__test__/**"
+    ],
+    "coverageThreshold": {
+        "global": {
+            "branches": 0,
+            "functions": 0,
+            "lines": 0,
+            "statements": 0
+        }
+    }
+}
