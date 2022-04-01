@@ -41,19 +41,21 @@ import com.reactnativecarbon.SelectionsEngine;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;;
 import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
     private SurfaceHolder holder;
     private Thread drawThread;
     private boolean surfaceReady = false;
-    private boolean drawingActive = false;
+    private AtomicBoolean drawingActive = new AtomicBoolean();
     private static final String LOGTAG = "LayerSurfaceView";
     private BlockingDeque<Task> taskQueue = new LinkedBlockingDeque<Task>();
-    private List<LayerElement> elements = Collections.synchronizedList(new ArrayList<>());
+    private List<LayerElement> elements = new CopyOnWriteArrayList<>();
     private Bitmap presentBitmap = null;
     private Paint presentPaint;
     private Paint clearPaint;
@@ -283,7 +285,7 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     public void startDrawThread() {
         if (surfaceReady && drawThread == null) {
             drawThread = new Thread(this, "Carbon render thread");
-            drawingActive = true;
+            drawingActive.set(true);
             drawThread.start();
         }
     }
@@ -325,7 +327,7 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     public void stopDrawThread()
     {
-        drawingActive = false;
+        drawingActive.set(false);
         if (drawThread == null)
         {
             Log.d(LOGTAG, "DrawThread is null");
@@ -349,7 +351,7 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     @Override
     public void run() {
         Log.d(LOGTAG, "Thread started");
-        while (drawingActive) {
+        while (drawingActive.get()) {
             if(holder == null) {
                 return;
             }
@@ -360,8 +362,10 @@ public class LayerSurfaceView extends SurfaceView implements SurfaceHolder.Callb
                         if (task.clearsScreen()) {
                           drawBuffer.clear();
                         }
-                        task.execute(drawBuffer.getCanvas());
-                        if (canvas != null && drawingActive) {
+                        if(drawingActive.get()) {
+                          task.execute(drawBuffer.getCanvas());
+                        }
+                        if (canvas != null && drawingActive.get()) {
                             try {
                                 drawBuffer.draw(canvas);
                             } finally {
