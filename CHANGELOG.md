@@ -1,3 +1,10 @@
+## [1.1.19](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.18...v1.1.19) (2022-04-01)
+
+
+### Bug Fixes
+
+* crash on android shutdown ([#34](https://github.com/qlik-oss/react-native-carbon/issues/34)) ([a73e9fd](https://github.com/qlik-oss/react-native-carbon/commit/a73e9fd367e52e3790338c327a4f2f974e9fdeda))
+
 ## [1.1.18](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.17...v1.1.18) (2022-03-17)
 
 
