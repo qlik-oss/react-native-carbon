@@ -27,6 +27,7 @@ export type SupernovaProps = {
   id?: string;
   disableLoadAnimations?: boolean;
   fields?: [string];
+  measures: [string];
   showLegend?: boolean;
   invalidMessage?: string;
   object: any;
@@ -47,6 +48,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   id,
   disableLoadAnimations,
   fields,
+  measures,
   showLegend,
   invalidMessage,
   object,
@@ -146,7 +148,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
     const fetchModel = async () => {
       try {
         const type = Math.random().toString(32).substring(8);
-        const props = createHyperCubeDef({fields, type});
+        const props = createHyperCubeDef({fields, measures, type});
         const m = await app.createSessionObject(props);
         setModel(m);
       } catch (error) {
