@@ -1,4 +1,4 @@
-export const createHyperCubeDef = ({fields, type}: any) => {
+export const createHyperCubeDef = ({fields, measures, type}: any) => {
   const qDimensions = fields?.map((field: any) => ({
     qDef: {
       qFieldDefs: [field],
@@ -15,6 +15,16 @@ export const createHyperCubeDef = ({fields, type}: any) => {
     qAttributeDimensions: [],
   }));
 
+  let qMeasures = [];
+  if (measures) {
+    qMeasures = measures.map((measure: string) => {
+      return {
+        qDef: {qDef: measure, autoSort: false},
+        qSortBy: {qSortByNumeric: -1},
+      };
+    });
+  }
+
   return {
     qInfo: {
       qType: type,
@@ -23,9 +33,16 @@ export const createHyperCubeDef = ({fields, type}: any) => {
     showTitles: true,
     qHyperCubeDef: {
       qDimensions,
-      qMeasures: [],
+      qMeasures,
       qInterColumnSortOrder: [0, 1],
-      qInitialDataFetch: [],
+      qInitialDataFetch: [
+        {
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 100,
+          qHeight: 100,
+        },
+      ],
       qColumnOrder: [],
       qExpansionState: [],
     },
