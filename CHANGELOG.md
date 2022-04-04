@@ -1,3 +1,10 @@
+## [1.1.20](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.19...v1.1.20) (2022-04-04)
+
+
+### Bug Fixes
+
+* use measures ([#36](https://github.com/qlik-oss/react-native-carbon/issues/36)) ([a2d2daf](https://github.com/qlik-oss/react-native-carbon/commit/a2d2dafa8cee80f3cccf265410312c6c75d16d4c))
+
 ## [1.1.19](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.18...v1.1.19) (2022-04-01)
 
 
