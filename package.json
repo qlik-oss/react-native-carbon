@@ -18,18 +18,8 @@
     "test": "jest --coverage",
     "ci:install": "yarn install --frozen-lockfile",
     "dev": "ditto src ./example/CarbonApp/node_modules/@qlik/react-native-carbon/src",
-    "watch": "npm-watch",
     "tsc-build": "tsc src/**/* --declaration --allowJs --emitDeclarationOnly && yarn lint --fix",
-    "build:dev": "node ./tools/build.js",
-    "dev-setup": "yarn && yarn build:dev && cd example/CarbonApp && yarn && cd ios && pod install"
-  },
-  "watch": {
-    "dev": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "js, jsx, ts, tsx"
-    }
+    "dev-setup": "yarn && yarn && cd example/CarbonApp && yarn && cd ios && pod install"
   },
   "repository": {
     "url": "git@github.com:qlik-oss/react-native-carbon.git"
@@ -57,7 +47,6 @@
     "jest": "27.5.1",
     "jotai": "1.6.0",
     "lodash": "4.17.21",
-    "npm-watch": "0.11.0",
     "picasso-plugin-q": "1.6.0",
     "picasso.js": "1.6.0",
     "prettier": "2.6.0",
@@ -70,5 +59,16 @@
     "string-pixel-width": "1.10.0",
     "typescript": "4.6.2"
   },
-  "dev-build": 2
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-native": "0.67.4",
+    "react-native-safe-area-context": "3.3.2",
+    "eventemitter3": "4.0.7",
+    "react-native-gesture-handler": "2.2.0",
+    "react-native-paper": "4.11.2",
+    "jotai": "1.6.0",
+    "picasso-plugin-q": "1.6.0",
+    "picasso.js": "1.6.0",
+    "@nebula.js/stardust": "2.4.1"
+  }
 }

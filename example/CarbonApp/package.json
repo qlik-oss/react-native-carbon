@@ -14,7 +14,7 @@
     "@qlik-trial/sense-themes-default": "1.15.0",
     "@qlik-trial/sn-treemap": "^4.1.0",
     "@qlik/carbon-core": "1.0.6",
-    "@qlik/react-native-carbon": "file:../../react-native-carbon.dev.1.tgz",
+    "@qlik/react-native-carbon": "link:../../",
     "@react-native-async-storage/async-storage": "1.16.1",
     "@react-navigation/native": "6.0.8",
     "@react-navigation/native-stack": "6.5.0",
@@ -55,7 +55,8 @@
     "jest": "27.5.1",
     "metro-react-native-babel-preset": "0.66.2",
     "react-test-renderer": "17.0.2",
-    "typescript": "4.5.5"
+    "typescript": "4.5.5",
+    "glob-to-regexp": "^0.4.1"
   },
   "jest": {
     "preset": "react-native"
