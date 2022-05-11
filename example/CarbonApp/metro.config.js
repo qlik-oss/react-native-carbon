@@ -12,9 +12,13 @@ const modules = Object.keys(pack.peerDependencies);
 
 const reactNativeCarbonDir = path.resolve(__dirname, '../../');
 const carbonCoreDir = path.resolve(__dirname, '../../../carbon-core');
+const reactNativeHeliumDir = path.resolve(
+  __dirname,
+  '../../../react-native-helium',
+);
 
 module.exports = {
-  watchFolders: [reactNativeCarbonDir],
+  watchFolders: [reactNativeCarbonDir, carbonCoreDir, reactNativeHeliumDir],
   resolver: {
     blacklistRE: exclusionList(
       modules.map(

@@ -69,6 +69,9 @@
     "jotai": "1.6.0",
     "picasso-plugin-q": "1.6.0",
     "picasso.js": "1.6.0",
-    "@nebula.js/stardust": "2.4.1"
+    "@nebula.js/stardust": "2.4.1",
+    "@babel/core": "7.17.2",
+    "@babel/runtime": "7.17.2",
+    "react-native-uuid": "2.0.1"
   }
 }

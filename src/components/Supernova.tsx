@@ -2,9 +2,7 @@
 import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 // @ts-ignore
-import {__DO_NOT_USE__ as NebulaInternals} from '@nebula.js/stardust';
 // import LayerView from './LayerView';
-import {SelectionsApi} from '../core/selectionsApi';
 import {Title} from './Title';
 import {Footer} from './Footer';
 import {defaultLogger} from '../defaultLogger';
@@ -18,6 +16,9 @@ import {
 } from '../carbonAtoms';
 // import type Element from './Element';
 import {OverlayView} from './OverlayView';
+import NebulaEngine from '../core/NebulaEngine';
+import {Canvas} from '@qlik/react-native-helium';
+import {Element} from '@qlik/carbon-core';
 
 export type SupernovaProps = {
   sn: any;
@@ -60,9 +61,9 @@ export const Supernova: React.FC<SupernovaProps> = ({
   log = defaultLogger,
   disableLasso = false,
 }) => {
-  const {generator, theme: themeFn} = NebulaInternals;
-  const translator = {add: () => {}, language: () => 'english'};
-  const [element, setElement] = useState<Element | undefined>(undefined);
+  const nebulaEngineRef = useRef(
+    new NebulaEngine({app, theme, model: object, initialLayer: layout}),
+  );
   const [snRenderContext, setSnRenderContext] = useState<any>(undefined);
   const [layout, setLayout] = useState(loadLayout);
   const [componentData, setComponentData] = useState(undefined);
@@ -81,6 +82,13 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const setToolTipConfig = useUpdateAtom(supernovaToolTipStateAtom);
   const setTooltipVisible = useUpdateAtom(supernovaToolTipVisible);
   const [suspended, setSuspended] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      console.log('******* UND');
+      nebulaEngineRef.current.destroy();
+    };
+  }, []);
 
   // const changed = useCallback( async () => {
   //   try {
@@ -476,6 +484,21 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   renderSupernovaLayout(layout);
   // };
 
+  const onCanvas = useCallback((canvas: any) => {
+    const element = new Element(canvas);
+    nebulaEngineRef.current.loadSupernova(
+      element,
+      sn,
+      'Too bad, so sad',
+      false,
+      theme,
+    );
+  }, []);
+
+  const onResized = useCallback(() => {
+    console.log('ressss');
+  }, []);
+
   return (
     <View style={[styles.layer, style]} ref={bodyRef} collapsable={false}>
       <Title
@@ -490,6 +513,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
         ref={containerRef}
         collapsable={false}
       >
+        <Canvas onCanvas={onCanvas} onResized={onResized} />
         {/* <LayerView
           style={styles.layer}
           onElement={onElement}

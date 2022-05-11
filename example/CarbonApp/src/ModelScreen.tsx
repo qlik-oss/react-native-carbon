@@ -25,7 +25,6 @@ const ModelScreen = () => {
 
   const handleClearSelections = async () => {
     try {
-      console.log(connection?.app.session);
       await connection?.app.clearAll();
       resetSupernovaState();
     } catch (error) {

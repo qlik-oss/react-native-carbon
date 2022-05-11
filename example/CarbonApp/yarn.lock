@@ -1190,12 +1190,15 @@
   resolved "https://npm.pkg.github.com/download/@qlik-trial/sn-treemap/4.2.1/033818422c533ec39c64e796216389767475f7c07f9b28bae51d505e13553328#4b93213729c52745605752513c3f8fc662c6bd26"
   integrity sha512-5v2rRyV38a7yg0/4FVuy/toaF3F2PQbyzhQK90GT7VTitJwGpAP25dxWj+tpt0vmpbj09+m+D07RY8PH3FWVjQ==
 
-"@qlik/carbon-core@1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@qlik/carbon-core/-/carbon-core-1.0.6.tgz#0e3accd17928623b6fdd7ce0ab84ea2156b781d7"
-  integrity sha512-xfAzXJopa5rQ/VrbBsLkzvjlEIVy1pNdje0SH09sTDJE/+F28TnjFHTI77weMAvbOFlsZoCkuC44APc99P1SlA==
+"@qlik/carbon-core@link:../../../carbon-core":
+  version "0.0.0"
+  uid ""
 
 "@qlik/react-native-carbon@link:../..":
+  version "0.0.0"
+  uid ""
+
+"@qlik/react-native-helium@link:../../../react-native-helium":
   version "0.0.0"
   uid ""
 
