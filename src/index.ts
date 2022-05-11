@@ -1,4 +1,3 @@
-import LayerView from './components/LayerView';
 import {enableCarbon} from './core/enableCarbon';
 import {buildEvent} from './core/buildEvent';
 import {useModelFromId} from './hooks/useModelFromId';
@@ -9,7 +8,6 @@ import {Title} from './components/Title';
 import {Footer} from './components/Footer';
 
 export {
-  LayerView,
   enableCarbon,
   buildEvent,
   useModelFromId,
