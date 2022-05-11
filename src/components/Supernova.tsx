@@ -503,7 +503,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
           {/* {renderJsxComponent()} */}
         </View>
       </View>
-      {showLegend ? <CatLegend layout={layout} element={element} /> : null}
+      {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
       <Footer layout={layout} theme={theme} />
       <OverlayView suspended={suspended} />
     </View>
