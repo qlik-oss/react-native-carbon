@@ -1,3 +1,15 @@
+# [2.0.0-alpha.1](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.20...v2.0.0-alpha.1) (2022-05-11)
+
+
+### Features
+
+* getting ready for new helium engine ([cca2cab](https://github.com/qlik-oss/react-native-carbon/commit/cca2cabec171863b7923996536effbe017770c70))
+
+
+### BREAKING CHANGES
+
+* removing old graphics engine and using helium
+
 ## [1.1.20](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.19...v1.1.20) (2022-04-04)
 
 
