@@ -1,6 +1,7 @@
 import {__DO_NOT_USE__ as NebulaInternals} from '@nebula.js/stardust';
 import {SelectionsApi} from './selectionsApi';
 const {generator, theme: themeFn} = NebulaInternals;
+import {debounce} from 'lodash';
 
 export type TranslationType = {
   add: () => void;
@@ -29,6 +30,7 @@ export default class NebulaEngine {
   externalTheme: any;
   changed: any;
   currentLayout: any | undefined;
+  debouncedResize: () => void;
 
   constructor({
     app,
@@ -42,6 +44,18 @@ export default class NebulaEngine {
     this.generator = generator;
     this.theme = themeFn;
     this.translation = {add: () => {}, language: () => 'english'};
+    this.debouncedResize = debounce(
+      () => {
+        if (this.canvasElement) {
+          console.log('resizing');
+          this.canvasElement.resetSize();
+          this.snComponent.resize();
+        }
+      },
+      100,
+      {trailing: true},
+    );
+
     this.nebulaModel = {
       app,
       model,
@@ -111,7 +125,7 @@ export default class NebulaEngine {
   async loadSupernova(
     element: any,
     supernova: any,
-    invalidMessage: string,
+    invalidMessage: string | undefined,
     showLegend: boolean,
     vizTheme: any,
   ) {
@@ -164,11 +178,7 @@ export default class NebulaEngine {
   }
 
   resizeView() {
-    if (this.canvasElement) {
-      this.canvasElement.clear();
-      this.canvasElement.resetSize();
-      this.snComponent.resize();
-    }
+    this.debouncedResize();
   }
 
   destroy() {}

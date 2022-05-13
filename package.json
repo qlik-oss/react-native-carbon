@@ -72,6 +72,7 @@
     "@nebula.js/stardust": "2.4.1",
     "@babel/core": "7.17.2",
     "@babel/runtime": "7.17.2",
+    "lodash": "4.17.21",
     "react-native-uuid": "2.0.1"
   }
 }

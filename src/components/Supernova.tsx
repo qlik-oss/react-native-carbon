@@ -19,6 +19,7 @@ import {OverlayView} from './OverlayView';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
+import SelectionsToolbar from './SelectionsToolbar';
 
 export type SupernovaProps = {
   sn: any;
@@ -39,12 +40,12 @@ export type SupernovaProps = {
   onLoaded?: () => void;
   log?: any;
   disableLasso: boolean;
+  selectionsToolbarIcons: any | undefined;
 };
 
 export const Supernova: React.FC<SupernovaProps> = ({
   sn,
   app,
-  style,
   theme,
   id,
   disableLoadAnimations,
@@ -58,6 +59,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   loadLayout,
   titleBarStyle,
   onLoaded,
+  selectionsToolbarIcons,
   log = defaultLogger,
   disableLasso = false,
 }) => {
@@ -484,7 +486,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
     nebulaEngineRef.current.loadSupernova(
       element,
       sn,
-      'Too bad, so sad',
+      invalidMessage,
       false,
       theme,
     );
@@ -495,7 +497,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   }, []);
 
   return (
-    <View style={[styles.layer, style]} ref={bodyRef} collapsable={false}>
+    <View style={[styles.layer]} ref={bodyRef} collapsable={false}>
       <Title
         style={titleBarStyle}
         layout={layout}
@@ -515,7 +517,10 @@ export const Supernova: React.FC<SupernovaProps> = ({
       </View>
       {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
       <Footer layout={layout} theme={theme} />
-      <OverlayView suspended={suspended} />
+      <SelectionsToolbar
+        selectionsApi={nebulaEngineRef.current.selectionsApi}
+        icons={selectionsToolbarIcons}
+      />
     </View>
   );
 };

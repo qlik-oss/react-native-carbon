@@ -58,6 +58,11 @@ const App = () => {
             theme={horizon}
             showLegend={true}
             object={connection.model}
+            selectionsToolbarIcons={{
+              confirm: 'check',
+              cancel: 'close',
+              clear: 'selection-off',
+            }}
           />
         ) : null}
       </View>
