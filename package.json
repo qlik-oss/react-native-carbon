@@ -17,9 +17,8 @@
     "clean": "rm -rf node_modules",
     "test": "jest --coverage",
     "ci:install": "yarn install --frozen-lockfile",
-    "dev": "ditto src ./example/CarbonApp/node_modules/@qlik/react-native-carbon/src",
     "tsc-build": "tsc src/**/* --declaration --allowJs --emitDeclarationOnly && yarn lint --fix",
-    "dev-setup": "yarn && yarn && cd example/CarbonApp && yarn && cd ios && pod install"
+    "dev-setup": "yarn && yarn && cd example/Galaxy && yarn && bundle install && cd ios && pod install"
   },
   "repository": {
     "url": "git@github.com:qlik-oss/react-native-carbon.git"
@@ -64,8 +63,9 @@
     "react-native": "0.67.4",
     "react-native-safe-area-context": "3.3.2",
     "eventemitter3": "4.0.7",
-    "react-native-gesture-handler": "2.2.0",
-    "react-native-paper": "4.11.2",
+    "react-native-gesture-handler": "^2.4.2",
+    "react-native-paper": "^4.12.1",
+    "react-native-reanimated": "^2.8.0",
     "jotai": "1.6.0",
     "picasso-plugin-q": "1.6.0",
     "picasso.js": "1.6.0",

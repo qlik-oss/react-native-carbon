@@ -62,19 +62,14 @@ export const Supernova: React.FC<SupernovaProps> = ({
   disableLasso = false,
 }) => {
   const nebulaEngineRef = useRef(
-    new NebulaEngine({app, theme, model: object, initialLayer: layout}),
+    new NebulaEngine({app, log, theme, model: object, modelId: id, onLayout: (l) => setLayout(l)}),
   );
   const [snRenderContext, setSnRenderContext] = useState<any>(undefined);
   const [layout, setLayout] = useState(loadLayout);
   const [componentData, setComponentData] = useState(undefined);
   const [lasso, setLasso] = useState(false);
-  const snComponent = useRef<any>(undefined);
-  const themeRef = useRef<any>(undefined);
-  const selectionsApiImpl = useRef<any>(undefined);
   const containerRef = useRef<any>(undefined);
   const bodyRef = useRef<any>(undefined);
-  const initialized = useRef(false);
-  const mounted = useRef(true);
   const titleLayout = useRef(undefined);
   const [model, setModel] = useState<any>(undefined);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
@@ -484,7 +479,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   renderSupernovaLayout(layout);
   // };
 
-  const onCanvas = useCallback((canvas: any) => {
+  const onCanvas = useCallback(async (canvas: any) => {
     const element = new Element(canvas);
     nebulaEngineRef.current.loadSupernova(
       element,
@@ -496,7 +491,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   }, []);
 
   const onResized = useCallback(() => {
-    console.log('ressss');
+    nebulaEngineRef.current.resizeView();
   }, []);
 
   return (
@@ -514,15 +509,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
         collapsable={false}
       >
         <Canvas onCanvas={onCanvas} onResized={onResized} />
-        {/* <LayerView
-          style={styles.layer}
-          onElement={onElement}
-          onLayoutChanged={onLayoutChanged}
-          onSelection={onSelection}
-          onTouchesBegan={onTouchesBegan}
-          onLongPress={handleLongPress}
-          lasso={lasso}
-        /> */}
         <View style={styles.components} pointerEvents="box-none">
           {/* {renderJsxComponent()} */}
         </View>

@@ -10,9 +10,11 @@ export type TranslationType = {
 export type NebulaModelType = {
   app: any;
   model: any;
+  modelId?: string;
   theme: any;
-  initialLayout: any;
+  initialLayout?: any;
   log: any;
+  onLayout: (layout: any) => void;
 };
 
 export default class NebulaEngine {
@@ -26,13 +28,29 @@ export default class NebulaEngine {
   canvasElement: any;
   externalTheme: any;
   changed: any;
+  currentLayout: any | undefined;
 
-  constructor({app, model, theme, initialLayout, log}: NebulaModelType) {
+  constructor({
+    app,
+    model,
+    theme,
+    initialLayout,
+    log,
+    modelId,
+    onLayout,
+  }: NebulaModelType) {
     this.generator = generator;
     this.theme = themeFn;
     this.translation = {add: () => {}, language: () => 'english'};
-    this.nebulaModel = {app, model, theme, initialLayout, log};
-    this.loadData();
+    this.nebulaModel = {
+      app,
+      model,
+      theme,
+      initialLayout,
+      log,
+      modelId,
+      onLayout,
+    };
   }
 
   async layoutChanged() {
@@ -46,21 +64,35 @@ export default class NebulaEngine {
         this.selectionsApi.eventEmitter.emit('aborted');
       }
       if (this.snComponent) {
+        this.currentLayout = layout;
         this.renderSupernova(layout);
+        this.nebulaModel.onLayout(layout);
       }
     } catch (error) {
       console.log('foobar', error);
     }
   }
 
-  private getInitialLayout() {
-    if (this.nebulaModel.initialLayout) {
-      return this.nebulaModel.initialLayout;
+  private async getInitialLayout() {
+    try {
+      if (this.nebulaModel.initialLayout) {
+        return this.nebulaModel.initialLayout;
+      }
+      if (!this.nebulaModel.model && this.nebulaModel.modelId) {
+        this.nebulaModel.model = await this.nebulaModel.app.getObject(
+          this.nebulaModel.modelId,
+        );
+      }
+
+      const layout = await this.nebulaModel.model.getLayout();
+      return layout;
+    } catch (error) {
+      console.log('oops', error);
     }
   }
 
-  private loadData() {
-    const _layout = this.getInitialLayout();
+  private async loadData() {
+    const _layout = await this.getInitialLayout();
     this.nebulaModel.model.removeAllListeners();
     if (this.selectionsApi) {
       this.selectionsApi.destroy();
@@ -76,13 +108,14 @@ export default class NebulaEngine {
     this.nebulaModel.model.on('changed', this.changed);
   }
 
-  loadSupernova(
+  async loadSupernova(
     element: any,
     supernova: any,
     invalidMessage: string,
     showLegend: boolean,
     vizTheme: any,
   ) {
+    await this.loadData();
     const options = {
       renderer: 'carbon',
       carbon: true,
@@ -119,13 +152,23 @@ export default class NebulaEngine {
   }
 
   private async renderSupernova(layout: any) {
-    try {
-      const context = {
-        ...this.snComponent.context,
-        theme: this.externalTheme,
-      };
-      await this.snComponent.render({...this.renderContext, context, layout});
-    } catch (error) {}
+    const context = {
+      ...this.snComponent.context,
+      theme: this.externalTheme,
+    };
+    this.snComponent.render({
+      ...this.renderContext,
+      context,
+      layout: {...layout},
+    });
+  }
+
+  resizeView() {
+    if (this.canvasElement) {
+      this.canvasElement.clear();
+      this.canvasElement.resetSize();
+      this.snComponent.resize();
+    }
   }
 
   destroy() {}

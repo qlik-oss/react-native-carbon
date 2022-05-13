@@ -15,26 +15,26 @@ export type OverlayViewTypes = {
 
 export const OverlayView: React.FC<OverlayViewTypes> = ({suspended}) => {
   const progress = useSharedValue(0);
-  useEffect(() => {
-    if (!suspended) {
-      progress.value = withTiming(0, {duration: 300});
-    } else {
-      progress.value = withRepeat(
-        withSequence(
-          withTiming(0.7, {
-            duration: 2200,
-            easing: Easing.in(Easing.elastic(1)),
-          }),
-          withTiming(0.5, {
-            duration: 2200,
-            easing: Easing.in(Easing.elastic(1)),
-          }),
-        ),
-        -1,
-        true,
-      );
-    }
-  }, [progress, suspended]);
+  // useEffect(() => {
+  //   if (!suspended) {
+  //     progress.value = withTiming(0, {duration: 300});
+  //   } else {
+  //     progress.value = withRepeat(
+  //       withSequence(
+  //         withTiming(0.7, {
+  //           duration: 2200,
+  //           easing: Easing.in(Easing.elastic(1)),
+  //         }),
+  //         withTiming(0.5, {
+  //           duration: 2200,
+  //           easing: Easing.in(Easing.elastic(1)),
+  //         }),
+  //       ),
+  //       -1,
+  //       true,
+  //     );
+  //   }
+  // }, [progress, suspended]);
   const animatedStyle = useAnimatedStyle(() => {
     return {opacity: progress.value};
   }, [suspended]);
