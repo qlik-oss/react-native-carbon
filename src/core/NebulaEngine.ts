@@ -31,6 +31,7 @@ export default class NebulaEngine {
   changed: any;
   currentLayout: any | undefined;
   debouncedResize: () => void;
+  panning: boolean;
 
   constructor({
     app,
@@ -41,13 +42,13 @@ export default class NebulaEngine {
     modelId,
     onLayout,
   }: NebulaModelType) {
+    this.panning = false;
     this.generator = generator;
     this.theme = themeFn;
     this.translation = {add: () => {}, language: () => 'english'};
     this.debouncedResize = debounce(
       () => {
         if (this.canvasElement) {
-          console.log('resizing');
           this.canvasElement.resetSize();
           this.snComponent.resize();
         }
@@ -79,8 +80,10 @@ export default class NebulaEngine {
       }
       if (this.snComponent) {
         this.currentLayout = layout;
-        this.renderSupernova(layout);
-        this.nebulaModel.onLayout(layout);
+        if (!this.panning) {
+          this.renderSupernova(layout);
+          this.nebulaModel.onLayout(layout);
+        }
       }
     } catch (error) {
       console.log('foobar', error);
@@ -179,6 +182,36 @@ export default class NebulaEngine {
 
   resizeView() {
     this.debouncedResize();
+  }
+
+  onTapped(val: any) {
+    console.log(val);
+    if (this.canvasElement) {
+      this.canvasElement.emit('touchstart', val);
+      this.canvasElement.emit('touchend', val);
+    }
+  }
+
+  emitPanStarted(event: any) {
+    console.log('panning');
+    if (this.canvasElement) {
+      this.panning = true;
+      this.canvasElement.emitPanStarted(event);
+    }
+  }
+
+  emitPanFinished(event: any) {
+    console.log('fin');
+    this.panning = false;
+    if (this.canvasElement) {
+      this.canvasElement.emitPanFinished(event);
+    }
+  }
+
+  emitPan(event: any) {
+    if (this.canvasElement) {
+      this.canvasElement.emitPan(event);
+    }
   }
 
   destroy() {}

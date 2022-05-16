@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import {Button, IconButton, ToggleButton} from 'react-native-paper';
 import {useAtomValue} from 'jotai/utils';
 import {supernovaStateAtom} from '../carbonAtoms';
-import Animated, { ZoomIn, ZoomOut } from 'react-native-reanimated';
+import Animated, {ZoomIn, ZoomOut} from 'react-native-reanimated';
 
 export type SelectionsToolbarIconConfig = {
   clear?: string;
@@ -33,7 +33,18 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
 }) => {
   const selectionsConfig = useAtomValue(supernovaStateAtom);
   const [lasso, setLasso] = useState<boolean>(false);
-  const [visible, setVisible] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (selectionsApi) {
+      selectionsApi.addListener('activated', () => {
+        setVisible(true);
+      });
+    }
+    return () => {
+      console.log('toolbar unmount');
+    };
+  }, [selectionsApi]);
 
   const handleLasso = () => {
     if (onToggledLasso) {
@@ -44,12 +55,18 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
 
   const handleOnConfirm = () => {
     setLasso(false);
+    if (onToggledLasso) {
+      onToggledLasso(false);
+    }
+    selectionsApi.confirm();
+    setVisible(false);
     // onConfirm();
   };
 
   const handleOnCancel = () => {
     setLasso(false);
     setVisible(false);
+    selectionsApi.cancel();
     // onCancel();
   };
 

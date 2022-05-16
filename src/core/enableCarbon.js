@@ -1,4 +1,5 @@
 import {__DO_NOT_USE__ as NebulaInternals} from '@nebula.js/stardust';
+import '@qlik/react-native-helium';
 
 const {
   theme: {},

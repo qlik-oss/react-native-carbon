@@ -18,6 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Banner, Button, Title} from 'react-native-paper';
 import {Supernova} from '@qlik/react-native-carbon';
 import treemap from '@qlik-trial/sn-treemap';
@@ -39,34 +40,31 @@ const App = () => {
   const [bannerVisible, setBannerVisible] = useState(true);
 
   return (
-    <SafeAreaView style={styles.body}>
-      <Banner
-        style={styles.banner}
-        visible={bannerVisible}
-        actions={[{label: 'Hide', onPress: () => setBannerVisible(false)}]}>
-        {`${connection.status} - ${connection.message}`}
-      </Banner>
-      {!bannerVisible ? (
-        <Button onPress={() => setBannerVisible(true)}>Show</Button>
-      ) : null}
-      <View style={styles.modelView}>
-        {connection.model ? (
-          <Supernova
-            sn={treemap}
-            style={styles.supernova}
-            app={connection.app}
-            theme={horizon}
-            showLegend={true}
-            object={connection.model}
-            selectionsToolbarIcons={{
-              confirm: 'check',
-              cancel: 'close',
-              clear: 'selection-off',
-            }}
-          />
+    <GestureHandlerRootView style={{flex: 1}}>
+      <SafeAreaView style={styles.body}>
+        <Banner
+          style={styles.banner}
+          visible={bannerVisible}
+          actions={[{label: 'Hide', onPress: () => setBannerVisible(false)}]}>
+          {`${connection.status} - ${connection.message}`}
+        </Banner>
+        {!bannerVisible ? (
+          <Button onPress={() => setBannerVisible(true)}>Show</Button>
         ) : null}
-      </View>
-    </SafeAreaView>
+        <View style={styles.modelView}>
+          {connection.model ? (
+            <Supernova
+              sn={treemap}
+              style={styles.supernova}
+              app={connection.app}
+              theme={horizon}
+              showLegend={true}
+              object={connection.model}
+            />
+          ) : null}
+        </View>
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 };
 

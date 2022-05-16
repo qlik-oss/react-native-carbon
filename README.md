@@ -9,11 +9,11 @@ Recommend way is to create a folder called "Carbon" and clone dependencies in th
 1. clone react-native-helium
 2. clone me
 3. clone carbon-core
-4. cd into react-native-helium
-5. run yarn
-6. cd ..
-7. cd into react-native-carbon
+4. cd into react-native-carbon
 5. yarn dev-setup
+
+## Interactions run on the UI Thread
+To improve performance
 
 ## License
 

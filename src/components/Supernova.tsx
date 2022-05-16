@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState, useCallback} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 // @ts-ignore
 // import LayerView from './LayerView';
 import {Title} from './Title';
@@ -20,6 +20,12 @@ import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
 import SelectionsToolbar from './SelectionsToolbar';
+import Animated, {
+  runOnJS,
+  useAnimatedReaction,
+  useSharedValue,
+} from 'react-native-reanimated';
+import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 
 export type SupernovaProps = {
   sn: any;
@@ -64,7 +70,14 @@ export const Supernova: React.FC<SupernovaProps> = ({
   disableLasso = false,
 }) => {
   const nebulaEngineRef = useRef(
-    new NebulaEngine({app, log, theme, model: object, modelId: id, onLayout: (l) => setLayout(l)}),
+    new NebulaEngine({
+      app,
+      log,
+      theme,
+      model: object,
+      modelId: id,
+      onLayout: (l) => setLayout(l),
+    }),
   );
   const [snRenderContext, setSnRenderContext] = useState<any>(undefined);
   const [layout, setLayout] = useState(loadLayout);
@@ -79,10 +92,46 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const setToolTipConfig = useUpdateAtom(supernovaToolTipStateAtom);
   const setTooltipVisible = useUpdateAtom(supernovaToolTipVisible);
   const [suspended, setSuspended] = useState(false);
+  const panning = useSharedValue(false);
+  const panPosition = useSharedValue({x: 0, y: 0});
+  const tapPosition = useSharedValue({x: 0, y: 0});
+
+  const updatePan = useCallback((val) => {
+    // console.log('this is going to be slow', val);
+    nebulaEngineRef.current.emitPan(val);
+  }, []);
+
+  const handleTapped = useCallback(() => {
+    nebulaEngineRef.current.onTapped(tapPosition.value);
+  }, [tapPosition]);
+
+  const handleToggleLasso = useCallback((e) => {
+    setLasso(e);
+  }, []);
+
+  const emitPanStarted = useCallback(() => {
+    nebulaEngineRef.current.emitPanStarted(panPosition.value);
+  }, []);
+
+  const emitPanFinished = useCallback(() => {
+    nebulaEngineRef.current.emitPanFinished(panPosition.value);
+  }, []);
+
+  useAnimatedReaction(
+    () => {
+      return {pan: panPosition.value, panning: panning.value};
+    },
+    (result) => {
+      if (result.panning) {
+        // runOnJS(emitPanStartedX)(result.pan);
+        runOnJS(updatePan)(result.pan);
+      }
+    },
+    [panPosition, panning],
+  );
 
   useEffect(() => {
     return () => {
-      console.log('******* UND');
       nebulaEngineRef.current.destroy();
     };
   }, []);
@@ -496,6 +545,30 @@ export const Supernova: React.FC<SupernovaProps> = ({
     nebulaEngineRef.current.resizeView();
   }, []);
 
+  const tap = Gesture.Tap().onStart((e) => {
+    tapPosition.value = {x: e.x, y: e.y};
+    runOnJS(handleTapped)();
+  });
+
+  const pan = Gesture.Pan()
+    .onStart((e) => {
+      panning.value = true;
+      console.log('e',e);
+      panPosition.value = {...e};
+      // emitPanStarted();
+      runOnJS(emitPanStarted)();
+    })
+    .onUpdate((e) => {
+      panPosition.value = {...e};
+    })
+    .onEnd((e) => {
+      panning.value = false;
+      panPosition.value = {...e};
+      runOnJS(emitPanFinished)();
+    });
+
+  const gesture = lasso ? pan : tap;
+
   return (
     <View style={[styles.layer]} ref={bodyRef} collapsable={false}>
       <Title
@@ -505,21 +578,24 @@ export const Supernova: React.FC<SupernovaProps> = ({
         topPadding={topPadding}
         theme={theme}
       />
-      <View
-        style={[styles.supernovaView]}
-        ref={containerRef}
-        collapsable={false}
-      >
-        <Canvas onCanvas={onCanvas} onResized={onResized} />
-        <View style={styles.components} pointerEvents="box-none">
-          {/* {renderJsxComponent()} */}
-        </View>
-      </View>
+      <GestureDetector gesture={gesture}>
+        <Animated.View
+          style={[styles.supernovaView]}
+          ref={containerRef}
+          collapsable={false}
+        >
+          <Canvas onCanvas={onCanvas} onResized={onResized} />
+          {/* <View style={styles.components} pointerEvents="box-none">
+            {renderJsxComponent()}
+          </View> */}
+        </Animated.View>
+      </GestureDetector>
       {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
       <Footer layout={layout} theme={theme} />
       <SelectionsToolbar
         selectionsApi={nebulaEngineRef.current.selectionsApi}
         icons={selectionsToolbarIcons}
+        onToggledLasso={handleToggleLasso}
       />
     </View>
   );
