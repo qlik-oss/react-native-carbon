@@ -8,49 +8,50 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Banner, Button, Title} from 'react-native-paper';
+import {Banner, Button} from 'react-native-paper';
 import {Supernova} from '@qlik/react-native-carbon';
 import treemap from '@qlik-trial/sn-treemap';
 import horizon from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
 import galaxy from './galaxy.json';
 import useConnectToApp from './useConnectToApp';
+import {Appbar} from 'react-native-paper';
 
 const App = () => {
   const connection = useConnectToApp(galaxy);
   const [bannerVisible, setBannerVisible] = useState(true);
+  console.log('connection', connection.app);
+
+  const handleClear = useCallback(() => {
+    connection.app?.clearAll();
+  }, [connection]);
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <SafeAreaView style={styles.body}>
-        <Banner
+      <SafeAreaView style={styles.body} edges={['bottom', 'left', 'right']}>
+        <Appbar.Header style={{elevation: 0, backgroundColor: 'white'}}>
+          <Appbar.Content
+            title="Your Chart"
+            subtitle={`${connection.status} `}
+          />
+          <Appbar.Action icon="clear_selections" onPress={handleClear} />
+        </Appbar.Header>
+        {/* <Banner
           style={styles.banner}
           visible={bannerVisible}
-          actions={[{label: 'Hide', onPress: () => setBannerVisible(false)}]}>
-          {`${connection.status} - ${connection.message}`}
+          actions={[
+
+            {label: 'Hide', onPress: () => setBannerVisible(false)},
+          ]}>
+
         </Banner>
         {!bannerVisible ? (
           <Button onPress={() => setBannerVisible(true)}>Show</Button>
-        ) : null}
+        ) : null} */}
         <View style={styles.modelView}>
           {connection.model ? (
             <Supernova
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
   },
   modelView: {
     flex: 1,
+    margin: 2,
   },
   supernova: {
     flex: 1,

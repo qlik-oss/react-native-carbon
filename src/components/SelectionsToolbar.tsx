@@ -58,9 +58,10 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
     if (onToggledLasso) {
       onToggledLasso(false);
     }
-    selectionsApi.confirm();
     setVisible(false);
-    // onConfirm();
+    setTimeout(() => {
+      onConfirm?.();
+    }, 0);
   };
 
   const handleOnCancel = () => {

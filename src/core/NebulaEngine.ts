@@ -181,6 +181,7 @@ export default class NebulaEngine {
   }
 
   resizeView() {
+    console.log('rrrr');
     this.debouncedResize();
   }
 
@@ -192,26 +193,17 @@ export default class NebulaEngine {
     }
   }
 
-  emitPanStarted(event: any) {
-    console.log('panning');
-    if (this.canvasElement) {
-      this.panning = true;
-      this.canvasElement.emitPanStarted(event);
+  beginSelections() {
+    if (this.selectionsApi) {
+      if (!this.selectionsApi.isActive()) {
+        this.selectionsApi.begin(['/qHyperCubeDef']);
+      }
     }
   }
 
-  emitPanFinished(event: any) {
-    console.log('fin');
-    this.panning = false;
-    if (this.canvasElement) {
-      this.canvasElement.emitPanFinished(event);
-    }
-  }
-
-  emitPan(event: any) {
-    if (this.canvasElement) {
-      this.canvasElement.emitPan(event);
-    }
+  confirmSelections() {
+    this.canvasElement.confirmSelections();
+    this.selectionsApi.confirm();
   }
 
   destroy() {}

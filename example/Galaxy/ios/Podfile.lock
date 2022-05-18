@@ -77,6 +77,8 @@ PODS:
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.1100)
   - qlik-oss-react-native-helium (0.1.0):
+    - React
+    - React-callinvoker
     - React-Core
   - RCT-Folly (2021.06.28.00-v2):
     - boost
@@ -585,7 +587,7 @@ SPEC CHECKSUMS:
   hermes-engine: 84e3af1ea01dd7351ac5d8689cbbea1f9903ffc3
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
-  qlik-oss-react-native-helium: 444ffa15d6a17c4b067ed2c5dc2b839527c40d64
+  qlik-oss-react-native-helium: b3a056d952bee8057489b87362d40d765c8f2192
   RCT-Folly: 4d8508a426467c48885f1151029bc15fa5d7b3b8
   RCTRequired: 3e917ea5377751094f38145fdece525aa90545a0
   RCTTypeSafety: c43c072a4bd60feb49a9570b0517892b4305c45e

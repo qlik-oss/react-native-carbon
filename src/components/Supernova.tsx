@@ -79,7 +79,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
       onLayout: (l) => setLayout(l),
     }),
   );
-  const [snRenderContext, setSnRenderContext] = useState<any>(undefined);
   const [layout, setLayout] = useState(loadLayout);
   const [componentData, setComponentData] = useState(undefined);
   const [lasso, setLasso] = useState(false);
@@ -92,43 +91,10 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const setToolTipConfig = useUpdateAtom(supernovaToolTipStateAtom);
   const setTooltipVisible = useUpdateAtom(supernovaToolTipVisible);
   const [suspended, setSuspended] = useState(false);
-  const panning = useSharedValue(false);
-  const panPosition = useSharedValue({x: 0, y: 0});
-  const tapPosition = useSharedValue({x: 0, y: 0});
-
-  const updatePan = useCallback((val) => {
-    // console.log('this is going to be slow', val);
-    nebulaEngineRef.current.emitPan(val);
-  }, []);
-
-  const handleTapped = useCallback(() => {
-    nebulaEngineRef.current.onTapped(tapPosition.value);
-  }, [tapPosition]);
 
   const handleToggleLasso = useCallback((e) => {
     setLasso(e);
   }, []);
-
-  const emitPanStarted = useCallback(() => {
-    nebulaEngineRef.current.emitPanStarted(panPosition.value);
-  }, []);
-
-  const emitPanFinished = useCallback(() => {
-    nebulaEngineRef.current.emitPanFinished(panPosition.value);
-  }, []);
-
-  useAnimatedReaction(
-    () => {
-      return {pan: panPosition.value, panning: panning.value};
-    },
-    (result) => {
-      if (result.panning) {
-        // runOnJS(emitPanStartedX)(result.pan);
-        runOnJS(updatePan)(result.pan);
-      }
-    },
-    [panPosition, panning],
-  );
 
   useEffect(() => {
     return () => {
@@ -545,29 +511,13 @@ export const Supernova: React.FC<SupernovaProps> = ({
     nebulaEngineRef.current.resizeView();
   }, []);
 
-  const tap = Gesture.Tap().onStart((e) => {
-    tapPosition.value = {x: e.x, y: e.y};
-    runOnJS(handleTapped)();
-  });
+  const onBeganSelections = useCallback(() => {
+    nebulaEngineRef.current.beginSelections();
+  }, []);
 
-  const pan = Gesture.Pan()
-    .onStart((e) => {
-      panning.value = true;
-      console.log('e',e);
-      panPosition.value = {...e};
-      // emitPanStarted();
-      runOnJS(emitPanStarted)();
-    })
-    .onUpdate((e) => {
-      panPosition.value = {...e};
-    })
-    .onEnd((e) => {
-      panning.value = false;
-      panPosition.value = {...e};
-      runOnJS(emitPanFinished)();
-    });
-
-  const gesture = lasso ? pan : tap;
+  const handleOnConfirm = useCallback(() => {
+    nebulaEngineRef.current.confirmSelections();
+  }, []);
 
   return (
     <View style={[styles.layer]} ref={bodyRef} collapsable={false}>
@@ -578,24 +528,27 @@ export const Supernova: React.FC<SupernovaProps> = ({
         topPadding={topPadding}
         theme={theme}
       />
-      <GestureDetector gesture={gesture}>
-        <Animated.View
-          style={[styles.supernovaView]}
-          ref={containerRef}
-          collapsable={false}
-        >
-          <Canvas onCanvas={onCanvas} onResized={onResized} />
-          {/* <View style={styles.components} pointerEvents="box-none">
+      <Animated.View
+        style={[styles.supernovaView]}
+        ref={containerRef}
+        collapsable={false}
+      >
+        <Canvas
+          onCanvas={onCanvas}
+          onResized={onResized}
+          onBeganSelections={onBeganSelections}
+        />
+        {/* <View style={styles.components} pointerEvents="box-none">
             {renderJsxComponent()}
           </View> */}
-        </Animated.View>
-      </GestureDetector>
+      </Animated.View>
       {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
       <Footer layout={layout} theme={theme} />
       <SelectionsToolbar
         selectionsApi={nebulaEngineRef.current.selectionsApi}
         icons={selectionsToolbarIcons}
         onToggledLasso={handleToggleLasso}
+        onConfirm={handleOnConfirm}
       />
     </View>
   );
