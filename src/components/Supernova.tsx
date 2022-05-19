@@ -537,6 +537,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
           onCanvas={onCanvas}
           onResized={onResized}
           onBeganSelections={onBeganSelections}
+          lasso={lasso}
         />
         {/* <View style={styles.components} pointerEvents="box-none">
             {renderJsxComponent()}
