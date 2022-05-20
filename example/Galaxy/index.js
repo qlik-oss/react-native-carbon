@@ -24,11 +24,7 @@ const theme = {
 
 export default function Main() {
   return (
-    <PaperProvider
-      theme={theme}
-      settings={{
-        icon: props => <SproutIcons {...props} />,
-      }}>
+    <PaperProvider theme={theme}>
       <App />
     </PaperProvider>
   );

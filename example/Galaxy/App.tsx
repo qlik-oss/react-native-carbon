@@ -12,7 +12,6 @@ import React, {useCallback, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Banner, Button} from 'react-native-paper';
 import {Supernova} from '@qlik/react-native-carbon';
 import treemap from '@qlik-trial/sn-treemap';
 import horizon from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
@@ -23,7 +22,6 @@ import {Appbar} from 'react-native-paper';
 
 const App = () => {
   const connection = useConnectToApp(galaxy);
-  const [bannerVisible, setBannerVisible] = useState(true);
   console.log('connection', connection.app);
 
   const handleClear = useCallback(() => {
@@ -38,20 +36,8 @@ const App = () => {
             title="Your Chart"
             subtitle={`${connection.status} `}
           />
-          <Appbar.Action icon="clear_selections" onPress={handleClear} />
+          <Appbar.Action icon="selection-off" onPress={handleClear} />
         </Appbar.Header>
-        {/* <Banner
-          style={styles.banner}
-          visible={bannerVisible}
-          actions={[
-
-            {label: 'Hide', onPress: () => setBannerVisible(false)},
-          ]}>
-
-        </Banner>
-        {!bannerVisible ? (
-          <Button onPress={() => setBannerVisible(true)}>Show</Button>
-        ) : null} */}
         <View style={styles.modelView}>
           {connection.model ? (
             <Supernova
@@ -61,6 +47,11 @@ const App = () => {
               theme={horizon}
               showLegend={true}
               object={connection.model}
+              selectionsToolbarIcons={{
+                confirm: 'check',
+                cancel: 'close',
+                clear: 'selection-off',
+              }}
             />
           ) : null}
         </View>
