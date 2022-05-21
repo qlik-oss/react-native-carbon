@@ -86,7 +86,7 @@ export default class NebulaEngine {
         }
       }
     } catch (error) {
-      console.log('foobar', error);
+      console.log('Error', error);
     }
   }
 
@@ -104,7 +104,7 @@ export default class NebulaEngine {
       const layout = await this.nebulaModel.model.getLayout();
       return layout;
     } catch (error) {
-      console.log('oops', error);
+      console.log('Error', error);
     }
   }
 
@@ -181,12 +181,10 @@ export default class NebulaEngine {
   }
 
   resizeView() {
-    console.log('rrrr');
     this.debouncedResize();
   }
 
   onTapped(val: any) {
-    console.log(val);
     if (this.canvasElement) {
       this.canvasElement.emit('touchstart', val);
       this.canvasElement.emit('touchend', val);

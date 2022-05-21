@@ -26,6 +26,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import {Tooltip} from './Tooltip';
 
 export type SupernovaProps = {
   sn: any;
@@ -47,6 +48,7 @@ export type SupernovaProps = {
   log?: any;
   disableLasso: boolean;
   selectionsToolbarIcons: any | undefined;
+  jsxComponent?: boolean;
 };
 
 export const Supernova: React.FC<SupernovaProps> = ({
@@ -66,6 +68,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   titleBarStyle,
   onLoaded,
   selectionsToolbarIcons,
+  jsxComponent,
   log = defaultLogger,
   disableLasso = false,
 }) => {
@@ -88,9 +91,11 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const [model, setModel] = useState<any>(undefined);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
   const resetConfig = useResetAtom(supernovaStateAtom);
-  const setToolTipConfig = useUpdateAtom(supernovaToolTipStateAtom);
-  const setTooltipVisible = useUpdateAtom(supernovaToolTipVisible);
   const [suspended, setSuspended] = useState(false);
+  const [tooltipConfig, setToolTipConfig] = useState({
+    visible: false,
+    content: {},
+  });
 
   const handleToggleLasso = useCallback((e) => {
     setLasso(e);
@@ -180,11 +185,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   }
   // }, [fields, app]);
 
-  // const onToggledLasso = (toggled: boolean) => {
-  //   element?.enableMotion(!toggled);
-  //   setLasso(toggled);
-  // };
-
   // const handleCancelSelections = async () => {
   //   element?.flush();
   //   resetInputState();
@@ -205,40 +205,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   element?.enableMotion(true);
   //   setLasso(false);
   // };
-
-  // const renderSupernovaLayout = useCallback(
-  //   (renderLayout) => {
-  //     async function renderSupernova() {
-  //       try {
-  //         const context = {
-  //           ...snComponent.current.context,
-  //           theme: themeRef?.current?.externalAPI,
-  //         };
-
-  //         if (renderLayout) {
-  //           await snComponent.current.render({
-  //             ...snRenderContext,
-  //             context,
-  //             layout: {...renderLayout},
-  //           });
-  //           if (
-  //             renderLayout &&
-  //             !renderLayout?.qSelectionInfo?.qInSelections &&
-  //             !lasso
-  //           ) {
-  //             element?.draw();
-  //           }
-  //         }
-  //       } catch (error) {
-  //         log.error('error while rendering');
-  //       }
-  //     }
-  //     if (snComponent.current && renderLayout !== undefined) {
-  //       renderSupernova();
-  //     }
-  //   },
-  //   [element, lasso],
-  // );
 
   // useEffect(() => {
   //   return () => {
@@ -409,65 +375,20 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   };
   // }, [element, model, app, setSelectionsConfig]);
 
-  // useEffect(() => {
-  //   const selections = selectionsApiImpl.current;
-
-  //   if (sn && snRenderContext && element && !snComponent.current) {
-  //     const options = {
-  //       renderer: 'carbon',
-  //       carbon: true,
-  //       showLegend,
-  //       invalidMessage: invalidMessage || 'Undefined',
-  //     };
-  //     const t = themeFn();
-  //     t.internalAPI.setTheme(theme, 'horizon');
-  //     themeRef.current = t;
-  //     const supernova = generator(sn, {
-  //       translator,
-  //       sense: true,
-  //       theme: t.externalAPI,
-  //       ...options,
-  //     });
-  //     const {component} = supernova.create({
-  //       ...snRenderContext,
-  //       selections,
-  //       theme: t,
-  //     });
-  //     snComponent.current = component;
-  //     snComponent.current.created();
-  //     snComponent.current.mounted(element);
-  //     if (onLoaded) {
-  //       onLoaded();
-  //     }
-  //   }
-
-  //   return () => {
-  //     if (snComponent.current) {
-  //       snComponent.current.willUnmount();
-  //       snComponent.current.destroy();
-  //       snComponent.current = undefined;
-  //     }
-  //   };
-  // }, [sn, snRenderContext, element, theme]);
-
-  // useEffect(() => {
-  //   renderSupernovaLayout(layout);
-  // }, [snRenderContext, renderSupernovaLayout, layout]);
-
   const handleTitleLayout = ({nativeEvent}: any) => {
     titleLayout.current = nativeEvent.layout;
   };
 
-  // const renderJsxComponent = useCallback(() => {
-  //   if (!element) {
-  //     return null;
-  //   }
-  //   const comp = element.getJsxComponent();
-  //   if (comp && componentData) {
-  //     return comp(componentData);
-  //   }
-  //   return null;
-  // }, [componentData, element]);
+  const renderJsxComponent = useCallback(() => {
+    // if (!element) {
+    //   return null;
+    // }
+    // const comp = element.getJsxComponent();
+    // if (comp && componentData) {
+    //   return comp(componentData);
+    // }
+    return null;
+  }, [componentData]);
 
   // const onSelection = (selections: any) => {
   //   if (element) {
@@ -480,24 +401,35 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   setTooltipVisible(false);
   // };
 
-  // const handleLongPress = (event: any) => {
-  //   if (element) {
-  //     const touchesListener = element.getTouchesStartListener();
-  //     if (touchesListener) {
-  //       touchesListener(event.nativeEvent.touches);
-  //     }
-  //   }
-  //   if (onLongPress) {
-  //     onLongPress();
-  //   }
-  // };
+  const handleOnLongPressBegan = useCallback((event: any) => {
+    const touchesListener =
+      nebulaEngineRef.current.canvasElement.getTouchesStartListener();
+    if (touchesListener) {
+      console.log('eheheheheheheheheh', event.nativeEvent);
+      const touches = [event.nativeEvent.x, event.nativeEvent.y];
+      touchesListener(touches);
+    }
+    // if (element) {
+    //   const touchesListener = element.getTouchesStartListener();
+    //   if (touchesListener) {
+    //     touchesListener(event.nativeEvent.touches);
+    //   }
+    // }
+    // if (onLongPress) {
+    //   onLongPress();
+    // }
+  }, []);
 
-  // const onLayoutChanged = () => {
-  //   renderSupernovaLayout(layout);
-  // };
+  const handleOnLongPressEnded = useCallback(() => {
+    setToolTipConfig({visible: false, content: {}});
+  }, []);
 
   const onCanvas = useCallback(async (canvas: any) => {
     const element = new Element(canvas);
+    element.addEventListener('onTooltipData', (data: any) => {
+      console.log('here it is', data);
+      setToolTipConfig({visible: true, content: data});
+    });
     nebulaEngineRef.current.loadSupernova(
       element,
       sn,
@@ -528,29 +460,37 @@ export const Supernova: React.FC<SupernovaProps> = ({
         topPadding={topPadding}
         theme={theme}
       />
-      <Animated.View
-        style={[styles.supernovaView]}
-        ref={containerRef}
-        collapsable={false}
-      >
-        <Canvas
-          onCanvas={onCanvas}
-          onResized={onResized}
-          onBeganSelections={onBeganSelections}
-          lasso={lasso}
-        />
-        {/* <View style={styles.components} pointerEvents="box-none">
-            {renderJsxComponent()}
-          </View> */}
-      </Animated.View>
-      {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
-      <Footer layout={layout} theme={theme} />
+      {!jsxComponent ? (
+        <>
+          <Animated.View
+            style={[styles.supernovaView]}
+            ref={containerRef}
+            collapsable={false}
+          >
+            <Canvas
+              onCanvas={onCanvas}
+              onResized={onResized}
+              onBeganSelections={onBeganSelections}
+              lasso={lasso}
+              onLongPressBegan={handleOnLongPressBegan}
+              onLongPressEnded={handleOnLongPressEnded}
+            />
+          </Animated.View>
+          {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
+          <Footer layout={layout} theme={theme} />
+        </>
+      ) : (
+        <View style={styles.components} pointerEvents="box-none">
+          {renderJsxComponent()}
+        </View>
+      )}
       <SelectionsToolbar
         selectionsApi={nebulaEngineRef.current.selectionsApi}
         icons={selectionsToolbarIcons}
         onToggledLasso={handleToggleLasso}
         onConfirm={handleOnConfirm}
       />
+      <Tooltip show={tooltipConfig.visible} content={tooltipConfig.content} />
     </View>
   );
 };

@@ -5,6 +5,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>icomoon.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

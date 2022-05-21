@@ -9,7 +9,6 @@ const CanvasPollyFill = {
   getContext: (_c) => {
     return {
       measureText: (text) => {
-        console.log('what??', text);
         // const fontFamily = opt.fontFamily.split(',')[0];
         // const fontSize = parseInt(opt.fontSize, 10);
         // const text = opt.text.length > 0 ? opt.text : 'M';

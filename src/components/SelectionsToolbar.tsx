@@ -41,9 +41,6 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
         setVisible(true);
       });
     }
-    return () => {
-      console.log('toolbar unmount');
-    };
   }, [selectionsApi]);
 
   const handleLasso = () => {
