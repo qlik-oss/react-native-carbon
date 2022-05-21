@@ -1,135 +1,39 @@
-import {
-  supernovaToolTipStateAtom,
-  supernovaToolTipVisible,
-} from '@qlik/react-native-carbon/src/carbonAtoms';
-import {useAtomValue, useResetAtom} from 'jotai/utils';
-import {useAtom} from 'jotai';
-import React, {useEffect, useRef, useState, useCallback} from 'react';
-import {View, StyleSheet, Animated, Easing} from 'react-native';
-import {IconButton} from 'react-native-paper';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
+import {StyleSheet, useWindowDimensions, View} from 'react-native';
+import Animated, {FadeIn, FadeOut, ZoomIn, ZoomOut} from 'react-native-reanimated';
 
-const animationConfig = {
-  duration: 150,
-  easing: Easing.inOut(Easing.linear),
-  useNativeDriver: true,
+export type TooltipProps = {
+  show: boolean;
+  content: any;
 };
 
-export const Tooltip = ({duration, insets}) => {
-  const deviceInsets = useSafeAreaInsets();
-  const tooltipState = useAtomValue(supernovaToolTipStateAtom);
-  const [visible, setVisible] = useAtom(supernovaToolTipVisible);
-  const resetTooltipState = useResetAtom(supernovaToolTipStateAtom);
-  const layout = useRef(undefined);
-  const cachedShowState = useRef(undefined);
-  const animationProgress = useRef(new Animated.Value(0));
-
-  const [showState, setShowState] = useState({
-    top: 0,
-    left: 0,
-    triangleLeft: 0,
-    triangleBottom: -5,
-  });
-
-  const opacity = animationProgress.current.interpolate({
-    inputRange: [0, 0.25, 1],
-    outputRange: [0, 0, 1],
-  });
-
-  const scale = animationProgress.current.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 1],
-  });
-
-  useEffect(() => {
-    if (visible) {
-      layout.current = undefined;
-      Animated.timing(animationProgress.current).stop();
-      calcluatePos();
-    } else {
-      Animated.timing(animationProgress.current).stop();
-      Animated.timing(animationProgress.current, {
-        ...animationConfig,
-        toValue: 0,
-      }).start();
-    }
-  }, [calcluatePos, duration, visible, tooltipState.config]);
-
-  const calcluatePos = useCallback(() => {
-    if (tooltipState.config) {
-      const params = tooltipState.config;
-      const nativeEvent = cachedShowState.current;
-      const triangleHalf = 5;
-
-      const topInset = insets?.top || 0;
-      let triangleBottom = -triangleHalf;
-      let top =
-        params.pageLocation.pageY +
-        params.rect.y -
-        nativeEvent.height -
-        triangleHalf -
-        2 +
-        topInset;
-
-      if (top < deviceInsets.top) {
-        top = deviceInsets.top;
-      }
-      let left = params.pageLocation.pageX;
-      let triangleLeft = params.rect.x + params.rect.width * 0.5 - triangleHalf;
-
-      layout.current = true;
-      setShowState({
-        top,
-        left,
-        width: params.pageLocation.width,
-        triangleLeft,
-        triangleBottom,
-      });
-      if (visible) {
-        Animated.timing(animationProgress.current, {
-          toValue: 1,
-          ...animationConfig,
-        }).start();
-      }
-    }
-  }, [tooltipState.config, insets?.top, deviceInsets.top, visible]);
-
-  const onLayout = ({nativeEvent}) => {
-    cachedShowState.current = {...nativeEvent.layout};
-    calcluatePos();
-  };
-
-  const onClose = () => {
-    setVisible(false);
-    resetTooltipState();
-  };
-
-  return (
-    <View
-      pointerEvents="box-none"
-      style={[styles.talkBubble, {...showState}]}
-      onLayout={onLayout}
+export const Tooltip: React.FC<TooltipProps> = ({show, content}) => {
+  const dims = useWindowDimensions();
+  let left = Math.max(content?.tap?.clientX - 175, 0);
+  left = left + 350 > dims.width ? dims.width - 358 : left;
+  let triangleLeft = content?.tap?.clientX - left; //350 * 0.5;
+  return show ? (
+    <Animated.View
+      entering={FadeIn}
+      exiting={FadeOut}
+      style={[
+        styles.talkBubble,
+        {top: content.tap.clientY - 52, left: 0, right: 0},
+      ]}
     >
-      <Animated.View style={[{opacity, transform: [{scale}]}]}>
-        <View style={styles.talkBubbleSquare}>
-          {tooltipState?.config?.content?.display() || null}
-          <IconButton
-            icon="cross"
-            color="white"
-            size={16}
-            style={styles.close}
-            onPress={onClose}
-          />
-        </View>
+      <Animated.View
+        entering={ZoomIn.duration(200)}
+        exiting={ZoomOut.duration(100)}
+        style={[styles.talkBubbleSquare, {left}]}
+      >
+        {content.content?.display?.()}
         <View
-          style={[
-            styles.talkBubbleTriangle,
-            {left: showState.triangleLeft, bottom: showState.triangleBottom},
-          ]}
+          style={[styles.talkBubbleTriangle, {bottom: -5, left: triangleLeft}]}
         />
       </Animated.View>
-    </View>
-  );
+    </Animated.View>
+  ) : null;
 };
 
 const styles = StyleSheet.create({
@@ -149,20 +53,19 @@ const styles = StyleSheet.create({
   talkBubbleSquare: {
     padding: 8,
     backgroundColor: '#595959',
+    width: 350,
     borderRadius: 4,
+    position: 'absolute',
+  },
+  talkBubbleContent: {
+    maxHeight: 400,
   },
   talkBubbleTriangle: {
     position: 'absolute',
-    bottom: -5,
     left: 0,
     height: 10,
     width: 10,
     backgroundColor: '#595959',
     transform: [{rotate: '45deg'}],
-  },
-  close: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
   },
 });

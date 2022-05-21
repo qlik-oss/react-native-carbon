@@ -1,8 +1,9 @@
 import React, {useRef, useEffect, useState} from 'react';
-import {View, StyleSheet, Animated} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Button, IconButton, ToggleButton} from 'react-native-paper';
 import {useAtomValue} from 'jotai/utils';
 import {supernovaStateAtom} from '../carbonAtoms';
+import Animated, {ZoomIn, ZoomOut} from 'react-native-reanimated';
 
 export type SelectionsToolbarIconConfig = {
   clear?: string;
@@ -18,6 +19,7 @@ export type SelectionsToolbarProps = {
   onToggledLasso: (toggled: boolean) => void;
   bounds?: any;
   icons?: SelectionsToolbarIconConfig;
+  selectionsApi: any;
 };
 
 const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
@@ -26,35 +28,20 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
   onConfirm,
   onCancel,
   onToggledLasso,
-  bounds,
   icons,
+  selectionsApi,
 }) => {
   const selectionsConfig = useAtomValue(supernovaStateAtom);
   const [lasso, setLasso] = useState<boolean>(false);
-  const viewRef = useRef<any>(undefined);
-  const layout = useRef({width: 0, height: 0});
-  const padding = 4;
-  const coords =
-    selectionsConfig?.position === undefined
-      ? {pageX: 0, pageY: 0, width: 0, height: 0}
-      : selectionsConfig?.position;
-  const animationProgress = useRef(new Animated.Value(0));
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    if (layout.current) {
-      Animated.spring(animationProgress.current, {
-        toValue: selectionsConfig?.active ? 1 : 0,
-        bounciness: 5,
-        speed: 14,
-        useNativeDriver: true,
-      }).start();
+    if (selectionsApi) {
+      selectionsApi.addListener('activated', () => {
+        setVisible(true);
+      });
     }
-  }, [selectionsConfig]);
-
-  const opacity = animationProgress.current.interpolate({
-    inputRange: [0, 0.25, 1],
-    outputRange: [0, 0, 1],
-  });
+  }, [selectionsApi]);
 
   const handleLasso = () => {
     if (onToggledLasso) {
@@ -65,48 +52,34 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
 
   const handleOnConfirm = () => {
     setLasso(false);
-    onConfirm();
+    if (onToggledLasso) {
+      onToggledLasso(false);
+    }
+    setVisible(false);
+    setTimeout(() => {
+      onConfirm?.();
+    }, 0);
   };
 
   const handleOnCancel = () => {
     setLasso(false);
-    onCancel();
+    setVisible(false);
+    selectionsApi.cancel();
+    // onCancel();
   };
 
   const handleClear = () => {
     setLasso(false);
-    onClear();
+    // onClear();
   };
 
-  const onLayout = ({nativeEvent}: any) => {
-    layout.current = nativeEvent.layout;
-  };
-
-  const getPosition = () => {
-    let top = coords.pageY;
-    let left = coords.pageX + coords.width - layout.current.width;
-    if (top < bounds) {
-      top = bounds;
-    }
-    return {top, left};
-  };
-
-  return (
-    <View
-      onLayout={onLayout}
-      ref={viewRef}
-      style={[styles.container, getPosition()]}
-      pointerEvents={selectionsConfig?.active ? 'auto' : 'none'}
+  return visible ? (
+    <Animated.View
+      style={[styles.container]}
+      exiting={ZoomOut}
+      entering={ZoomIn}
     >
-      <Animated.View
-        style={[
-          styles.toolbar,
-          style,
-          {padding},
-          {opacity},
-          {transform: [{scale: opacity}]},
-        ]}
-      >
+      <View style={[styles.toolbar, style]}>
         <ToggleButton
           icon="lasso"
           disabled={selectionsConfig?.disableLasso}
@@ -124,7 +97,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
           onPress={handleOnCancel}
           compact={true}
           mode="contained"
-          color="#DC423F"
+          color="#BA2013"
           children={undefined}
         />
         <Button
@@ -134,9 +107,9 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
           mode="contained"
           children={undefined}
         />
-      </Animated.View>
-    </View>
-  );
+      </View>
+    </Animated.View>
+  ) : null;
 };
 
 const styles = StyleSheet.create({
@@ -150,16 +123,18 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+    top: -4,
+    right: 2,
   },
   toolbar: {
     flex: 0,
-    height: 36,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 4,
     elevation: 5,
+    paddingHorizontal: 8,
   },
   cancel: {
     marginHorizontal: 8,

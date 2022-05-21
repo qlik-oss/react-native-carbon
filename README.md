@@ -2,25 +2,18 @@
 
 React Native nebula engine
 
-## Installation
+This uses symlinks.  In order to develop and run the sample @qlik/react-native-helium and @qlik/carbon-core have to be cloned in the same root directory as @qlik/react-native-carbon
 
-```sh
-npm install react-native-carbon
-```
+## Running the example
+Recommend way is to create a folder called "Carbon" and clone dependencies in there
+1. clone react-native-helium
+2. clone me
+3. clone carbon-core
+4. cd into react-native-carbon
+5. yarn dev-setup
 
-## Usage
-
-```js
-import Carbon from "react-native-carbon";
-
-// ...
-
-const result = await Carbon.multiply(3, 7);
-```
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+## Interactions run on the UI Thread
+To improve performance
 
 ## License
 
