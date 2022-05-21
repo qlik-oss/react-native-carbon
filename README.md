@@ -5,7 +5,8 @@ React Native nebula engine
 This uses symlinks.  In order to develop and run the sample @qlik/react-native-helium and @qlik/carbon-core have to be cloned in the same root directory as @qlik/react-native-carbon
 
 ## Running the example
-Recommend way is to create a folder called "Carbon" and clone dependencies in there
+Recommend way is to create a folder called "Carbon" and clone dependencies in there.
+They should all be in the same root folder.
 1. clone react-native-helium
 2. clone me
 3. clone carbon-core
