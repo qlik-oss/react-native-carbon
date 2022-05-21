@@ -1,3 +1,13 @@
+# [2.0.0-alpha.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2022-05-21)
+
+
+### Bug Fixes
+
+* add github actions ([b5cad30](https://github.com/qlik-oss/react-native-carbon/commit/b5cad30c998a9665acac27f6c2b75e859e334a68))
+* dismiss toolbar on aborted ([7e796dd](https://github.com/qlik-oss/react-native-carbon/commit/7e796dd410b93d8de6bdcbf1b65d88b3a3b1f6bd))
+* release tag ([7355745](https://github.com/qlik-oss/react-native-carbon/commit/73557451b233c41eb978b8ff1c199a7479684ede))
+* update readme.md ([fd4e408](https://github.com/qlik-oss/react-native-carbon/commit/fd4e40848396b1b7c6693758c590e67e38356d13))
+
 # [2.0.0-alpha.1](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.20...v2.0.0-alpha.1) (2022-05-11)
 
 
