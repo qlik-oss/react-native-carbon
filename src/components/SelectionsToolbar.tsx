@@ -40,6 +40,9 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
       selectionsApi.addListener('activated', () => {
         setVisible(true);
       });
+      selectionsApi.addListener('aborted', () => {
+        setVisible(false);
+      });
     }
   }, [selectionsApi]);
 

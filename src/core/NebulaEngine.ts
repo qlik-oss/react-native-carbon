@@ -80,10 +80,8 @@ export default class NebulaEngine {
       }
       if (this.snComponent) {
         this.currentLayout = layout;
-        if (!this.panning) {
-          this.renderSupernova(layout);
-          this.nebulaModel.onLayout(layout);
-        }
+        this.renderSupernova(layout);
+        this.nebulaModel.onLayout(layout);
       }
     } catch (error) {
       console.log('Error', error);

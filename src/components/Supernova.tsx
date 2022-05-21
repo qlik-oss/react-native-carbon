@@ -25,7 +25,6 @@ import Animated, {
   useAnimatedReaction,
   useSharedValue,
 } from 'react-native-reanimated';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {Tooltip} from './Tooltip';
 
 export type SupernovaProps = {
@@ -405,7 +404,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
     const touchesListener =
       nebulaEngineRef.current.canvasElement.getTouchesStartListener();
     if (touchesListener) {
-      console.log('eheheheheheheheheh', event.nativeEvent);
       const touches = [event.nativeEvent.x, event.nativeEvent.y];
       touchesListener(touches);
     }
