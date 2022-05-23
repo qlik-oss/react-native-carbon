@@ -14,18 +14,13 @@ import {
   supernovaToolTipStateAtom,
   supernovaToolTipVisible,
 } from '../carbonAtoms';
-// import type Element from './Element';
 import {OverlayView} from './OverlayView';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
 import SelectionsToolbar from './SelectionsToolbar';
-import Animated, {
-  runOnJS,
-  useAnimatedReaction,
-  useSharedValue,
-} from 'react-native-reanimated';
 import {Tooltip} from './Tooltip';
+import Animated from 'react-native-reanimated';
 
 export type SupernovaProps = {
   sn: any;
@@ -86,8 +81,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const containerRef = useRef<any>(undefined);
   const bodyRef = useRef<any>(undefined);
   const titleLayout = useRef(undefined);
-  const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
-  const resetConfig = useResetAtom(supernovaStateAtom);
   const [suspended, setSuspended] = useState(false);
   const [tooltipConfig, setToolTipConfig] = useState({
     visible: false,

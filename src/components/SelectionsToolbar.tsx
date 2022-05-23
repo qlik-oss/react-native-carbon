@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button, IconButton, ToggleButton} from 'react-native-paper';
-import {useAtomValue} from 'jotai/utils';
+import {useAtomValue, useResetAtom, useUpdateAtom} from 'jotai/utils';
 import {supernovaStateAtom} from '../carbonAtoms';
 import Animated, {ZoomIn, ZoomOut} from 'react-native-reanimated';
 
@@ -34,22 +34,34 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
   const selectionsConfig = useAtomValue(supernovaStateAtom);
   const [lasso, setLasso] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
+  const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
+  const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
 
   useEffect(() => {
     if (selectionsApi) {
-      selectionsApi.addListener('activated', () => {
+      selectionsApi.addListener('activated', (model: any) => {
         setVisible(true);
+        setSelectionsConfig({
+          active: true,
+          id: model.id,
+          toggleLasso: () => {},
+          confirmSelection: () => {},
+          cancelSelection: selectionsApi.cancel,
+          clear: selectionsApi.clear,
+        });
       });
 
       selectionsApi.addListener('aborted', () => {
         setVisible(false);
+        resetSelectionsConfig();
       });
 
       selectionsApi.addListener('deactivated', () => {
         setVisible(false);
+        resetSelectionsConfig();
       });
     }
-  }, [selectionsApi]);
+  }, [resetSelectionsConfig, selectionsApi, setSelectionsConfig]);
 
   const handleLasso = () => {
     if (onToggledLasso) {
