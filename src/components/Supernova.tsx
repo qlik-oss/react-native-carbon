@@ -405,15 +405,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
       const touches = [event.nativeEvent.x, event.nativeEvent.y];
       touchesListener(touches);
     }
-    // if (element) {
-    //   const touchesListener = element.getTouchesStartListener();
-    //   if (touchesListener) {
-    //     touchesListener(event.nativeEvent.touches);
-    //   }
-    // }
-    // if (onLongPress) {
-    //   onLongPress();
-    // }
   }, []);
 
   const handleOnLongPressEnded = useCallback(() => {
