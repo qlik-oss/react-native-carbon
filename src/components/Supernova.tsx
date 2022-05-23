@@ -423,7 +423,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const onCanvas = useCallback(async (canvas: any) => {
     const element = new Element(canvas);
     element.addEventListener('onTooltipData', (data: any) => {
-      console.log('here it is', data);
       setToolTipConfig({visible: true, content: data});
     });
     nebulaEngineRef.current.loadSupernova(

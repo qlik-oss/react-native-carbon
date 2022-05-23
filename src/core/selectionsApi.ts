@@ -27,7 +27,7 @@ export const SelectionsApi = ({model, app, log}: any) => {
           await app.abortModal(true);
           await model.beginSelections(path);
           active = true;
-          eventEmitter.emit('activated');
+          eventEmitter.emit('activated', model);
         } catch (error) {
           log.error('Error beginning selections', error);
         }
