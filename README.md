@@ -1,6 +1,6 @@
 # react-native-carbon
 
-<img src="logo/Carbon.png" height="128"/>
+<img src="logo/Carbon.png" height="256"/>
 
 React Native nebula engine
 
