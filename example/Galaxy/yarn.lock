@@ -1090,10 +1090,10 @@
   resolved "https://npm.pkg.github.com/download/@qlik-trial/sense-themes-default/1.15.0/af1f2136b608b933333bea50829492cafa5e8178d6c7ad73ce4070c3060a77f0#0dc5a4499068d5242507bfea9b1bbc51eb71975b"
   integrity sha512-lapi1S7utm7SHZeqJP/jEykQQWtqA8ML9u/g0KAfTVyiP4RT1zram2KuPFOqonpQC/1JzbUUWVZ3/Af7oxsdsg==
 
-"@qlik-trial/sn-treemap@^4.1.0":
-  version "4.2.5"
-  resolved "https://npm.pkg.github.com/download/@qlik-trial/sn-treemap/4.2.5/1f940c343613ffabc16cad4fe54535e784d527edda4fea28d38e0e5eaf9fbe4c#70e3636b8fdd14e1d46ffcd2f8d6550625191737"
-  integrity sha512-+vhy50y2Iy7dMRcDo///u5Ij3ziFdO+0NgRWIJb1DlV+JgxY/woqpW2lu0HGYh1JUnfs/3gtt6lFZns5Nvd1HQ==
+"@qlik-trial/sn-treemap@5.0.1-alpha.0":
+  version "5.0.1-alpha.0"
+  resolved "https://npm.pkg.github.com/download/@qlik-trial/sn-treemap/5.0.1-alpha.0/2e0098b425f6725f4beacb31614835566815f8829c4f793941566c095468aec3#7779e15c9d80dbdf1903b0b3579b074d0e4d1978"
+  integrity sha512-EqM8kXbSabe/Y6zVKCJCk7vKpJaYooB4+5pTvO2n8R+CcQgl2UQy2zXqun3k6OThac9D3Dxcg2mYEqZmNYc5CA==
 
 "@qlik/carbon-core@link:../../../carbon-core":
   version "0.0.0"

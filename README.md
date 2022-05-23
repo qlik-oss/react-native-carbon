@@ -14,6 +14,16 @@ They should all be in the same root folder.
 3. clone carbon-core
 4. cd into react-native-carbon
 5. yarn dev-setup
+6. in example/Galaxy create a galaxy.json with the following
+
+```
+{
+  "tenantDomain": <your tenant>,
+  "apiKey":<your api key>,
+  "appId": <app id>,
+  "modelId": <id of visualization>
+}
+```
 
 ## Interactions run on the UI Thread
 To improve performance all interactions are run on the UI thread using react-native-helium.

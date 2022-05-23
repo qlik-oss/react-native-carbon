@@ -33,7 +33,6 @@ export type SupernovaProps = {
   style?: any;
   theme: any;
   id?: string;
-  disableLoadAnimations?: boolean;
   fields?: [string];
   measures: [string];
   showLegend?: boolean;
@@ -41,7 +40,7 @@ export type SupernovaProps = {
   object: any;
   topPadding?: any;
   onLongPress?: () => void;
-  loadLayout?: any;
+  snapshot?: any;
   titleBarStyle?: any;
   onLoaded?: () => void;
   log?: any;
@@ -55,7 +54,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   app,
   theme,
   id,
-  disableLoadAnimations,
   fields,
   measures,
   showLegend,
@@ -63,7 +61,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   object,
   topPadding,
   onLongPress,
-  loadLayout,
+  snapshot,
   titleBarStyle,
   onLoaded,
   selectionsToolbarIcons,
@@ -78,16 +76,16 @@ export const Supernova: React.FC<SupernovaProps> = ({
       theme,
       model: object,
       modelId: id,
+      snapshot,
       onLayout: (l) => setLayout(l),
     }),
   );
-  const [layout, setLayout] = useState(loadLayout);
+  const [layout, setLayout] = useState(snapshot);
   const [componentData, setComponentData] = useState(undefined);
   const [lasso, setLasso] = useState(false);
   const containerRef = useRef<any>(undefined);
   const bodyRef = useRef<any>(undefined);
   const titleLayout = useRef(undefined);
-  const [model, setModel] = useState<any>(undefined);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
   const resetConfig = useResetAtom(supernovaStateAtom);
   const [suspended, setSuspended] = useState(false);

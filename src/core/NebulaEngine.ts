@@ -13,7 +13,7 @@ export type NebulaModelType = {
   model: any;
   modelId?: string;
   theme: any;
-  initialLayout?: any;
+  snapshot?: any;
   log: any;
   onLayout: (layout: any) => void;
 };
@@ -37,10 +37,10 @@ export default class NebulaEngine {
     app,
     model,
     theme,
-    initialLayout,
     log,
     modelId,
     onLayout,
+    snapshot,
   }: NebulaModelType) {
     this.panning = false;
     this.generator = generator;
@@ -61,7 +61,7 @@ export default class NebulaEngine {
       app,
       model,
       theme,
-      initialLayout,
+      snapshot,
       log,
       modelId,
       onLayout,
@@ -84,14 +84,14 @@ export default class NebulaEngine {
         this.nebulaModel.onLayout(layout);
       }
     } catch (error) {
-      console.log('Error', error);
+      this.nebulaModel.log.error('Error', error);
     }
   }
 
   private async getInitialLayout() {
     try {
-      if (this.nebulaModel.initialLayout) {
-        return this.nebulaModel.initialLayout;
+      if (this.nebulaModel.snapshot) {
+        return this.nebulaModel.snapshot;
       }
       if (!this.nebulaModel.model && this.nebulaModel.modelId) {
         this.nebulaModel.model = await this.nebulaModel.app.getObject(
@@ -102,7 +102,7 @@ export default class NebulaEngine {
       const layout = await this.nebulaModel.model.getLayout();
       return layout;
     } catch (error) {
-      console.log('Error', error);
+      this.nebulaModel.log.error('Error', error);
     }
   }
 
