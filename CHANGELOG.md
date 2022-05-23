@@ -1,3 +1,10 @@
+# [2.0.0-alpha.3](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2022-05-23)
+
+
+### Bug Fixes
+
+* setSelectionsCOnfig atom ([78d11f3](https://github.com/qlik-oss/react-native-carbon/commit/78d11f3495be296cab2441e1e05ddc975041e8ac))
+
 # [2.0.0-alpha.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2022-05-23)
 
 
