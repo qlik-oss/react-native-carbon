@@ -1,10 +1,12 @@
 # react-native-carbon
 
+<img src="logo/Carbon.png" height="256"/>
+
 React Native nebula engine
 
+## Running the example
 This uses symlinks.  In order to develop and run the sample @qlik/react-native-helium and @qlik/carbon-core have to be cloned in the same root directory as @qlik/react-native-carbon
 
-## Running the example
 Recommend way is to create a folder called "Carbon" and clone dependencies in there.
 They should all be in the same root folder.
 1. clone react-native-helium
@@ -14,7 +16,7 @@ They should all be in the same root folder.
 5. yarn dev-setup
 
 ## Interactions run on the UI Thread
-To improve performance
+To improve performance all interactions are run on the UI thread using react-native-helium.
 
 ## License
 
