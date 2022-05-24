@@ -1,3 +1,10 @@
+# [2.0.0-alpha.5](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2022-05-24)
+
+
+### Bug Fixes
+
+* use measure from rn ([6a6a8d9](https://github.com/qlik-oss/react-native-carbon/commit/6a6a8d96b9bed2ec3a8f38a54c4076d2c92e8695))
+
 # [2.0.0-alpha.4](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2022-05-24)
 
 
