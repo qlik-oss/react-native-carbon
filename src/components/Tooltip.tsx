@@ -1,7 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, useWindowDimensions, View} from 'react-native';
-import Animated, {FadeIn, FadeOut, ZoomIn, ZoomOut} from 'react-native-reanimated';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  ZoomIn,
+  ZoomOut,
+} from 'react-native-reanimated';
 
 export type TooltipProps = {
   show: boolean;

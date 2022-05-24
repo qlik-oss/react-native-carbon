@@ -10,8 +10,7 @@ import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 import {Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
-import SproutIcons from './icons';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const theme = {
   ...DefaultTheme,
@@ -27,8 +26,8 @@ export default function Main() {
   return (
     <PaperProvider theme={theme}>
       <SafeAreaProvider>
-      <App />
-     </SafeAreaProvider>
+        <App />
+      </SafeAreaProvider>
     </PaperProvider>
   );
 }

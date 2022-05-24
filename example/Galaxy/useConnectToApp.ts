@@ -17,7 +17,12 @@ export type ConnectionStatusType = {
   model: any;
 };
 
-const useConnectTopApp = ({tenantDomain, appId, apiKey, modelId}: ConnectionType) => {
+const useConnectTopApp = ({
+  tenantDomain,
+  appId,
+  apiKey,
+  modelId,
+}: ConnectionType) => {
   const [connection, setConnection] = useState<ConnectionStatusType>({
     status: 'idle',
     app: undefined,
