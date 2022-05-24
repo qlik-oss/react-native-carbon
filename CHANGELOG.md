@@ -1,3 +1,10 @@
+# [2.0.0-alpha.6](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2022-05-24)
+
+
+### Bug Fixes
+
+* bump versions ([ee66ed1](https://github.com/qlik-oss/react-native-carbon/commit/ee66ed15455c57c499d63f2af67145ee8da06c0f))
+
 # [2.0.0-alpha.5](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2022-05-24)
 
 
