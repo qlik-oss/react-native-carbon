@@ -82,7 +82,6 @@ export default class NebulaEngine {
         this.currentLayout = layout;
         this.renderSupernova(layout);
         this.nebulaModel.onLayout(layout);
-        console.log(layout);
       }
     } catch (error) {
       this.nebulaModel.log.error('Error', error);
@@ -204,4 +203,8 @@ export default class NebulaEngine {
   }
 
   destroy() {}
+
+  getJsxComponent() {
+    return this?.canvasElement?.getJsxComponent();
+  }
 }

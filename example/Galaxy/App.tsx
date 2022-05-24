@@ -8,22 +8,23 @@
  * @format
  */
 
-import React, {useCallback, useState} from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Supernova} from '@qlik/react-native-carbon';
+import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
 import treemap from '@qlik-trial/sn-treemap';
 import horizon from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
 
 import galaxy from './galaxy.json';
 import useConnectToApp from './useConnectToApp';
 import {Appbar} from 'react-native-paper';
+import {useAtomValue} from 'jotai';
+import {supernovaStateAtom} from '@qlik/react-native-carbon/src/carbonAtoms';
 
 const App = () => {
+  const supernovaState = useAtomValue(supernovaStateAtom);
   const connection = useConnectToApp(galaxy);
-  console.log('connection', connection.app);
-
   const handleClear = useCallback(() => {
     connection.app?.clearAll();
   }, [connection]);
@@ -47,14 +48,17 @@ const App = () => {
               theme={horizon}
               showLegend={true}
               object={connection.model}
-              selectionsToolbarIcons={{
-                confirm: 'check',
-                cancel: 'close',
-                clear: 'selection-off',
-              }}
             />
           ) : null}
         </View>
+        <SelectionsToolbar
+          visible={supernovaState?.active}
+          position={supernovaState?.position}
+          icons={{confirm: 'check', cancel: 'close', clear: 'selection-off'}}
+          onConfirm={() => supernovaState?.confirmSelection()}
+          onCancel={() => supernovaState?.cancelSelection()}
+          onClear={() => supernovaState?.clear()}
+        />
       </SafeAreaView>
     </GestureHandlerRootView>
   );

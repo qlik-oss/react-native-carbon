@@ -13,13 +13,14 @@ export type SelectionsToolbarIconConfig = {
 
 export type SelectionsToolbarProps = {
   style?: any;
-  onClear: () => void;
-  onConfirm: () => void;
-  onCancel: () => void;
-  onToggledLasso: (toggled: boolean) => void;
+  onClear?: () => void;
+  onConfirm?: () => void;
+  onCancel?: () => void;
+  onToggledLasso?: (toggled: boolean) => void;
   bounds?: any;
   icons?: SelectionsToolbarIconConfig;
-  selectionsApi: any;
+  visible: boolean;
+  position: any;
 };
 
 const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
@@ -28,81 +29,46 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
   onConfirm,
   onCancel,
   onToggledLasso,
+  visible,
   icons,
-  selectionsApi,
+  position,
 }) => {
-  const selectionsConfig = useAtomValue(supernovaStateAtom);
   const [lasso, setLasso] = useState<boolean>(false);
-  const [visible, setVisible] = useState<boolean>(false);
-  const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
-  const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
-
-  useEffect(() => {
-    if (selectionsApi) {
-      selectionsApi.addListener('activated', (model: any) => {
-        setVisible(true);
-        setSelectionsConfig({
-          active: true,
-          id: model.id,
-          toggleLasso: () => {},
-          confirmSelection: () => {},
-          cancelSelection: selectionsApi.cancel,
-          clear: selectionsApi.clear,
-        });
-      });
-
-      selectionsApi.addListener('aborted', () => {
-        setVisible(false);
-        resetSelectionsConfig();
-      });
-
-      selectionsApi.addListener('deactivated', () => {
-        setVisible(false);
-        resetSelectionsConfig();
-      });
-    }
-  }, [resetSelectionsConfig, selectionsApi, setSelectionsConfig]);
 
   const handleLasso = () => {
-    if (onToggledLasso) {
-      onToggledLasso(!lasso);
-    }
+    onToggledLasso?.(!lasso);
     setLasso(!lasso);
   };
 
   const handleOnConfirm = () => {
     setLasso(false);
-    if (onToggledLasso) {
-      onToggledLasso(false);
-    }
-    setVisible(false);
-    setTimeout(() => {
-      onConfirm?.();
-    }, 0);
+    onToggledLasso?.(false);
+    onConfirm?.();
   };
 
   const handleOnCancel = () => {
     setLasso(false);
-    setVisible(false);
-    selectionsApi.cancel();
-    // onCancel();
+    onCancel?.();
   };
 
   const handleClear = () => {
     setLasso(false);
-    // onClear();
+    onClear?.();
   };
 
   return visible ? (
     <Animated.View
-      style={[styles.container]}
+      style={[
+        styles.container,
+        {left: position.x + position.width - 204, top: position.y - 46},
+      ]}
       exiting={ZoomOut}
       entering={ZoomIn}
     >
       <View style={[styles.toolbar, style]}>
         <ToggleButton
           icon="lasso"
-          disabled={selectionsConfig?.disableLasso}
+          // disabled={selectionsConfig?.disableLasso}
           onPress={handleLasso}
           status={lasso ? 'checked' : 'unchecked'}
         />
@@ -135,7 +101,6 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    zIndex: 1000000,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -143,8 +108,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    top: -4,
-    right: 2,
+    height: 42,
+    width: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   toolbar: {
     flex: 0,

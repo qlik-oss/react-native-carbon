@@ -40,8 +40,8 @@ export type SupernovaProps = {
   onLoaded?: () => void;
   log?: any;
   disableLasso: boolean;
-  selectionsToolbarIcons: any | undefined;
   jsxComponent?: boolean;
+  lasso: boolean;
 };
 
 export const Supernova: React.FC<SupernovaProps> = ({
@@ -59,8 +59,8 @@ export const Supernova: React.FC<SupernovaProps> = ({
   snapshot,
   titleBarStyle,
   onLoaded,
-  selectionsToolbarIcons,
   jsxComponent,
+  lasso,
   log = defaultLogger,
   disableLasso = false,
 }) => {
@@ -76,8 +76,9 @@ export const Supernova: React.FC<SupernovaProps> = ({
     }),
   );
   const [layout, setLayout] = useState(snapshot);
+  const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
+  const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
   const [componentData, setComponentData] = useState(undefined);
-  const [lasso, setLasso] = useState(false);
   const containerRef = useRef<any>(undefined);
   const bodyRef = useRef<any>(undefined);
   const titleLayout = useRef(undefined);
@@ -86,10 +87,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
     visible: false,
     content: {},
   });
-
-  const handleToggleLasso = useCallback((e) => {
-    setLasso(e);
-  }, []);
 
   useEffect(() => {
     return () => {
@@ -175,40 +172,13 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   }
   // }, [fields, app]);
 
-  // const handleCancelSelections = async () => {
-  //   element?.flush();
-  //   resetInputState();
-  //   selectionsApiImpl.current.cancel();
-  // };
 
-  // const handleConfirmSelections = () => {
-  //   resetInputState();
-  //   selectionsApiImpl.current.confirm();
-  // };
-
-  // const handleClearSelections = async () => {
-  //   await selectionsApiImpl.current.clear();
-  // };
-
-  // const resetInputState = () => {
-  //   element?.setImmediate(false);
-  //   element?.enableMotion(true);
-  //   setLasso(false);
-  // };
 
   // useEffect(() => {
   //   return () => {
   //     mounted.current = false;
   //   };
   // }, []);
-
-  // useEffect(() => {
-  //   return () => {
-  //     if (element) {
-  //       element.destroy();
-  //     }
-  //   };
-  // }, [element]);
 
   // const onElement = (e: Element) => {
   //   if (disableLoadAnimations) {
@@ -370,22 +340,12 @@ export const Supernova: React.FC<SupernovaProps> = ({
   };
 
   const renderJsxComponent = useCallback(() => {
-    // if (!element) {
-    //   return null;
-    // }
-    // const comp = element.getJsxComponent();
-    // if (comp && componentData) {
-    //   return comp(componentData);
-    // }
+    const comp = nebulaEngineRef?.current?.getJsxComponent();
+    if (comp && componentData) {
+      return comp(componentData);
+    }
     return null;
   }, [componentData]);
-
-  // const onSelection = (selections: any) => {
-  //   if (element) {
-  //     element.setImmediate(true);
-  //     element.onSelections(selections.nativeEvent.selections);
-  //   }
-  // };
 
   // const onTouchesBegan = (_event: any) => {
   //   setTooltipVisible(false);
@@ -409,6 +369,11 @@ export const Supernova: React.FC<SupernovaProps> = ({
     element.addEventListener('onTooltipData', (data: any) => {
       setToolTipConfig({visible: true, content: data});
     });
+
+    element.addEventListener('renderComponentWithData', (data: any) => {
+      setComponentData(data);
+    });
+
     nebulaEngineRef.current.loadSupernova(
       element,
       sn,
@@ -422,12 +387,38 @@ export const Supernova: React.FC<SupernovaProps> = ({
     nebulaEngineRef.current.resizeView();
   }, []);
 
-  const onBeganSelections = useCallback(() => {
+  const onBeganSelections = useCallback((event: any) => {
     nebulaEngineRef.current.beginSelections();
-  }, []);
 
-  const handleOnConfirm = useCallback(() => {
-    nebulaEngineRef.current.confirmSelections();
+    const handleCancelSelections = () => {
+      nebulaEngineRef.current.selectionsApi.cancel();
+      resetSelectionsConfig();
+    };
+
+    const handleConfirmSelections = () => {
+      nebulaEngineRef.current.confirmSelections();
+      resetSelectionsConfig();
+    };
+
+    const handleClearSelections = () => {
+      nebulaEngineRef.current.selectionsApi.clear();
+    };
+
+    const config = {
+      confirmSelection: handleConfirmSelections,
+      cancelSelection: handleCancelSelections,
+      clear: handleClearSelections,
+      element: nebulaEngineRef.current.canvasElement,
+      position: {
+        x: event.nativeEvent.x,
+        y: event.nativeEvent.y,
+        height: event.nativeEvent.height,
+        width: event.nativeEvent.width,
+      },
+      id,
+      active: true,
+    };
+    setSelectionsConfig(config);
   }, []);
 
   return (
@@ -439,36 +430,33 @@ export const Supernova: React.FC<SupernovaProps> = ({
         topPadding={topPadding}
         theme={theme}
       />
-      {!jsxComponent ? (
-        <>
-          <Animated.View
-            style={[styles.supernovaView]}
-            ref={containerRef}
-            collapsable={false}
-          >
-            <Canvas
-              onCanvas={onCanvas}
-              onResized={onResized}
-              onBeganSelections={onBeganSelections}
-              lasso={lasso}
-              onLongPressBegan={handleOnLongPressBegan}
-              onLongPressEnded={handleOnLongPressEnded}
-            />
-          </Animated.View>
-          {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
-          <Footer layout={layout} theme={theme} />
-        </>
-      ) : (
+      <Animated.View
+        style={[styles.supernovaView]}
+        ref={containerRef}
+        collapsable={false}
+      >
+        <Canvas
+          onCanvas={onCanvas}
+          onResized={onResized}
+          onBeganSelections={onBeganSelections}
+          lasso={lasso}
+          onLongPressBegan={handleOnLongPressBegan}
+          onLongPressEnded={handleOnLongPressEnded}
+        />
+      </Animated.View>
+      {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
+      <Footer layout={layout} theme={theme} />
+      {jsxComponent ? (
         <View style={styles.components} pointerEvents="box-none">
           {renderJsxComponent()}
         </View>
-      )}
-      <SelectionsToolbar
+      ) : null}
+      {/* <SelectionsToolbar
         selectionsApi={nebulaEngineRef.current.selectionsApi}
         icons={selectionsToolbarIcons}
         onToggledLasso={handleToggleLasso}
         onConfirm={handleOnConfirm}
-      />
+      /> */}
       <Tooltip show={tooltipConfig.visible} content={tooltipConfig.content} />
     </View>
   );
