@@ -345,10 +345,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
     return null;
   }, [componentData]);
 
-  // const onTouchesBegan = (_event: any) => {
-  //   setTooltipVisible(false);
-  // };
-
   const handleOnLongPressBegan = useCallback((event: any) => {
     const touchesListener =
       nebulaEngineRef.current.canvasElement.getTouchesStartListener();
