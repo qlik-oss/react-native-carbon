@@ -1,3 +1,10 @@
+# [2.0.0-alpha.4](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2022-05-24)
+
+
+### Bug Fixes
+
+* change selections behaviour ([a450c7d](https://github.com/qlik-oss/react-native-carbon/commit/a450c7d58c157ad1f7e370128e59699d12508493))
+
 # [2.0.0-alpha.3](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2022-05-23)
 
 
