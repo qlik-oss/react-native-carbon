@@ -11,6 +11,7 @@ import App from './App';
 import {name as appName} from './app.json';
 import {Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
 import SproutIcons from './icons';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const theme = {
   ...DefaultTheme,
@@ -25,7 +26,9 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
+      <SafeAreaProvider>
       <App />
+     </SafeAreaProvider>
     </PaperProvider>
   );
 }

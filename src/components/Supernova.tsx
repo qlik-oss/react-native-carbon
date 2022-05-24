@@ -172,8 +172,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   }
   // }, [fields, app]);
 
-
-
   // useEffect(() => {
   //   return () => {
   //     mounted.current = false;
@@ -387,7 +385,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
     nebulaEngineRef.current.resizeView();
   }, []);
 
-  const onBeganSelections = useCallback((event: any) => {
+  const onBeganSelections = useCallback((_event: any) => {
     nebulaEngineRef.current.beginSelections();
 
     const handleCancelSelections = () => {
@@ -404,21 +402,32 @@ export const Supernova: React.FC<SupernovaProps> = ({
       nebulaEngineRef.current.selectionsApi.clear();
     };
 
-    const config = {
-      confirmSelection: handleConfirmSelections,
-      cancelSelection: handleCancelSelections,
-      clear: handleClearSelections,
-      element: nebulaEngineRef.current.canvasElement,
-      position: {
-        x: event.nativeEvent.x,
-        y: event.nativeEvent.y,
-        height: event.nativeEvent.height,
-        width: event.nativeEvent.width,
+    bodyRef.current.measure(
+      (
+        _x: number,
+        _y: number,
+        width: number,
+        height: number,
+        pageX: number,
+        pageY: number,
+      ) => {
+        const config = {
+          confirmSelection: handleConfirmSelections,
+          cancelSelection: handleCancelSelections,
+          clear: handleClearSelections,
+          element: nebulaEngineRef.current.canvasElement,
+          position: {
+            x: pageX,
+            y: pageY,
+            height,
+            width,
+          },
+          id,
+          active: true,
+        };
+        setSelectionsConfig(config);
       },
-      id,
-      active: true,
-    };
-    setSelectionsConfig(config);
+    );
   }, []);
 
   return (

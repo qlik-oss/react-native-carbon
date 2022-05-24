@@ -60,10 +60,13 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
     <Animated.View
       style={[
         styles.container,
-        {left: position.x + position.width - 204, top: position.y - 46},
+        {left: position.x + position.width - 204, top: position.y},
       ]}
       exiting={ZoomOut}
       entering={ZoomIn}
+      onLayout={({nativeEvent}) => {
+        console.log(nativeEvent);
+      }}
     >
       <View style={[styles.toolbar, style]}>
         <ToggleButton

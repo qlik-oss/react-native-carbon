@@ -10,7 +10,7 @@
 
 import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaProvider, SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
 import treemap from '@qlik-trial/sn-treemap';
@@ -25,6 +25,8 @@ import {supernovaStateAtom} from '@qlik/react-native-carbon/src/carbonAtoms';
 const App = () => {
   const supernovaState = useAtomValue(supernovaStateAtom);
   const connection = useConnectToApp(galaxy);
+  const insets = useSafeAreaInsets();
+  console.log('top', insets.top);
   const handleClear = useCallback(() => {
     connection.app?.clearAll();
   }, [connection]);
