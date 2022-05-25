@@ -1,3 +1,10 @@
+# [2.0.0-alpha.7](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2022-05-25)
+
+
+### Bug Fixes
+
+* migrate to @qlik/sn-treemap ([653e368](https://github.com/qlik-oss/react-native-carbon/commit/653e36817668f744e0af8cb75fe593d78a2776db))
+
 # [2.0.0-alpha.6](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2022-05-24)
 
 
