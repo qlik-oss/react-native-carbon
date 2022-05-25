@@ -41,7 +41,6 @@ export type SupernovaProps = {
   log?: any;
   disableLasso: boolean;
   jsxComponent?: boolean;
-  lasso: boolean;
 };
 
 export const Supernova: React.FC<SupernovaProps> = ({
@@ -60,7 +59,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   titleBarStyle,
   onLoaded,
   jsxComponent,
-  lasso,
   log = defaultLogger,
   disableLasso = false,
 }) => {
@@ -76,6 +74,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
     }),
   );
   const [layout, setLayout] = useState(snapshot);
+  const [lasso, setLasso] = useState(false);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
   const [componentData, setComponentData] = useState(undefined);
@@ -398,6 +397,11 @@ export const Supernova: React.FC<SupernovaProps> = ({
       nebulaEngineRef.current.selectionsApi.clear();
     };
 
+    const handleToggleLasso = (val: boolean) => {
+      console.log('here', val);
+      setLasso(val);
+    };
+
     bodyRef.current.measure(
       (
         _x: number,
@@ -412,6 +416,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
           cancelSelection: handleCancelSelections,
           clear: handleClearSelections,
           element: nebulaEngineRef.current.canvasElement,
+          toggleLasso: handleToggleLasso,
           position: {
             x: pageX,
             y: pageY,

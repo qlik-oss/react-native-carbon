@@ -64,9 +64,6 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
       ]}
       exiting={ZoomOut}
       entering={ZoomIn}
-      onLayout={({nativeEvent}) => {
-        console.log(nativeEvent);
-      }}
     >
       <View style={[styles.toolbar, style]}>
         <ToggleButton

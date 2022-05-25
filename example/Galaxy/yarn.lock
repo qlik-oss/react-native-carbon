@@ -1090,11 +1090,6 @@
   resolved "https://npm.pkg.github.com/download/@qlik-trial/sense-themes-default/1.15.0/af1f2136b608b933333bea50829492cafa5e8178d6c7ad73ce4070c3060a77f0#0dc5a4499068d5242507bfea9b1bbc51eb71975b"
   integrity sha512-lapi1S7utm7SHZeqJP/jEykQQWtqA8ML9u/g0KAfTVyiP4RT1zram2KuPFOqonpQC/1JzbUUWVZ3/Af7oxsdsg==
 
-"@qlik-trial/sn-treemap@5.0.1-alpha.0":
-  version "5.0.1-alpha.0"
-  resolved "https://npm.pkg.github.com/download/@qlik-trial/sn-treemap/5.0.1-alpha.0/2e0098b425f6725f4beacb31614835566815f8829c4f793941566c095468aec3#7779e15c9d80dbdf1903b0b3579b074d0e4d1978"
-  integrity sha512-EqM8kXbSabe/Y6zVKCJCk7vKpJaYooB4+5pTvO2n8R+CcQgl2UQy2zXqun3k6OThac9D3Dxcg2mYEqZmNYc5CA==
-
 "@qlik/carbon-core@link:../../../carbon-core":
   version "0.0.0"
   uid ""
@@ -1106,6 +1101,11 @@
 "@qlik/react-native-helium@link:../../../react-native-helium":
   version "0.0.0"
   uid ""
+
+"@qlik/sn-treemap@^1.0.0-alpha.2":
+  version "1.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@qlik/sn-treemap/-/sn-treemap-1.0.0-alpha.2.tgz#dc6a6468db8766f0c46d7d7347fe4cd111bc03ae"
+  integrity sha512-Z/6asfr1zl6lBkRLuFEABc5ImrPzty68wkYSOjZAPItkSHDGhM6RrL6Z4dI2cGZM/nhLfkAtdGX5n1k0BVuAIg==
 
 "@react-native-async-storage/async-storage@^1.17.4":
   version "1.17.4"

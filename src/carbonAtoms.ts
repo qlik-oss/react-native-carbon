@@ -4,6 +4,7 @@ import {atomWithReset} from 'jotai/utils';
 export type SupernovaStateAtom = {
   confirmSelection: () => void;
   cancelSelection: () => void;
+  toggleLasso: (val: boolean) => void;
   clear: () => void;
   position: any;
   id?: string;
@@ -14,6 +15,7 @@ export const supernovaStateAtom = atomWithReset<SupernovaStateAtom>({
   confirmSelection: () => {},
   cancelSelection: () => {},
   clear: () => {},
+  toggleLasso: (_val: boolean) => {},
   id: undefined,
   active: false,
   position: undefined,

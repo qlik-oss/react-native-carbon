@@ -9,13 +9,13 @@
  * @format
  */
 
-import React, {useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
-import treemap from '@qlik-trial/sn-treemap';
-import horizon from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
+import treemap from '@qlik/sn-treemap';
+import horizon from '@qlik-trial/sense-themes-default/dist/breeze/theme.json';
 
 import galaxy from './galaxy.json';
 import useConnectToApp from './useConnectToApp';
@@ -26,8 +26,14 @@ import {supernovaStateAtom} from '@qlik/react-native-carbon/src/carbonAtoms';
 const App = () => {
   const supernovaState = useAtomValue(supernovaStateAtom);
   const connection = useConnectToApp(galaxy);
-  const insets = useSafeAreaInsets();
-  console.log('top', insets.top);
+  const [display, setDisplay] = useState(true);
+
+  const handleReload = () => {
+    setDisplay(false);
+    setTimeout(() => {
+      setDisplay(true);
+    }, 100);
+  }
   const handleClear = useCallback(() => {
     connection.app?.clearAll();
   }, [connection]);
@@ -40,10 +46,11 @@ const App = () => {
             title="Your Chart"
             subtitle={`${connection.status} `}
           />
+          <Appbar.Action icon="reload" onPress={handleReload} />
           <Appbar.Action icon="selection-off" onPress={handleClear} />
         </Appbar.Header>
         <View style={styles.modelView}>
-          {connection.model ? (
+          {connection.model && display ? (
             <Supernova
               sn={treemap}
               style={styles.supernova}
@@ -61,6 +68,7 @@ const App = () => {
           onConfirm={() => supernovaState?.confirmSelection()}
           onCancel={() => supernovaState?.cancelSelection()}
           onClear={() => supernovaState?.clear()}
+          onToggledLasso={(val: boolean) => supernovaState?.toggleLasso(val)}
         />
       </SafeAreaView>
     </GestureHandlerRootView>

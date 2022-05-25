@@ -12,10 +12,10 @@
   "dependencies": {
     "@nebula.js/stardust": "2.4.1",
     "@qlik-trial/sense-themes-default": "1.15.0",
-    "@qlik-trial/sn-treemap": "5.0.1-alpha.0",
     "@qlik/carbon-core": "link:../../../carbon-core",
     "@qlik/react-native-carbon": "link:../../",
     "@qlik/react-native-helium": "link:../../../react-native-helium",
+    "@qlik/sn-treemap": "^1.0.0-alpha.2",
     "@react-native-async-storage/async-storage": "^1.17.4",
     "d3": "7.3.0",
     "d3-hierarchy": "3.1.1",
