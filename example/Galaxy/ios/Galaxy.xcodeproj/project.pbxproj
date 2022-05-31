@@ -44,6 +44,7 @@
 		B9F4EA572846458C001EA79B /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9F4EA4A2846458C001EA79B /* SourceSansPro-SemiBold.ttf */; };
 		B9F4EA582846458C001EA79B /* SourceSansPro-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9F4EA4B2846458C001EA79B /* SourceSansPro-ExtraLightItalic.ttf */; };
 		B9F4EA592846458C001EA79B /* SourceSansPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9F4EA4C2846458C001EA79B /* SourceSansPro-Italic.ttf */; };
+		B9F4EA5B28464A19001EA79B /* qlikview-sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9F4EA5A28464A19001EA79B /* qlikview-sans.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		B9F4EA4A2846458C001EA79B /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		B9F4EA4B2846458C001EA79B /* SourceSansPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		B9F4EA4C2846458C001EA79B /* SourceSansPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Italic.ttf"; sourceTree = "<group>"; };
+		B9F4EA5A28464A19001EA79B /* qlikview-sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "qlikview-sans.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -176,6 +178,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				B9F4EA5A28464A19001EA79B /* qlikview-sans.ttf */,
 				B9F4EA3F2846458C001EA79B /* Source_Sans_Pro */,
 				B9A497612838EF9A00EE7EB6 /* Fonts */,
 				B90E89282831256F007F172B /* icomoon.ttf */,
@@ -354,6 +357,7 @@
 				B9F4EA532846458C001EA79B /* SourceSansPro-Black.ttf in Resources */,
 				B9A497762838EF9A00EE7EB6 /* FontAwesome5_Brands.ttf in Resources */,
 				B9A4977A2838EF9A00EE7EB6 /* Ionicons.ttf in Resources */,
+				B9F4EA5B28464A19001EA79B /* qlikview-sans.ttf in Resources */,
 				B9A497812838EF9A00EE7EB6 /* MaterialIcons.ttf in Resources */,
 				B9A4977B2838EF9A00EE7EB6 /* FontAwesome5_Solid.ttf in Resources */,
 				B9A497802838EF9A00EE7EB6 /* SimpleLineIcons.ttf in Resources */,
