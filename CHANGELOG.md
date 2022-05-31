@@ -1,3 +1,10 @@
+# [2.0.0-alpha.8](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2022-05-31)
+
+
+### Bug Fixes
+
+* updated fonts in smaple project ([c6c3220](https://github.com/qlik-oss/react-native-carbon/commit/c6c3220ff1d7014c60964cae94d5f0b2ecdec202))
+
 # [2.0.0-alpha.7](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2022-05-25)
 
 
