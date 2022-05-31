@@ -1057,6 +1057,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@nebula.js/sn-kpi@file:../../prebuilt/nebula.js-sn-kpi-0.9.1.tgz":
+  version "0.9.1"
+  resolved "file:../../prebuilt/nebula.js-sn-kpi-0.9.1.tgz#448a9be56335278e0906fbd77db4776364621578"
+
 "@nebula.js/stardust@2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-2.4.1.tgz#665453b4ad0a2e9a1496439ebf6b0da37d7cb504"

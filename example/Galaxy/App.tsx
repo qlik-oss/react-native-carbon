@@ -15,7 +15,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
 import treemap from '@qlik/sn-treemap';
-import horizon from '@qlik-trial/sense-themes-default/dist/breeze/theme.json';
+import snKpi from '@nebula.js/sn-kpi';
+import horizon from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
 
 import galaxy from './galaxy.json';
 import useConnectToApp from './useConnectToApp';
@@ -52,7 +53,7 @@ const App = () => {
         <View style={styles.modelView}>
           {connection.model && display ? (
             <Supernova
-              sn={treemap}
+              sn={snKpi}
               style={styles.supernova}
               app={connection.app}
               theme={horizon}
@@ -86,8 +87,13 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   modelView: {
-    flex: 1,
-    margin: 2,
+    // borderWidth: 1,
+    width: '100%',
+    height: '30%',
+    // alignSelf: 'center',
+    // overflow: 'hidden',
+    // padding: 8,
+    // flex: 1,
   },
   supernova: {
     flex: 1,

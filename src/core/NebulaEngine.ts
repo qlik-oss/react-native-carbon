@@ -108,6 +108,8 @@ export default class NebulaEngine {
 
   private async loadData() {
     const _layout = await this.getInitialLayout();
+    const appLayout = await this.nebulaModel.app.getAppLayout();
+
     this.nebulaModel.model.removeAllListeners();
     if (this.selectionsApi) {
       this.selectionsApi.destroy();
@@ -117,7 +119,7 @@ export default class NebulaEngine {
       app: this.nebulaModel.app,
       model: this.nebulaModel.model,
       layout: _layout,
-      appLayout: {},
+      appLayout,
     };
     this.changed = this.layoutChanged.bind(this);
     this.nebulaModel.model.on('changed', this.changed);
@@ -139,6 +141,7 @@ export default class NebulaEngine {
     };
     const theme = this.theme();
     theme.internalAPI.setTheme(vizTheme, 'horizon');
+    console.log(vizTheme);
     this.externalTheme = theme.externalAPI;
     const sn = generator(supernova, {
       sense: true,
@@ -169,6 +172,7 @@ export default class NebulaEngine {
   private async renderSupernova(layout: any) {
     const context = {
       ...this.snComponent.context,
+      ...this.renderContext,
       theme: this.externalTheme,
     };
     this.snComponent.render({
