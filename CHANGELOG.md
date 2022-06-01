@@ -1,3 +1,10 @@
+# [2.0.0-alpha.9](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.8...v2.0.0-alpha.9) (2022-06-01)
+
+
+### Bug Fixes
+
+* hook render bug ([b577883](https://github.com/qlik-oss/react-native-carbon/commit/b57788378e6f5d84e94a23006e1b13b85aed1ee4))
+
 # [2.0.0-alpha.8](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2022-05-31)
 
 
