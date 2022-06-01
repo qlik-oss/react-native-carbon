@@ -10,13 +10,13 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@nebula.js/stardust": "2.4.1",
+    "@nebula.js/stardust": "2.10.0",
     "@qlik-trial/sense-themes-default": "1.15.0",
     "@qlik/carbon-core": "link:../../../carbon-core",
     "@qlik/react-native-carbon": "link:../../",
     "@qlik/react-native-helium": "link:../../../react-native-helium",
     "@qlik/sn-treemap": "^1.0.0-alpha.2",
-    "@nebula.js/sn-kpi": "file:../../prebuilt/nebula.js-sn-kpi-0.9.1.tgz",
+    "@nebula.js/sn-kpi": "file:../../prebuilt/nebula.js-sn-kpi-0.9.2.tgz",
     "@react-native-async-storage/async-storage": "^1.17.4",
     "d3": "7.3.0",
     "d3-hierarchy": "3.1.1",

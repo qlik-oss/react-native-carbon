@@ -41,6 +41,8 @@ export type SupernovaProps = {
   log?: any;
   disableLasso: boolean;
   jsxComponent?: boolean;
+  appLayout?: any;
+  disableSelections?: boolean;
 };
 
 export const Supernova: React.FC<SupernovaProps> = ({
@@ -59,6 +61,8 @@ export const Supernova: React.FC<SupernovaProps> = ({
   titleBarStyle,
   onLoaded,
   jsxComponent,
+  appLayout,
+  disableSelections,
   log = defaultLogger,
   disableLasso = false,
 }) => {
@@ -70,6 +74,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
       model: object,
       modelId: id,
       snapshot,
+      appLayout,
       onLayout: (l) => setLayout(l),
     }),
   );
@@ -93,23 +98,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
     };
   }, []);
 
-  // const changed = useCallback( async () => {
-  //   try {
-  //     const l = await model.getLayout();
-  //     if (
-  //       !l?.qSelectionInfo.qInSelections &&
-  //       selectionsApiImpl?.current?.isActive()
-  //     ) {
-  //       selectionsApiImpl.current.noModal();
-  //       selectionsApiImpl.current.eventEmitter.emit('aborted');
-  //     }
-  //     setLayout(l);
-  //   } catch (error: any) {
-  //     if (error.code !== 15) {
-  //       log.error('Failed to get layout', error);
-  //     }
-  //   }
-  // }, [model]);
 
   // useEffect(() => {
   //   const onResumed = () => {
@@ -171,178 +159,10 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   }
   // }, [fields, app]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     mounted.current = false;
-  //   };
-  // }, []);
-
-  // const onElement = (e: Element) => {
-  //   if (disableLoadAnimations) {
-  //     e.disableLoadAnimations();
-  //   }
-
-  //   e.addEventListener('renderComponentWithData', (data: any) => {
-  //     setComponentData(data);
-  //   });
-
-  //   e.addEventListener('onTooltipData', (event: any) => {
-  //     containerRef.current.measure(
-  //       (
-  //         x: number,
-  //         y: number,
-  //         width: number,
-  //         height: number,
-  //         pageX: number,
-  //         pageY: number,
-  //       ) => {
-  //         const config = {
-  //           ...event,
-  //           pageLocation: {
-  //             x,
-  //             y,
-  //             width,
-  //             height,
-  //             pageX,
-  //             pageY,
-  //             titleLayout: titleLayout.current,
-  //           },
-  //         };
-  //         setToolTipConfig({config});
-  //       },
-  //     );
-  //   });
-
-  //   setElement(e);
-  // };
-
-  // useEffect(() => {
-  //   const getInitialLayout = async () => {
-  //     let needend = false;
-  //     let firstLayout;
-  //     try {
-  //       if (!loadLayout) {
-  //         firstLayout = await model.getLayout();
-  //       } else {
-  //         firstLayout = loadLayout;
-  //       }
-  //       if (firstLayout.qSelectionInfo.qInSelections) {
-  //         await model.endSelections(false);
-  //       }
-  //     } catch (error: any) {
-  //       if (error.code === 15) {
-  //         needend = true;
-  //       }
-  //     }
-  //     if (needend) {
-  //       try {
-  //         await model.endSelections(true);
-  //         firstLayout = await model.getLayout();
-  //       } catch (error) {
-  //         log.error('complete fail');
-  //       }
-  //     }
-  //     return firstLayout;
-  //   };
-
-  //   const initialize = async () => {
-  //     try {
-  //       const initialLayout = await getInitialLayout();
-  //       if(selectionsApiImpl.current) {
-  //         selectionsApiImpl.current.destroy();
-  //       }
-  //       selectionsApiImpl.current = SelectionsApi({model, app, log});
-  //       selectionsApiImpl.current.eventEmitter.addListener('activated', () => {
-  //         // check for position here to avoid the data race when
-  //         // initialized is called before onLayout
-  //         bodyRef.current.measure(
-  //           (
-  //             x: any,
-  //             y: any,
-  //             width: any,
-  //             height: any,
-  //             pageX: any,
-  //             pageY: number,
-  //           ) => {
-  //             let py = pageY;
-  //             if (topPadding === 'none') {
-  //               py = pageY - 30;
-  //             }
-  //             const position = {
-  //               x,
-  //               y,
-  //               pageX,
-  //               pageY: py,
-  //               width,
-  //               height,
-  //               titleLayout: titleLayout.current,
-  //             };
-  //             const config = {
-  //               toggleLasso: onToggledLasso,
-  //               confirmSelection: handleConfirmSelections,
-  //               cancelSelection: handleCancelSelections,
-  //               clear: handleClearSelections,
-  //               element,
-  //               position,
-  //               id,
-  //               active: true,
-  //               disableLasso,
-  //             };
-  //             setSelectionsConfig(config);
-  //           },
-  //         );
-  //       });
-  //       selectionsApiImpl.current.on('canceled', () => {
-  //         resetConfig();
-  //       });
-  //       model.on('changed', changed);
-  //       setSnRenderContext({
-  //         app,
-  //         model,
-  //         appLayout: {},
-  //         layout: initialLayout,
-  //       });
-  //       if (!loadLayout) {
-  //         changed();
-  //       } else {
-  //         setLayout(loadLayout);
-  //       }
-  //     } catch (error) {
-  //       log.error('Failed to initialize', error);
-  //     }
-  //   };
-
-  //   if (model && element && !initialized.current) {
-  //     initialized.current = true;
-  //     initialize();
-  //   } else if (model && element && initialized.current) {
-  //     changed();
-  //   }
-
-  //   return () => {
-  //     if (!mounted.current && model) {
-  //       model.removeListener('changed', changed);
-  //       if (selectionsApiImpl.current) {
-  //         selectionsApiImpl.current.destroy();
-  //       }
-  //       if (element) {
-  //         element.destroy();
-  //       }
-  //     }
-  //   };
-  // }, [element, model, app, setSelectionsConfig]);
 
   const handleTitleLayout = ({nativeEvent}: any) => {
     titleLayout.current = nativeEvent.layout;
   };
-
-  const renderJsxComponent = useCallback(() => {
-    const comp = nebulaEngineRef?.current?.getJsxComponent();
-    if (comp && componentData) {
-      return comp(componentData);
-    }
-    return null;
-  }, [componentData]);
 
   const handleOnLongPressBegan = useCallback((event: any) => {
     const touchesListener =
@@ -381,6 +201,9 @@ export const Supernova: React.FC<SupernovaProps> = ({
   }, []);
 
   const onBeganSelections = useCallback((_event: any) => {
+    if(disableSelections) {
+      return;
+    }
     nebulaEngineRef.current.beginSelections();
 
     const handleCancelSelections = () => {
@@ -429,7 +252,15 @@ export const Supernova: React.FC<SupernovaProps> = ({
         setSelectionsConfig(config);
       },
     );
-  }, []);
+  }, [disableSelections]);
+
+  const renderJsxComponent = useCallback(() => {
+    const comp = nebulaEngineRef?.current?.getJsxComponent();
+    if (comp && componentData) {
+      return comp(componentData);
+    }
+    return null;
+  }, [componentData]);
 
   return (
     <View style={[styles.layer]} ref={bodyRef} collapsable={false}>
@@ -461,12 +292,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
           {renderJsxComponent()}
         </View>
       ) : null}
-      {/* <SelectionsToolbar
-        selectionsApi={nebulaEngineRef.current.selectionsApi}
-        icons={selectionsToolbarIcons}
-        onToggledLasso={handleToggleLasso}
-        onConfirm={handleOnConfirm}
-      /> */}
       <Tooltip show={tooltipConfig.visible} content={tooltipConfig.content} />
     </View>
   );

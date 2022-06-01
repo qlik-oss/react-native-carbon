@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
   },
   modelView: {
     // borderWidth: 1,
-    width: '100%',
-    height: '30%',
+    // width: '50%',
+    // height: '30%',
     // alignSelf: 'center',
     // overflow: 'hidden',
     // padding: 8,
-    // flex: 1,
+    flex: 1,
   },
   supernova: {
     flex: 1,

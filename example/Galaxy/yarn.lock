@@ -1057,16 +1057,16 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@nebula.js/sn-kpi@file:../../prebuilt/nebula.js-sn-kpi-0.9.1.tgz":
-  version "0.9.1"
-  resolved "file:../../prebuilt/nebula.js-sn-kpi-0.9.1.tgz#448a9be56335278e0906fbd77db4776364621578"
+"@nebula.js/sn-kpi@file:../../prebuilt/nebula.js-sn-kpi-0.9.2.tgz":
+  version "0.9.2"
+  resolved "file:../../prebuilt/nebula.js-sn-kpi-0.9.2.tgz#b6f7c23e0e19dcd9d62b0e8d08a9126b9f23ac1b"
 
-"@nebula.js/stardust@2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-2.4.1.tgz#665453b4ad0a2e9a1496439ebf6b0da37d7cb504"
-  integrity sha512-e+5gMjMEve1LG6wWjJuRZKHbYQo0XsaxSrEQatYg6MgnmLntGo59joX9XI4JkxJQv9TdMwid5l/Q4NY45+l9jQ==
+"@nebula.js/stardust@2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-2.10.0.tgz#eafaa13949a5684b519e0070dbf26386c632818f"
+  integrity sha512-s7QkuvkUdjBAW4IGdkHb/8K17Iqv9COL9BbZVcgsJYcNh857P1jtb1XCFXi4goz+2a3npA1c9uMjVgO4GOeKPg==
   dependencies:
-    "@types/qlik-engineapi" "12.67.11"
+    "@types/qlik-engineapi" "12.67.12"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -1469,10 +1469,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
-"@types/qlik-engineapi@12.67.11":
-  version "12.67.11"
-  resolved "https://registry.yarnpkg.com/@types/qlik-engineapi/-/qlik-engineapi-12.67.11.tgz#279da931e9cbd2a2d4d9d17220f3f12a482027eb"
-  integrity sha512-zMzI2+TibE4XHImPvBA2iQi2RE0XYhe5MdXaT1ViPfjbT7qgIfWoy58idOsOPbPtGupvE+gCw4TtFx069ClAdQ==
+"@types/qlik-engineapi@12.67.12":
+  version "12.67.12"
+  resolved "https://registry.yarnpkg.com/@types/qlik-engineapi/-/qlik-engineapi-12.67.12.tgz#454966501cc48f5cd5092b3f4022c8a82ab681fa"
+  integrity sha512-b5F9+pikUXCahd8phenSZfTddQXlmnw+VMPPtuOB6J3GNNEZG/o0dYFOMeAo1VuFgLaD3R/Ew/+dn4QG7cpPNw==
 
 "@types/react-native@^0.67.3":
   version "0.67.6"
