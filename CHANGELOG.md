@@ -1,3 +1,10 @@
+# [2.0.0-alpha.10](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.9...v2.0.0-alpha.10) (2022-06-02)
+
+
+### Bug Fixes
+
+* remove console.log ([c814a96](https://github.com/qlik-oss/react-native-carbon/commit/c814a96480983667102111307e6368850395d548))
+
 # [2.0.0-alpha.9](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.8...v2.0.0-alpha.9) (2022-06-01)
 
 
