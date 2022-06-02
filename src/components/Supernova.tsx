@@ -66,18 +66,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   log = defaultLogger,
   disableLasso = false,
 }) => {
-  const nebulaEngineRef = useRef(
-    new NebulaEngine({
-      app,
-      log,
-      theme,
-      model: object,
-      modelId: id,
-      snapshot,
-      appLayout,
-      onLayout: (l) => setLayout(l),
-    }),
-  );
+
   const [layout, setLayout] = useState(snapshot);
   const [lasso, setLasso] = useState(false);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
@@ -91,9 +80,31 @@ export const Supernova: React.FC<SupernovaProps> = ({
     visible: false,
     content: {},
   });
+  const mounted = useRef(true);
+
+  const onLayout = (newLayout: any) => {
+    if(mounted.current) {
+      setLayout(newLayout);
+    }
+  }
+
+  const nebulaEngineRef = useRef(
+    new NebulaEngine({
+      app,
+      log,
+      theme,
+      model: object,
+      modelId: id,
+      snapshot,
+      appLayout,
+      onLayout,
+    }),
+  );
 
   useEffect(() => {
+    mounted.current = true;
     return () => {
+      mounted.current = false;
       nebulaEngineRef.current.destroy();
     };
   }, []);
@@ -221,7 +232,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
     };
 
     const handleToggleLasso = (val: boolean) => {
-      console.log('here', val);
       setLasso(val);
     };
 
