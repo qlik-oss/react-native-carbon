@@ -198,13 +198,64 @@ export const Supernova: React.FC<SupernovaProps> = ({
       setComponentData(data);
     });
 
-    nebulaEngineRef.current.loadSupernova(
+
+
+    await nebulaEngineRef.current.loadSupernova(
       element,
       sn,
       invalidMessage,
       false,
       theme,
+      () => {
+        const handleCancelSelections = () => {
+          nebulaEngineRef.current.selectionsApi.cancel();
+          resetSelectionsConfig();
+        };
+
+        const handleConfirmSelections = () => {
+          nebulaEngineRef.current.confirmSelections();
+          resetSelectionsConfig();
+        };
+
+        const handleClearSelections = () => {
+          nebulaEngineRef.current.selectionsApi.clear();
+        };
+
+        const handleToggleLasso = (val: boolean) => {
+          setLasso(val);
+        };
+
+        bodyRef.current.measure(
+          (
+            _x: number,
+            _y: number,
+            width: number,
+            height: number,
+            pageX: number,
+            pageY: number,
+          ) => {
+            const config = {
+              confirmSelection: handleConfirmSelections,
+              cancelSelection: handleCancelSelections,
+              clear: handleClearSelections,
+              element: nebulaEngineRef.current.canvasElement,
+              toggleLasso: handleToggleLasso,
+              position: {
+                x: pageX,
+                y: pageY,
+                height,
+                width,
+              },
+              id,
+              active: true,
+            };
+            setSelectionsConfig(config);
+          },
+        );
+      }
     );
+
+
   }, []);
 
   const onResized = useCallback(() => {
@@ -217,51 +268,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
     }
     nebulaEngineRef.current.beginSelections();
 
-    const handleCancelSelections = () => {
-      nebulaEngineRef.current.selectionsApi.cancel();
-      resetSelectionsConfig();
-    };
 
-    const handleConfirmSelections = () => {
-      nebulaEngineRef.current.confirmSelections();
-      resetSelectionsConfig();
-    };
-
-    const handleClearSelections = () => {
-      nebulaEngineRef.current.selectionsApi.clear();
-    };
-
-    const handleToggleLasso = (val: boolean) => {
-      setLasso(val);
-    };
-
-    bodyRef.current.measure(
-      (
-        _x: number,
-        _y: number,
-        width: number,
-        height: number,
-        pageX: number,
-        pageY: number,
-      ) => {
-        const config = {
-          confirmSelection: handleConfirmSelections,
-          cancelSelection: handleCancelSelections,
-          clear: handleClearSelections,
-          element: nebulaEngineRef.current.canvasElement,
-          toggleLasso: handleToggleLasso,
-          position: {
-            x: pageX,
-            y: pageY,
-            height,
-            width,
-          },
-          id,
-          active: true,
-        };
-        setSelectionsConfig(config);
-      },
-    );
   }, [disableSelections]);
 
   const renderJsxComponent = useCallback(() => {

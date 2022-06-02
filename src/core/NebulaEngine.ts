@@ -133,8 +133,10 @@ export default class NebulaEngine {
     invalidMessage: string | undefined,
     showLegend: boolean,
     vizTheme: any,
+    onSelectionsActivated: () => void,
   ) {
     await this.loadData();
+    this.selectionsApi.addListener('activated', onSelectionsActivated);
     const options = {
       renderer: 'carbon',
       carbon: true,
