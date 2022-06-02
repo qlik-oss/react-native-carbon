@@ -1,3 +1,10 @@
+# [2.0.0-alpha.11](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2022-06-02)
+
+
+### Bug Fixes
+
+* selections notifcations ([f84b2ac](https://github.com/qlik-oss/react-native-carbon/commit/f84b2ac8946b8b74e8cf60ac76136e62ef5ada50))
+
 # [2.0.0-alpha.10](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.9...v2.0.0-alpha.10) (2022-06-02)
 
 
