@@ -1,3 +1,10 @@
+# [2.0.0-alpha.12](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.11...v2.0.0-alpha.12) (2022-06-04)
+
+
+### Bug Fixes
+
+* only unsubscribe during destroy ([6c2d7a2](https://github.com/qlik-oss/react-native-carbon/commit/6c2d7a2aaa5b0fd91ece383d3817c1897030abff))
+
 # [2.0.0-alpha.11](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2022-06-02)
 
 
