@@ -111,8 +111,7 @@ export default class NebulaEngine {
 
   private async loadData() {
     const _layout = await this.getInitialLayout();
-
-    this.nebulaModel.model.removeAllListeners();
+    this.changed = this.layoutChanged.bind(this);
     if (this.selectionsApi) {
       this.selectionsApi.destroy();
     }
@@ -123,7 +122,6 @@ export default class NebulaEngine {
       layout: _layout,
       appLayout: this.nebulaModel.appLayout,
     };
-    this.changed = this.layoutChanged.bind(this);
     this.nebulaModel.model.on('changed', this.changed);
   }
 
@@ -209,7 +207,11 @@ export default class NebulaEngine {
     this.selectionsApi.confirm();
   }
 
-  destroy() {}
+  destroy() {
+    if(this.nebulaModel.model) {
+      this.nebulaModel.model.removeListener('changed', this.changed);
+    }
+  }
 
   getJsxComponent() {
     return this?.canvasElement?.getJsxComponent();
