@@ -208,7 +208,7 @@ export default class NebulaEngine {
   }
 
   destroy() {
-    if(this.nebulaModel.model) {
+    if (this.nebulaModel.model) {
       this.nebulaModel.model.removeListener('changed', this.changed);
     }
   }

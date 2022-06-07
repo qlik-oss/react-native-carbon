@@ -10,12 +10,12 @@
  */
 
 import React, {useState, useCallback} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View,Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
-import treemap from '@qlik/sn-treemap';
-import snKpi from '@nebula.js/sn-kpi';
+// import treemap from '@qlik/sn-treemap';
+import snKpi from '@nebula.js/react-native-sn-kpi';
 import horizon from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
 
 import galaxy from './galaxy.json';
@@ -34,7 +34,7 @@ const App = () => {
     setTimeout(() => {
       setDisplay(true);
     }, 100);
-  }
+  };
   const handleClear = useCallback(() => {
     connection.app?.clearAll();
   }, [connection]);
@@ -59,6 +59,9 @@ const App = () => {
               theme={horizon}
               showLegend={true}
               object={connection.model}
+              appLayout={connection.appLayout}
+              jsxComponent={true}
+              disableSelections={true}
             />
           ) : null}
         </View>

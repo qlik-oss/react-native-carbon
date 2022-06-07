@@ -15,6 +15,7 @@ export type ConnectionStatusType = {
   status: string;
   message?: string;
   model: any;
+  appLayout: any;
 };
 
 const useConnectTopApp = ({
@@ -27,6 +28,7 @@ const useConnectTopApp = ({
     status: 'idle',
     app: undefined,
     model: undefined,
+    appLayout: undefined,
   });
 
   const doConnect = useCallback(async () => {
@@ -54,6 +56,8 @@ const useConnectTopApp = ({
       const globalSession = enigma.create(connecticonfig);
       const session = await globalSession.open();
       const app = await session.openDoc(appId);
+      console.log('app0', app)
+      const appLayout = await app.getAppLayout();
       const props = await app.getAppProperties();
       const model = await app.getObject(modelId);
       setConnection({
@@ -61,6 +65,7 @@ const useConnectTopApp = ({
         status: 'Connected',
         message: `${props.qTitle}`,
         model,
+        appLayout,
       });
     } catch (error) {
       console.log('error', error);
@@ -68,6 +73,7 @@ const useConnectTopApp = ({
         app: undefined,
         status: `Error: ${error?.message}`,
         model: undefined,
+        appLayout: undefined,
       });
     }
   }, [apiKey, appId, modelId, tenantDomain]);

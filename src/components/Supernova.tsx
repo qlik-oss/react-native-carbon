@@ -1,24 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState, useCallback} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 // @ts-ignore
 // import LayerView from './LayerView';
 import {Title} from './Title';
 import {Footer} from './Footer';
 import {defaultLogger} from '../defaultLogger';
 // import {createHyperCubeDef} from '../core/createHyperCubeDef';
-import CatLegend from './CatLegend';
+// import CatLegend from './CatLegend';
 import {useResetAtom, useUpdateAtom} from 'jotai/utils';
 import {
   supernovaStateAtom,
   supernovaToolTipStateAtom,
   supernovaToolTipVisible,
 } from '../carbonAtoms';
-import {OverlayView} from './OverlayView';
+// import {OverlayView} from './OverlayView';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
-import SelectionsToolbar from './SelectionsToolbar';
 import {Tooltip} from './Tooltip';
 import Animated from 'react-native-reanimated';
 
@@ -66,7 +65,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   log = defaultLogger,
   disableLasso = false,
 }) => {
-
   const [layout, setLayout] = useState(snapshot);
   const [lasso, setLasso] = useState(false);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
@@ -83,10 +81,10 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const mounted = useRef(true);
 
   const onLayout = (newLayout: any) => {
-    if(mounted.current) {
+    if (mounted.current) {
       setLayout(newLayout);
     }
-  }
+  };
 
   const nebulaEngineRef = useRef(
     new NebulaEngine({
@@ -108,7 +106,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
       nebulaEngineRef.current.destroy();
     };
   }, []);
-
 
   // useEffect(() => {
   //   const onResumed = () => {
@@ -170,7 +167,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   //   }
   // }, [fields, app]);
 
-
   const handleTitleLayout = ({nativeEvent}: any) => {
     titleLayout.current = nativeEvent.layout;
   };
@@ -197,8 +193,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
     element.addEventListener('renderComponentWithData', (data: any) => {
       setComponentData(data);
     });
-
-
 
     await nebulaEngineRef.current.loadSupernova(
       element,
@@ -252,24 +246,23 @@ export const Supernova: React.FC<SupernovaProps> = ({
             setSelectionsConfig(config);
           },
         );
-      }
+      },
     );
-
-
   }, []);
 
   const onResized = useCallback(() => {
     nebulaEngineRef.current.resizeView();
   }, []);
 
-  const onBeganSelections = useCallback((_event: any) => {
-    if(disableSelections) {
-      return;
-    }
-    nebulaEngineRef.current.beginSelections();
-
-
-  }, [disableSelections]);
+  const onBeganSelections = useCallback(
+    (_event: any) => {
+      if (disableSelections) {
+        return;
+      }
+      nebulaEngineRef.current.beginSelections();
+    },
+    [disableSelections],
+  );
 
   const renderJsxComponent = useCallback(() => {
     const comp = nebulaEngineRef?.current?.getJsxComponent();

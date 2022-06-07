@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
-import SelectionsToolbar from './SelectionsToolbar';
 
 export type TitleProps = {
   layout: any;
@@ -14,8 +13,7 @@ export type TitleProps = {
 
 const getTitleStyle = (theme: any) => {
   let color = theme?.object?.title?.main?.color;
-  let fontSize = theme?.object?.title?.main?.fontSize || '20px';
-  fontSize = parseInt(fontSize, 10);
+  let fontSize = 12;
   if (color) {
     color = theme?._variables[color] || color;
   }
@@ -24,8 +22,7 @@ const getTitleStyle = (theme: any) => {
 
 const getSubtitleStyle = (theme: any) => {
   let color = theme?.object?.title?.subTitle?.color;
-  let fontSize = theme?.object?.title?.subTitle?.fontSize || '5px';
-  fontSize = parseInt(fontSize, 10);
+  let fontSize = 6;
   if (color) {
     color = theme?._variables[color] || color;
   }
