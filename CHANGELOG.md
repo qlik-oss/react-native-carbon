@@ -1,3 +1,10 @@
+# [2.0.0-alpha.13](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.12...v2.0.0-alpha.13) (2022-06-07)
+
+
+### Bug Fixes
+
+* invalid title fonts ([b34f319](https://github.com/qlik-oss/react-native-carbon/commit/b34f319631e902443eb0cd96d3860109b258122e))
+
 # [2.0.0-alpha.12](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.11...v2.0.0-alpha.12) (2022-06-04)
 
 
