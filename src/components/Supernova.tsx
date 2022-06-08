@@ -1,20 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
-// @ts-ignore
-// import LayerView from './LayerView';
 import {Title} from './Title';
 import {Footer} from './Footer';
 import {defaultLogger} from '../defaultLogger';
 // import {createHyperCubeDef} from '../core/createHyperCubeDef';
 // import CatLegend from './CatLegend';
 import {useResetAtom, useUpdateAtom} from 'jotai/utils';
-import {
-  supernovaStateAtom,
-  supernovaToolTipStateAtom,
-  supernovaToolTipVisible,
-} from '../carbonAtoms';
-// import {OverlayView} from './OverlayView';
+import {supernovaStateAtom} from '../carbonAtoms';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
