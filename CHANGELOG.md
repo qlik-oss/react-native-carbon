@@ -1,3 +1,10 @@
+# [2.0.0-alpha.16](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.15...v2.0.0-alpha.16) (2022-06-08)
+
+
+### Bug Fixes
+
+* memory leak ([38738e2](https://github.com/qlik-oss/react-native-carbon/commit/38738e2cc9e691d5309faa4bb6ac3fa1d1705c24))
+
 # [2.0.0-alpha.15](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.14...v2.0.0-alpha.15) (2022-06-08)
 
 
