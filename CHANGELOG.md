@@ -1,3 +1,10 @@
+# [2.0.0-alpha.14](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.13...v2.0.0-alpha.14) (2022-06-08)
+
+
+### Bug Fixes
+
+* title properties ([3c7a682](https://github.com/qlik-oss/react-native-carbon/commit/3c7a6824b7da8b1c49c84d340355efd90804176f))
+
 # [2.0.0-alpha.13](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.12...v2.0.0-alpha.13) (2022-06-07)
 
 
