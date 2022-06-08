@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useMemo} from 'react';
+import {__DO_NOT_USE__ as NebulaInternals} from '@nebula.js/stardust';
+const {theme: themeFn} = NebulaInternals;
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
-import SelectionsToolbar from './SelectionsToolbar';
 
 export type TitleProps = {
   layout: any;
@@ -10,21 +11,21 @@ export type TitleProps = {
   theme: any;
   style?: any;
   disableSubTitle?: boolean;
-  showTitle?: string;
-  element: any;
 };
 
 const getTitleStyle = (theme: any) => {
-  const color = theme?.getStyle('object.title', 'main.name', 'color') || 'red';
-  const ff = theme?.getStyle('object.title', 'main.name', 'fontSize') || '12px';
+  const color =
+    theme?.getStyle?.('object.title', 'main.name', 'color') || '#404040';
+  const ff =
+    theme?.getStyle?.('object.title', 'main.name', 'fontSize') || '16px';
   return {color, fontSize: parseInt(ff, 10)};
 };
 
 const getSubtitleStyle = (theme: any) => {
   const color =
-    theme?.getStyle('object.title', 'subTitle.name', 'color') || 'red';
+    theme?.getStyle?.('object.title', 'subTitle.name', 'color') || '#404040';
   const ff =
-    theme?.getStyle('object.title', 'subTitle.name', 'fontSize') || '12px';
+    theme?.getStyle?.('object.title', 'subTitle.name', 'fontSize') || '12px';
   return {color, fontSize: parseInt(ff, 10)};
 };
 
@@ -35,45 +36,46 @@ export const Title: React.FC<TitleProps> = ({
   theme,
   style,
   disableSubTitle,
-  element,
-  showTitle,
 }) => {
-  const [title, setTitle] = useState<string | undefined>(undefined);
-  const titleStyle = getTitleStyle(theme);
-  const subtitleStyle = getSubtitleStyle(theme);
-  const marginBottom = !disableSubTitle && layout?.subtitle?.length > 0 ? 8 : 0;
+  // const theme = this.theme();
+  // theme.internalAPI.setTheme(vizTheme, 'horizon');
+  const themeRef = useMemo(() => {
+    const _theme = themeFn();
+    _theme.internalAPI.setTheme(theme, 'custom');
+    return _theme;
+  }, [theme]);
 
-  useEffect(() => {
-    const onTitleChanged = (v: string) => {
-      setTitle(v);
-    };
-    if (element) {
-      element.eventEmitter.on('titleChanged', onTitleChanged);
-    }
+  const titleStyles = useMemo(() => {
+    const titleStyle = getTitleStyle(themeRef);
+    const subtitleStyle = getSubtitleStyle(themeRef);
+    const marginBottom =
+      !disableSubTitle && layout?.subtitle?.length > 0 ? 8 : 0;
 
-    return () => {
-      if (element) {
-        element.eventEmitter.off('titleChanged', onTitleChanged);
-      }
-    };
-  }, [element]);
+    return {titleStyle, subtitleStyle, marginBottom};
+  }, [disableSubTitle, layout, themeRef]);
 
-  return layout?.showTitles || showTitle ? (
+  return layout?.showTitles ? (
     <View
       onLayout={onLayout}
       style={[
         styles.titleBar,
         // eslint-disable-next-line react-native/no-inline-styles
         {minHeight: topPadding === 'none' ? undefined : 40},
-        {marginBottom},
+        {marginBottom: titleStyles.marginBottom},
         style,
       ]}
     >
-      <Text numberOfLines={1} style={[styles.title, {...titleStyle}]}>
-        {title || layout.title}
+      <Text
+        numberOfLines={1}
+        style={[styles.title, {...titleStyles.titleStyle}]}
+      >
+        {layout.title}
       </Text>
       {!disableSubTitle && layout?.subtitle?.length > 0 ? (
-        <Text numberOfLines={1} style={[styles.subtitle, {...subtitleStyle}]}>
+        <Text
+          numberOfLines={1}
+          style={[styles.subtitle, {...titleStyles.subtitleStyle}]}
+        >
           {layout.subtitle}
         </Text>
       ) : null}

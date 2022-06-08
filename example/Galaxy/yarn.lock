@@ -1057,9 +1057,9 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@nebula.js/react-native-sn-kpi@file:../../prebuilt/nebula.js-react-native-sn-kpi-0.9.0-alpha.16.tgz":
-  version "0.9.0-alpha.16"
-  resolved "file:../../prebuilt/nebula.js-react-native-sn-kpi-0.9.0-alpha.16.tgz#87846781c3a2aca668b2f8f0023bff5b83fab359"
+"@nebula.js/react-native-sn-kpi@file:../../prebuilt/nebula.js-react-native-sn-kpi-0.9.0-alpha.26.tgz":
+  version "0.9.0-alpha.26"
+  resolved "file:../../prebuilt/nebula.js-react-native-sn-kpi-0.9.0-alpha.26.tgz#572d0b6061797413fbf19356e97a797bd65d4608"
 
 "@nebula.js/stardust@2.10.0":
   version "2.10.0"
