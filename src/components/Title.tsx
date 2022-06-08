@@ -59,8 +59,7 @@ export const Title: React.FC<TitleProps> = ({
       onLayout={onLayout}
       style={[
         styles.titleBar,
-        // eslint-disable-next-line react-native/no-inline-styles
-        {minHeight: topPadding === 'none' ? undefined : 40},
+        {minHeight: topPadding || 40},
         {marginBottom: titleStyles.marginBottom},
         style,
       ]}
@@ -80,9 +79,9 @@ export const Title: React.FC<TitleProps> = ({
         </Text>
       ) : null}
     </View>
-  ) : topPadding === 'none' ? null : (
-    <View onLayout={onLayout} style={styles.filler} />
-  );
+  ) : topPadding ? (
+    <View onLayout={onLayout} style={[styles.filler, {minHeight: topPadding}]} />
+  ) : null;
 };
 
 const styles = StyleSheet.create({

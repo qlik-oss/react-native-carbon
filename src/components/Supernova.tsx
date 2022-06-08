@@ -27,6 +27,7 @@ export type SupernovaProps = {
   object: any;
   topPadding?: any;
   onLongPress?: () => void;
+  onPress?: () => void;
   snapshot?: any;
   titleBarStyle?: any;
   onLoaded?: () => void;
@@ -49,6 +50,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   object,
   topPadding,
   onLongPress,
+  onPress,
   snapshot,
   titleBarStyle,
   onLoaded,
@@ -250,11 +252,12 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const onBeganSelections = useCallback(
     (_event: any) => {
       if (disableSelections) {
+        onPress?.();
         return;
       }
       nebulaEngineRef.current.beginSelections();
     },
-    [disableSelections],
+    [disableSelections, onPress],
   );
 
   const renderJsxComponent = useCallback(() => {

@@ -135,6 +135,12 @@ export default class NebulaEngine {
     vizTheme: any,
     onSelectionsActivated: () => void,
   ) {
+    // android destroys the opengl surface when switching navigation screens, when comming back
+    // it will re-create the surface, so make sure to clean everythng up first
+    if(this.nebulaModel.model && this.changed) {
+      
+      this.nebulaModel.model.removeListener('changed', this.changed)
+    }
     await this.loadData();
     this.selectionsApi.addListener('activated', onSelectionsActivated);
     const options = {
