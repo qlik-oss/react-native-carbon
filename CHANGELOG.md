@@ -1,3 +1,10 @@
+# [2.0.0-alpha.15](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.14...v2.0.0-alpha.15) (2022-06-08)
+
+
+### Bug Fixes
+
+* get theme from themfn ([bfe28ba](https://github.com/qlik-oss/react-native-carbon/commit/bfe28ba12ad1599ffbb42eb5929f831935094f33))
+
 # [2.0.0-alpha.14](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.13...v2.0.0-alpha.14) (2022-06-08)
 
 
