@@ -279,7 +279,11 @@ export const Supernova: React.FC<SupernovaProps> = ({
         layout={layout}
         onLayout={handleTitleLayout}
         topPadding={topPadding}
-        theme={theme}
+        theme={nebulaEngineRef?.current?.externalTheme}
+        showTitle={
+          nebulaEngineRef?.current?.properties?.initial?.showCarbonTitle
+        }
+        element={nebulaEngineRef?.current?.canvasElement}
       />
       <Animated.View
         style={[styles.supernovaView]}

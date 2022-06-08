@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
+import SelectionsToolbar from './SelectionsToolbar';
 
 export type TitleProps = {
   layout: any;
@@ -9,24 +10,22 @@ export type TitleProps = {
   theme: any;
   style?: any;
   disableSubTitle?: boolean;
+  showTitle?: string;
+  element: any;
 };
 
 const getTitleStyle = (theme: any) => {
-  let color = theme?.object?.title?.main?.color;
-  let fontSize = 12;
-  if (color) {
-    color = theme?._variables[color] || color;
-  }
-  return {color, fontSize};
+  const color = theme?.getStyle('object.title', 'main.name', 'color') || 'red';
+  const ff = theme?.getStyle('object.title', 'main.name', 'fontSize') || '12px';
+  return {color, fontSize: parseInt(ff, 10)};
 };
 
 const getSubtitleStyle = (theme: any) => {
-  let color = theme?.object?.title?.subTitle?.color;
-  let fontSize = 6;
-  if (color) {
-    color = theme?._variables[color] || color;
-  }
-  return {color, fontSize};
+  const color =
+    theme?.getStyle('object.title', 'subTitle.name', 'color') || 'red';
+  const ff =
+    theme?.getStyle('object.title', 'subTitle.name', 'fontSize') || '12px';
+  return {color, fontSize: parseInt(ff, 10)};
 };
 
 export const Title: React.FC<TitleProps> = ({
@@ -36,11 +35,30 @@ export const Title: React.FC<TitleProps> = ({
   theme,
   style,
   disableSubTitle,
+  element,
+  showTitle,
 }) => {
+  const [title, setTitle] = useState<string | undefined>(undefined);
   const titleStyle = getTitleStyle(theme);
   const subtitleStyle = getSubtitleStyle(theme);
   const marginBottom = !disableSubTitle && layout?.subtitle?.length > 0 ? 8 : 0;
-  return layout?.showTitles ? (
+
+  useEffect(() => {
+    const onTitleChanged = (v: string) => {
+      setTitle(v);
+    };
+    if (element) {
+      element.eventEmitter.on('titleChanged', onTitleChanged);
+    }
+
+    return () => {
+      if (element) {
+        element.eventEmitter.off('titleChanged', onTitleChanged);
+      }
+    };
+  }, [element]);
+
+  return layout?.showTitles || showTitle ? (
     <View
       onLayout={onLayout}
       style={[
@@ -51,11 +69,9 @@ export const Title: React.FC<TitleProps> = ({
         style,
       ]}
     >
-      {layout?.title?.length > 0 ? (
-        <Text numberOfLines={1} style={[styles.title, {...titleStyle}]}>
-          {layout.title}
-        </Text>
-      ) : null}
+      <Text numberOfLines={1} style={[styles.title, {...titleStyle}]}>
+        {title || layout.title}
+      </Text>
       {!disableSubTitle && layout?.subtitle?.length > 0 ? (
         <Text numberOfLines={1} style={[styles.subtitle, {...subtitleStyle}]}>
           {layout.subtitle}

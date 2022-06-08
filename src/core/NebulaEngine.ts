@@ -33,6 +33,8 @@ export default class NebulaEngine {
   currentLayout: any | undefined;
   debouncedResize: () => void;
   panning: boolean;
+  properties: any;
+  supernovaTitle: string | undefined;
 
   constructor({
     app,
@@ -150,6 +152,7 @@ export default class NebulaEngine {
       translator: this.translation,
       ...options,
     });
+    this.properties = sn.qae.properties;
     const {component} = sn.create({
       ...this.renderContext,
       selections: this.selectionsApi,
@@ -208,12 +211,16 @@ export default class NebulaEngine {
   }
 
   destroy() {
-    if (this.nebulaModel.model) {
+    if(this.nebulaModel.model) {
       this.nebulaModel.model.removeListener('changed', this.changed);
     }
   }
 
   getJsxComponent() {
     return this?.canvasElement?.getJsxComponent();
+  }
+
+  getSupernovaTitle() {
+    return this.supernovaTitle;
   }
 }
