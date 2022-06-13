@@ -14,6 +14,7 @@ export type NebulaModelType = {
   modelId?: string;
   theme: any;
   snapshot?: any;
+  loadLayout?: any;
   log: any;
   appLayout?: any;
   onLayout: (layout: any) => void;
@@ -44,6 +45,7 @@ export default class NebulaEngine {
     modelId,
     onLayout,
     snapshot,
+    loadLayout,
     appLayout,
   }: NebulaModelType) {
     this.panning = false;
@@ -66,6 +68,7 @@ export default class NebulaEngine {
       model,
       theme,
       snapshot,
+      loadLayout,
       log,
       modelId,
       onLayout,
@@ -95,9 +98,13 @@ export default class NebulaEngine {
 
   private async getInitialLayout() {
     try {
+      if (this.nebulaModel.loadLayout) {
+        return this.nebulaModel.loadLayout;
+      }
       if (this.nebulaModel.snapshot) {
         return this.nebulaModel.snapshot;
       }
+
       if (!this.nebulaModel.model && this.nebulaModel.modelId) {
         this.nebulaModel.model = await this.nebulaModel.app.getObject(
           this.nebulaModel.modelId,
@@ -113,18 +120,30 @@ export default class NebulaEngine {
 
   private async loadData() {
     const _layout = await this.getInitialLayout();
-    this.changed = this.layoutChanged.bind(this);
-    if (this.selectionsApi) {
-      this.selectionsApi.destroy();
+    if (this.nebulaModel.snapshot) {
+      this.renderContext = {
+        app: undefined,
+        model: {},
+        layout: _layout,
+        snapshotData: this.nebulaModel.snapshot,
+        appLayout: {
+          qLocaleInfo: this.nebulaModel.snapshot.snapshotData.appLocaleInfo,
+        },
+      };
+    } else {
+      this.changed = this.layoutChanged.bind(this);
+      if (this.selectionsApi) {
+        this.selectionsApi.destroy();
+      }
+      this.selectionsApi = SelectionsApi({...this.nebulaModel});
+      this.renderContext = {
+        app: this.nebulaModel.app,
+        model: this.nebulaModel.model,
+        layout: _layout,
+        appLayout: this.nebulaModel.appLayout,
+      };
+      this.nebulaModel.model.on('changed', this.changed);
     }
-    this.selectionsApi = SelectionsApi({...this.nebulaModel});
-    this.renderContext = {
-      app: this.nebulaModel.app,
-      model: this.nebulaModel.model,
-      layout: _layout,
-      appLayout: this.nebulaModel.appLayout,
-    };
-    this.nebulaModel.model.on('changed', this.changed);
   }
 
   async loadSupernova(
@@ -137,12 +156,13 @@ export default class NebulaEngine {
   ) {
     // android destroys the opengl surface when switching navigation screens, when comming back
     // it will re-create the surface, so make sure to clean everythng up first
-    if(this.nebulaModel.model && this.changed) {
-      
-      this.nebulaModel.model.removeListener('changed', this.changed)
+    if (this.nebulaModel.model && this.changed) {
+      this.nebulaModel.model.removeListener('changed', this.changed);
     }
     await this.loadData();
-    this.selectionsApi.addListener('activated', onSelectionsActivated);
+    if (this.selectionsApi) {
+      this.selectionsApi.addListener('activated', onSelectionsActivated);
+    }
     const options = {
       renderer: 'carbon',
       carbon: true,
@@ -168,7 +188,11 @@ export default class NebulaEngine {
     this.snComponent = component;
     this.snComponent.created();
     this.snComponent.mounted(element);
-    this.changed();
+    if (this.nebulaModel.snapshot) {
+      this.renderSupernova(this.nebulaModel.snapshot);
+    } else {
+      this.changed();
+    }
   }
 
   unloadSupernova() {
@@ -217,7 +241,7 @@ export default class NebulaEngine {
   }
 
   destroy() {
-    if(this.nebulaModel.model) {
+    if (this.nebulaModel.model && !this.nebulaModel.snapshot) {
       this.nebulaModel.model.removeListener('changed', this.changed);
     }
   }

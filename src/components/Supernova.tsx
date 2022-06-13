@@ -16,23 +16,24 @@ import Animated from 'react-native-reanimated';
 
 export type SupernovaProps = {
   sn: any;
-  app: any;
+  app?: any;
   style?: any;
   theme: any;
   id?: string;
   fields?: [string];
-  measures: [string];
+  measures?: [string];
   showLegend?: boolean;
   invalidMessage?: string;
-  object: any;
+  object?: any;
   topPadding?: any;
   onLongPress?: () => void;
   onPress?: () => void;
   snapshot?: any;
+  loadLayout?: any;
   titleBarStyle?: any;
   onLoaded?: () => void;
   log?: any;
-  disableLasso: boolean;
+  disableLasso?: boolean;
   jsxComponent?: boolean;
   appLayout?: any;
   disableSelections?: boolean;
@@ -52,6 +53,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   onLongPress,
   onPress,
   snapshot,
+  loadLayout,
   titleBarStyle,
   onLoaded,
   jsxComponent,
@@ -60,7 +62,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   log = defaultLogger,
   disableLasso = false,
 }) => {
-  const [layout, setLayout] = useState(snapshot);
+  const [layout, setLayout] = useState( snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
@@ -89,6 +91,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
       model: object,
       modelId: id,
       snapshot,
+      loadLayout,
       appLayout,
       onLayout,
     }),
