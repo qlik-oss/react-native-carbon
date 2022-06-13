@@ -10,7 +10,7 @@
  */
 
 import React, {useState, useCallback} from 'react';
-import {StyleSheet, View,Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
@@ -92,10 +92,10 @@ const styles = StyleSheet.create({
   modelView: {
     // borderWidth: 1,
     // width: '50%',
-    // height: '30%',
+    // height: '10%',
     // alignSelf: 'center',
     // overflow: 'hidden',
-    // padding: 8,
+    padding: 8,
     flex: 1,
   },
   supernova: {

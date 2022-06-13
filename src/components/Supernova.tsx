@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Title} from './Title';
@@ -62,7 +61,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   log = defaultLogger,
   disableLasso = false,
 }) => {
-  const [layout, setLayout] = useState( snapshot || loadLayout);
+  const [layout, setLayout] = useState(snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
@@ -182,71 +181,74 @@ export const Supernova: React.FC<SupernovaProps> = ({
     setToolTipConfig({visible: false, content: {}});
   }, []);
 
-  const onCanvas = useCallback(async (canvas: any) => {
-    const element = new Element(canvas);
-    element.addEventListener('onTooltipData', (data: any) => {
-      setToolTipConfig({visible: true, content: data});
-    });
+  const onCanvas = useCallback(
+    async (canvas: any) => {
+      const element = new Element(canvas);
+      element.addEventListener('onTooltipData', (data: any) => {
+        setToolTipConfig({visible: true, content: data});
+      });
 
-    element.addEventListener('renderComponentWithData', (data: any) => {
-      setComponentData(data);
-    });
+      element.addEventListener('renderComponentWithData', (data: any) => {
+        setComponentData(data);
+      });
 
-    await nebulaEngineRef.current.loadSupernova(
-      element,
-      sn,
-      invalidMessage,
-      false,
-      theme,
-      () => {
-        const handleCancelSelections = () => {
-          nebulaEngineRef.current.selectionsApi.cancel();
-          resetSelectionsConfig();
-        };
+      await nebulaEngineRef.current.loadSupernova(
+        element,
+        sn,
+        invalidMessage,
+        false,
+        theme,
+        () => {
+          const handleCancelSelections = () => {
+            nebulaEngineRef.current.selectionsApi.cancel();
+            resetSelectionsConfig();
+          };
 
-        const handleConfirmSelections = () => {
-          nebulaEngineRef.current.confirmSelections();
-          resetSelectionsConfig();
-        };
+          const handleConfirmSelections = () => {
+            nebulaEngineRef.current.confirmSelections();
+            resetSelectionsConfig();
+          };
 
-        const handleClearSelections = () => {
-          nebulaEngineRef.current.selectionsApi.clear();
-        };
+          const handleClearSelections = () => {
+            nebulaEngineRef.current.selectionsApi.clear();
+          };
 
-        const handleToggleLasso = (val: boolean) => {
-          setLasso(val);
-        };
+          const handleToggleLasso = (val: boolean) => {
+            setLasso(val);
+          };
 
-        bodyRef.current.measure(
-          (
-            _x: number,
-            _y: number,
-            width: number,
-            height: number,
-            pageX: number,
-            pageY: number,
-          ) => {
-            const config = {
-              confirmSelection: handleConfirmSelections,
-              cancelSelection: handleCancelSelections,
-              clear: handleClearSelections,
-              element: nebulaEngineRef.current.canvasElement,
-              toggleLasso: handleToggleLasso,
-              position: {
-                x: pageX,
-                y: pageY,
-                height,
-                width,
-              },
-              id,
-              active: true,
-            };
-            setSelectionsConfig(config);
-          },
-        );
-      },
-    );
-  }, []);
+          bodyRef.current.measure(
+            (
+              _x: number,
+              _y: number,
+              width: number,
+              height: number,
+              pageX: number,
+              pageY: number,
+            ) => {
+              const config = {
+                confirmSelection: handleConfirmSelections,
+                cancelSelection: handleCancelSelections,
+                clear: handleClearSelections,
+                element: nebulaEngineRef.current.canvasElement,
+                toggleLasso: handleToggleLasso,
+                position: {
+                  x: pageX,
+                  y: pageY,
+                  height,
+                  width,
+                },
+                id,
+                active: true,
+              };
+              setSelectionsConfig(config);
+            },
+          );
+        },
+      );
+    },
+    [id, invalidMessage, resetSelectionsConfig, setSelectionsConfig, sn, theme],
+  );
 
   const onResized = useCallback(() => {
     nebulaEngineRef.current.resizeView();

@@ -16,7 +16,7 @@
     "@qlik/react-native-carbon": "link:../../",
     "@qlik/react-native-helium": "link:../../../react-native-helium",
     "@qlik/sn-treemap": "^1.0.0-alpha.12",
-    "@nebula.js/react-native-sn-kpi": "file:../../prebuilt/nebula.js-react-native-sn-kpi-0.9.0-alpha.26.tgz",
+    "@nebula.js/react-native-sn-kpi": "file:../../prebuilt/nebula.js-react-native-sn-kpi-0.9.0-alpha.30.tgz",
     "@react-native-async-storage/async-storage": "^1.17.4",
     "d3": "7.3.0",
     "d3-hierarchy": "3.1.2",

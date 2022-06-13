@@ -2,6 +2,7 @@ import {__DO_NOT_USE__ as NebulaInternals} from '@nebula.js/stardust';
 import {SelectionsApi} from './selectionsApi';
 const {generator, theme: themeFn} = NebulaInternals;
 import {debounce} from 'lodash';
+import IconsPath from '../IconPaths.json';
 
 export type TranslationType = {
   add: () => void;
@@ -36,6 +37,7 @@ export default class NebulaEngine {
   panning: boolean;
   properties: any;
   supernovaTitle: string | undefined;
+  icons: any;
 
   constructor({
     app,
@@ -48,6 +50,7 @@ export default class NebulaEngine {
     loadLayout,
     appLayout,
   }: NebulaModelType) {
+    this.icons = IconsPath;
     this.panning = false;
     this.generator = generator;
     this.theme = themeFn;
@@ -166,6 +169,7 @@ export default class NebulaEngine {
     const options = {
       renderer: 'carbon',
       carbon: true,
+      icons: this.icons,
       showLegend,
       invalidMessage: invalidMessage || 'Undefined',
     };
