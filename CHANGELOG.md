@@ -1,3 +1,10 @@
+# [2.0.0-alpha.18](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.17...v2.0.0-alpha.18) (2022-06-13)
+
+
+### Bug Fixes
+
+* add icons ([deac42b](https://github.com/qlik-oss/react-native-carbon/commit/deac42b0f4a3479a408f28142804a5ded2187a1a))
+
 # [2.0.0-alpha.17](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.16...v2.0.0-alpha.17) (2022-06-13)
 
 
