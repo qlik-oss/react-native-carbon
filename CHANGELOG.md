@@ -1,3 +1,10 @@
+# [2.0.0-alpha.17](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.16...v2.0.0-alpha.17) (2022-06-13)
+
+
+### Bug Fixes
+
+* add snapshot data support ([3c86c8b](https://github.com/qlik-oss/react-native-carbon/commit/3c86c8b8ca2509bd816e087168917fa2132fb891))
+
 # [2.0.0-alpha.16](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.15...v2.0.0-alpha.16) (2022-06-08)
 
 
