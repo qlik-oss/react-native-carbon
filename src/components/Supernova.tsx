@@ -57,6 +57,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   onLoaded,
   jsxComponent,
   appLayout,
+  style,
   disableSelections,
   log = defaultLogger,
   disableLasso = false,
@@ -299,7 +300,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
       {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
       <Footer layout={layout} theme={theme} />
       {jsxComponent ? (
-        <View style={styles.components} pointerEvents="box-none">
+        <View style={[styles.components, style]} pointerEvents="box-none">
           {renderJsxComponent()}
         </View>
       ) : null}
