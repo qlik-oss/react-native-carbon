@@ -1,3 +1,10 @@
+# [2.0.0-alpha.19](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.18...v2.0.0-alpha.19) (2022-06-20)
+
+
+### Bug Fixes
+
+* accept styles ([f155e79](https://github.com/qlik-oss/react-native-carbon/commit/f155e79806df7797c84f94fdd46e54f1eb307230))
+
 # [2.0.0-alpha.18](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.17...v2.0.0-alpha.18) (2022-06-13)
 
 
