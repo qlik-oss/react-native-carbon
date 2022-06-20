@@ -1,3 +1,11 @@
+# [2.0.0-alpha.20](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.19...v2.0.0-alpha.20) (2022-06-20)
+
+
+### Bug Fixes
+
+* remove dead dependencies ([3e7f502](https://github.com/qlik-oss/react-native-carbon/commit/3e7f5024b345caacd8135ea2c43d0ec3ad68879b))
+* update icons paths tooling ([495a0d5](https://github.com/qlik-oss/react-native-carbon/commit/495a0d5a1e0ff10dca0a569edf2cc56428a431c9))
+
 # [2.0.0-alpha.19](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.18...v2.0.0-alpha.19) (2022-06-20)
 
 
