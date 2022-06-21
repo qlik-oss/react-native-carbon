@@ -18,7 +18,8 @@
     "test": "jest --coverage",
     "ci:install": "yarn install --frozen-lockfile",
     "tsc-build": "tsc src/**/* --declaration --allowJs --emitDeclarationOnly && yarn lint --fix",
-    "dev-setup": "yarn && yarn && cd example/Galaxy && yarn && bundle install && cd ios && pod install"
+    "dev-setup": "yarn && yarn && cd example/Galaxy && yarn && bundle install && cd ios && pod install",
+    "generate-icons": "node tools/iconPaths.mjs --icons node_modules/@material-design-icons/svg/filled"
   },
   "repository": {
     "url": "git@github.com:qlik-oss/react-native-carbon.git"
@@ -40,6 +41,7 @@
     "@types/react-test-renderer": "17.0.1",
     "color-rgba": "2.4.0",
     "commitlint": "16.2.3",
+    "d3-path": "^3.0.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
