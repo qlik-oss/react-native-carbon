@@ -1,3 +1,10 @@
+# [2.0.0-alpha.21](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.20...v2.0.0-alpha.21) (2022-06-21)
+
+
+### Bug Fixes
+
+* tweak tooling for icons generation and rendering ([9a28ad0](https://github.com/qlik-oss/react-native-carbon/commit/9a28ad06c459ec2d57260a1d6bca2b2995a33c09))
+
 # [2.0.0-alpha.20](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.19...v2.0.0-alpha.20) (2022-06-20)
 
 
