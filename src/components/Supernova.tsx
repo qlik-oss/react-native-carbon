@@ -104,7 +104,11 @@ export const Supernova: React.FC<SupernovaProps> = ({
     mounted.current = true;
     return () => {
       mounted.current = false;
-      nebulaEngineRef.current.destroy();
+      try {
+        nebulaEngineRef.current.destroy();
+      } catch(error) {
+        log.debug(error);
+      }
     };
   }, []);
 
