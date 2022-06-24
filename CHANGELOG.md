@@ -1,3 +1,10 @@
+# [2.0.0-alpha.23](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.22...v2.0.0-alpha.23) (2022-06-24)
+
+
+### Bug Fixes
+
+* handle errors with grace ([ba073d5](https://github.com/qlik-oss/react-native-carbon/commit/ba073d525c5172a695f2b07a3ea315b9a5f943be))
+
 # [2.0.0-alpha.22](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.21...v2.0.0-alpha.22) (2022-06-24)
 
 
