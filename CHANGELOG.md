@@ -1,3 +1,10 @@
+# [2.0.0-alpha.22](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.21...v2.0.0-alpha.22) (2022-06-24)
+
+
+### Bug Fixes
+
+* pass translator ([3a8c639](https://github.com/qlik-oss/react-native-carbon/commit/3a8c639cd17b94ddedecae13169d067b04d169e4))
+
 # [2.0.0-alpha.21](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.20...v2.0.0-alpha.21) (2022-06-21)
 
 
