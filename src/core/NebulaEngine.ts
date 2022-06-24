@@ -7,6 +7,7 @@ import IconsPath from '../IconPaths.json';
 export type TranslationType = {
   add: () => void;
   language: () => string;
+  translate?: (value: any) => string;
 };
 
 export type NebulaModelType = {
@@ -19,6 +20,7 @@ export type NebulaModelType = {
   log: any;
   appLayout?: any;
   onLayout: (layout: any) => void;
+  translator?: (value: any) => string;
 };
 
 export default class NebulaEngine {
@@ -49,12 +51,13 @@ export default class NebulaEngine {
     snapshot,
     loadLayout,
     appLayout,
+    translator,
   }: NebulaModelType) {
     this.icons = IconsPath;
     this.panning = false;
     this.generator = generator;
     this.theme = themeFn;
-    this.translation = {add: () => {}, language: () => 'english'};
+    this.translation = {add: () => {}, language: () => 'english', translate: translator};
     this.debouncedResize = debounce(
       () => {
         if (this.canvasElement) {
@@ -76,6 +79,7 @@ export default class NebulaEngine {
       modelId,
       onLayout,
       appLayout,
+      translator,
     };
   }
 

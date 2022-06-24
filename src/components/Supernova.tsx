@@ -36,6 +36,7 @@ export type SupernovaProps = {
   jsxComponent?: boolean;
   appLayout?: any;
   disableSelections?: boolean;
+  translator?: (value: any) => string;
 };
 
 export const Supernova: React.FC<SupernovaProps> = ({
@@ -59,6 +60,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
   appLayout,
   style,
   disableSelections,
+  translator,
   log = defaultLogger,
   disableLasso = false,
 }) => {
@@ -94,6 +96,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
       loadLayout,
       appLayout,
       onLayout,
+      translator,
     }),
   );
 
