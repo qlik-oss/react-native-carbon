@@ -1,3 +1,10 @@
+# [2.0.0-alpha.24](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.23...v2.0.0-alpha.24) (2022-06-25)
+
+
+### Bug Fixes
+
+* add prop disableSelections: ([d9b3734](https://github.com/qlik-oss/react-native-carbon/commit/d9b37345ac2433c6858339fdce9476168b223a1b))
+
 # [2.0.0-alpha.23](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.22...v2.0.0-alpha.23) (2022-06-24)
 
 
