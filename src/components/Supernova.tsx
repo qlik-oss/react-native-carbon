@@ -290,7 +290,7 @@ export const Supernova: React.FC<SupernovaProps> = ({
         topPadding={topPadding}
         theme={theme}
       />
-      <Animated.View
+      <View
         style={[styles.supernovaView]}
         ref={containerRef}
         collapsable={false}
@@ -302,8 +302,9 @@ export const Supernova: React.FC<SupernovaProps> = ({
           lasso={lasso}
           onLongPressBegan={handleOnLongPressBegan}
           onLongPressEnded={handleOnLongPressEnded}
+          disableSelections={disableSelections}
         />
-      </Animated.View>
+      </View>
       {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
       <Footer layout={layout} theme={theme} />
       {jsxComponent ? (
@@ -325,9 +326,5 @@ const styles = StyleSheet.create({
   },
   supernovaView: {
     flex: 1,
-  },
-  overlay: {
-    ...(StyleSheet.absoluteFill as {}),
-    backgroundColor: 'white',
   },
 });
