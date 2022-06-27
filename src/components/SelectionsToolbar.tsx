@@ -62,8 +62,6 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
         styles.container,
         {left: position.x + position.width - 204, top: position.y},
       ]}
-      exiting={ZoomOut}
-      entering={ZoomIn}
     >
       <View style={[styles.toolbar, style]}>
         <ToggleButton

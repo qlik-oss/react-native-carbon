@@ -252,6 +252,10 @@ export default class NebulaEngine {
     if (this.nebulaModel.model && !this.nebulaModel.snapshot && this.changed) {
       this.nebulaModel.model.removeListener('changed', this.changed);
     }
+    if(this.selectionsApi) {
+    
+      this.selectionsApi.destroy();
+    }
   }
 
   getJsxComponent() {
