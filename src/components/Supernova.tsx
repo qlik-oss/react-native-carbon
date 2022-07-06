@@ -3,15 +3,12 @@ import {StyleSheet, View} from 'react-native';
 import {Title} from './Title';
 import {Footer} from './Footer';
 import {defaultLogger} from '../defaultLogger';
-// import {createHyperCubeDef} from '../core/createHyperCubeDef';
-// import CatLegend from './CatLegend';
 import {useResetAtom, useUpdateAtom} from 'jotai/utils';
 import {supernovaStateAtom} from '../carbonAtoms';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
 import {Tooltip} from './Tooltip';
-import Animated from 'react-native-reanimated';
 
 export type SupernovaProps = {
   sn: any;
