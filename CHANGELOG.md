@@ -5,6 +5,17 @@
 
 * add margin for top bar ([e893530](https://github.com/qlik-oss/react-native-carbon/commit/e8935309a068eab30510331c889055b26b1189df))
 * broken alpha release ([10b67a3](https://github.com/qlik-oss/react-native-carbon/commit/10b67a307e231f5045afa7ea810e10543f98881e))
+* clean up ([a66380d](https://github.com/qlik-oss/react-native-carbon/commit/a66380d49c675ea421f70572c1d0349ac442ffd9))
+* remove dead code ([e82206e](https://github.com/qlik-oss/react-native-carbon/commit/e82206e135b269815697bbba71fe7e63680a5fcc))
+* remove entering/exit ([74d89e9](https://github.com/qlik-oss/react-native-carbon/commit/74d89e9d82e2bb824d311291175df92fedc8f1ea))
+
+# [2.0.0-alpha.25](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.24...v2.0.0-alpha.25) (2022-07-06)
+
+
+### Bug Fixes
+
+* add margin for top bar ([e893530](https://github.com/qlik-oss/react-native-carbon/commit/e8935309a068eab30510331c889055b26b1189df))
+* broken alpha release ([10b67a3](https://github.com/qlik-oss/react-native-carbon/commit/10b67a307e231f5045afa7ea810e10543f98881e))
 * remove dead code ([e82206e](https://github.com/qlik-oss/react-native-carbon/commit/e82206e135b269815697bbba71fe7e63680a5fcc))
 * remove entering/exit ([74d89e9](https://github.com/qlik-oss/react-native-carbon/commit/74d89e9d82e2bb824d311291175df92fedc8f1ea))
 
