@@ -106,39 +106,12 @@ export const Supernova: React.FC<SupernovaProps> = ({
       mounted.current = false;
       try {
         nebulaEngineRef.current.destroy();
-      } catch(error) {
+      } catch (error) {
         log.debug(error);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // useEffect(() => {
-  //   const onResumed = () => {
-  //     setSuspended(false);
-  //     if( model) {
-  //       model.on('changed', changed);
-  //     }
-  //   };
-  //   const onSuspended = () => {
-  //     log.debug('Supernova suspended');
-  //     if( model) {
-  //       model.removeListener('changed', changed);
-  //     }
-  //     setSuspended(true);
-  //   };
-  //   if (app.session) {
-  //     app.session.on('resumed', onResumed);
-  //     app.session.on('suspended', onSuspended);
-  //   }
-
-  //   return () => {
-  //     log.debug('unmounting app');
-  //     if (app.session) {
-  //       app.removeListener('resumed', onResumed);
-  //       app.removeListener('suspended', onSuspended);
-  //     }
-  //   };
-  // }, [app]);
 
   // useEffect(() => {
   //   const fetchModel = async () => {
