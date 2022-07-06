@@ -323,6 +323,7 @@ const styles = StyleSheet.create({
   },
   components: {
     ...StyleSheet.absoluteFillObject,
+    marginTop: 40,
   },
   supernovaView: {
     flex: 1,
