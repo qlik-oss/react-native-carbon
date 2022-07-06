@@ -47,19 +47,16 @@ export const Supernova: React.FC<SupernovaProps> = ({
   invalidMessage,
   object,
   topPadding,
-  onLongPress,
   onPress,
   snapshot,
   loadLayout,
   titleBarStyle,
-  onLoaded,
   jsxComponent,
   appLayout,
   style,
   disableSelections,
   translator,
   log = defaultLogger,
-  disableLasso = false,
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
@@ -69,7 +66,6 @@ export const Supernova: React.FC<SupernovaProps> = ({
   const containerRef = useRef<any>(undefined);
   const bodyRef = useRef<any>(undefined);
   const titleLayout = useRef(undefined);
-  const [suspended, setSuspended] = useState(false);
   const [tooltipConfig, setToolTipConfig] = useState({
     visible: false,
     content: {},
