@@ -1,3 +1,11 @@
+# [2.0.0-alpha.25](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.24...v2.0.0-alpha.25) (2022-07-06)
+
+
+### Bug Fixes
+
+* add margin for top bar ([e893530](https://github.com/qlik-oss/react-native-carbon/commit/e8935309a068eab30510331c889055b26b1189df))
+* remove entering/exit ([74d89e9](https://github.com/qlik-oss/react-native-carbon/commit/74d89e9d82e2bb824d311291175df92fedc8f1ea))
+
 # [2.0.0-alpha.25](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.24...v2.0.0-alpha.25) (2022-07-01)
 
 
