@@ -55,14 +55,14 @@ export const Title: React.FC<TitleProps> = ({
     >
       <Text
         numberOfLines={1}
-        style={[styles.title, {...titleStyles.titleStyle}]}
+        style={[styles.title, {...titleStyles.titleStyle}, {lineHeight: titleStyles?.titleStyle?.fontSize}]}
       >
         {layout.title}
       </Text>
       {!disableSubTitle && layout?.subtitle?.length > 0 ? (
         <Text
           numberOfLines={1}
-          style={[styles.subtitle, {...titleStyles.subtitleStyle}]}
+          style={[styles.subtitle, {...titleStyles.subtitleStyle}, {lineHeight: titleStyles?.subtitleStyle?.fontSize}]}
         >
           {layout.subtitle}
         </Text>
@@ -89,6 +89,5 @@ const styles = StyleSheet.create({
   titleBar: {
     paddingLeft: 8,
     justifyContent: 'center',
-    paddingTop: 4,
   },
 });
