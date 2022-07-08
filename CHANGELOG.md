@@ -1,3 +1,10 @@
+# [2.0.0-alpha.27](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.26...v2.0.0-alpha.27) (2022-07-08)
+
+
+### Bug Fixes
+
+* use lodash for object parsing ([c4ee0a0](https://github.com/qlik-oss/react-native-carbon/commit/c4ee0a06848758a3956128e54b523c081204c0d4))
+
 # [2.0.0-alpha.26](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.25...v2.0.0-alpha.26) (2022-07-06)
 
 
