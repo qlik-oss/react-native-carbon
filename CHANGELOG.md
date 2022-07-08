@@ -1,3 +1,10 @@
+# [2.0.0-alpha.28](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.27...v2.0.0-alpha.28) (2022-07-08)
+
+
+### Bug Fixes
+
+* cleaned up title ([537aefd](https://github.com/qlik-oss/react-native-carbon/commit/537aefdc14ef8184cf42901dff486d3668eaf3c0))
+
 # [2.0.0-alpha.27](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.26...v2.0.0-alpha.27) (2022-07-08)
 
 
