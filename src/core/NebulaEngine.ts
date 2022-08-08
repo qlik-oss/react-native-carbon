@@ -57,7 +57,11 @@ export default class NebulaEngine {
     this.panning = false;
     this.generator = generator;
     this.theme = themeFn;
-    this.translation = {add: () => {}, language: () => 'english', translate: translator};
+    this.translation = {
+      add: () => {},
+      language: () => 'english',
+      translate: translator,
+    };
     this.debouncedResize = debounce(
       () => {
         if (this.canvasElement) {
@@ -83,9 +87,16 @@ export default class NebulaEngine {
     };
   }
 
+  unwrapLayout(layout: any) {
+    if (layout?.qUndoExclude?.generated) {
+      return layout.qUndoExclude.generated;
+    }
+    return layout;
+  }
+
   async layoutChanged() {
     try {
-      const layout = await this.nebulaModel.model.getLayout();
+      let layout = await this.nebulaModel.model.getLayout();
       if (
         !layout.qSelectionInfo.qInSelections &&
         this.selectionsApi?.isActive()
@@ -94,6 +105,9 @@ export default class NebulaEngine {
         this.selectionsApi.eventEmitter.emit('aborted');
       }
       if (this.snComponent) {
+        if (layout.visualization === 'auto-chart') {
+          layout = this.unwrapLayout(layout);
+        }
         this.currentLayout = layout;
         this.renderSupernova(layout);
         this.nebulaModel.onLayout(layout);
@@ -252,8 +266,7 @@ export default class NebulaEngine {
     if (this.nebulaModel.model && !this.nebulaModel.snapshot && this.changed) {
       this.nebulaModel.model.removeListener('changed', this.changed);
     }
-    if(this.selectionsApi) {
-    
+    if (this.selectionsApi) {
       this.selectionsApi.destroy();
     }
   }

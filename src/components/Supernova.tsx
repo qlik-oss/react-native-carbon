@@ -163,7 +163,9 @@ export const Supernova: React.FC<SupernovaProps> = ({
       });
 
       element.addEventListener('renderComponentWithData', (data: any) => {
-        setComponentData(data);
+        if (mounted.current) {
+          setComponentData(data);
+        }
       });
 
       await nebulaEngineRef.current.loadSupernova(
