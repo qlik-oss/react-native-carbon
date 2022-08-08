@@ -1,3 +1,10 @@
+# [2.0.0-alpha.29](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.28...v2.0.0-alpha.29) (2022-08-08)
+
+
+### Bug Fixes
+
+* unwrap auto charts ([190519e](https://github.com/qlik-oss/react-native-carbon/commit/190519e9aea8fe13dbcdb5718ad888b4272b2925))
+
 # [2.0.0-alpha.28](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.27...v2.0.0-alpha.28) (2022-07-08)
 
 
