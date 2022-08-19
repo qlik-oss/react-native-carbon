@@ -36,7 +36,7 @@ export type SupernovaProps = {
   translator?: (value: any) => string;
 };
 
-export const Supernova: React.FC<SupernovaProps> = ({
+const Supernova: React.FC<SupernovaProps> = ({
   sn,
   app,
   theme,
@@ -105,6 +105,12 @@ export const Supernova: React.FC<SupernovaProps> = ({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if(nebulaEngineRef.current && snapshot && mounted.current) {
+      nebulaEngineRef.current.renderSnapshot(snapshot);
+    }
+  }, [snapshot])
 
   // useEffect(() => {
   //   const fetchModel = async () => {
@@ -297,3 +303,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default Supernova;

@@ -139,6 +139,25 @@ export default class NebulaEngine {
     }
   }
 
+  async renderSnapshot(snapshotData: any) {
+    const _layout = await this.getInitialLayout();
+    this.nebulaModel.snapshot = snapshotData;
+    this.renderContext = {
+      app: undefined,
+      model: {},
+      layout: _layout,
+      snapshotData: this.nebulaModel.snapshot,
+      appLayout: {
+        qLocaleInfo: this.nebulaModel.snapshot.snapshotData.appLocaleInfo,
+      },
+    };
+    if (this.snComponent) {
+      this.currentLayout = snapshotData;
+      this.renderSupernova(snapshotData);
+      this.nebulaModel.onLayout(snapshotData);
+    }
+  }
+
   private async loadData() {
     const _layout = await this.getInitialLayout();
     if (this.nebulaModel.snapshot) {
