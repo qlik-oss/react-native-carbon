@@ -4,7 +4,7 @@ import {Title} from './Title';
 import {Footer} from './Footer';
 import {defaultLogger} from '../defaultLogger';
 import {useResetAtom, useUpdateAtom} from 'jotai/utils';
-import {supernovaStateAtom} from '../carbonAtoms';
+import {supernovaStateAtom, supernovaToolTipVisible} from '../carbonAtoms';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
@@ -60,6 +60,7 @@ const Supernova: React.FC<SupernovaProps> = ({
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
+  const setToolTipVisible = useUpdateAtom(supernovaToolTipVisible);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
   const [componentData, setComponentData] = useState(undefined);
@@ -107,10 +108,10 @@ const Supernova: React.FC<SupernovaProps> = ({
   }, []);
 
   useEffect(() => {
-    if(nebulaEngineRef.current && snapshot && mounted.current) {
+    if (nebulaEngineRef.current && snapshot && mounted.current) {
       nebulaEngineRef.current.renderSnapshot(snapshot);
     }
-  }, [snapshot])
+  }, [snapshot]);
 
   // useEffect(() => {
   //   const fetchModel = async () => {
@@ -152,13 +153,11 @@ const Supernova: React.FC<SupernovaProps> = ({
     const touchesListener =
       nebulaEngineRef.current.canvasElement.getTouchesStartListener();
     if (touchesListener) {
+      setToolTipVisible(true);
       const touches = [event.nativeEvent.x, event.nativeEvent.y];
       touchesListener(touches);
     }
-  }, []);
-
-  const handleOnLongPressEnded = useCallback(() => {
-    setToolTipConfig({visible: false, content: {}});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCanvas = useCallback(
@@ -243,8 +242,10 @@ const Supernova: React.FC<SupernovaProps> = ({
         return;
       }
       nebulaEngineRef.current.beginSelections();
+      setToolTipConfig({visible: false, content: {}});
+      setToolTipVisible(false);
     },
-    [disableSelections, onPress],
+    [disableSelections, onPress, setToolTipVisible],
   );
 
   const renderJsxComponent = useCallback(() => {
@@ -275,7 +276,6 @@ const Supernova: React.FC<SupernovaProps> = ({
           onBeganSelections={onBeganSelections}
           lasso={lasso}
           onLongPressBegan={handleOnLongPressBegan}
-          onLongPressEnded={handleOnLongPressEnded}
           disableSelections={disableSelections}
         />
       </View>

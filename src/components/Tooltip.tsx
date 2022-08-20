@@ -1,4 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
+import { supernovaToolTipVisible } from '@qlik/react-native-carbon/src/carbonAtoms';
+import { useAtomValue } from 'jotai';
 import React from 'react';
 import {StyleSheet, useWindowDimensions, View} from 'react-native';
 import Animated, {
@@ -15,10 +17,11 @@ export type TooltipProps = {
 
 export const Tooltip: React.FC<TooltipProps> = ({show, content}) => {
   const dims = useWindowDimensions();
+  const tooltipVisible = useAtomValue(supernovaToolTipVisible);
   let left = Math.max(content?.tap?.clientX - 175, 0);
   left = left + 350 > dims.width ? dims.width - 358 : left;
   let triangleLeft = content?.tap?.clientX - left; //350 * 0.5;
-  return show ? (
+  return show && tooltipVisible ? (
     <Animated.View
       entering={FadeIn}
       exiting={FadeOut}

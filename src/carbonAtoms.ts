@@ -27,4 +27,4 @@ export const supernovaToolTipStateAtom = atomWithReset({
   config: undefined,
 });
 
-export const supernovaToolTipVisible = atom(false);
+export const supernovaToolTipVisible = atomWithReset(false);
