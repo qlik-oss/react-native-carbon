@@ -1,3 +1,10 @@
+# [2.0.0-alpha.31](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.30...v2.0.0-alpha.31) (2022-08-20)
+
+
+### Bug Fixes
+
+* handle tooltip ([6dde40c](https://github.com/qlik-oss/react-native-carbon/commit/6dde40cfce579051c88713cad2708ae5c06cd1f4))
+
 # [2.0.0-alpha.30](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.29...v2.0.0-alpha.30) (2022-08-19)
 
 
