@@ -1,3 +1,10 @@
+# [2.0.0-alpha.32](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.31...v2.0.0-alpha.32) (2022-08-22)
+
+
+### Bug Fixes
+
+* set self to invisible ([075e6bd](https://github.com/qlik-oss/react-native-carbon/commit/075e6bdddc04a6e007abca85a8d810d6c4eade4a))
+
 # [2.0.0-alpha.31](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.30...v2.0.0-alpha.31) (2022-08-20)
 
 
