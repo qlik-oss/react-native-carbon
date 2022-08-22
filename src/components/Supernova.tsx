@@ -4,6 +4,7 @@ import {Title} from './Title';
 import {Footer} from './Footer';
 import {defaultLogger} from '../defaultLogger';
 import {useResetAtom, useUpdateAtom} from 'jotai/utils';
+import {useAtom} from 'jotai';
 import {supernovaStateAtom, supernovaToolTipVisible} from '../carbonAtoms';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
@@ -60,7 +61,7 @@ const Supernova: React.FC<SupernovaProps> = ({
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
-  const setToolTipVisible = useUpdateAtom(supernovaToolTipVisible);
+  const [tooltipVisible, setToolTipVisible] = useAtom(supernovaToolTipVisible);
   const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
   const [componentData, setComponentData] = useState(undefined);
@@ -112,6 +113,12 @@ const Supernova: React.FC<SupernovaProps> = ({
       nebulaEngineRef.current.renderSnapshot(snapshot);
     }
   }, [snapshot]);
+
+  useEffect(() => {
+    if (!tooltipVisible) {
+      setToolTipConfig({content: {}, visible: false});
+    }
+  }, [tooltipVisible]);
 
   // useEffect(() => {
   //   const fetchModel = async () => {
