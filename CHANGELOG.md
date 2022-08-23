@@ -1,3 +1,10 @@
+# [2.0.0-alpha.34](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.33...v2.0.0-alpha.34) (2022-08-23)
+
+
+### Bug Fixes
+
+* lint ([7d29ff8](https://github.com/qlik-oss/react-native-carbon/commit/7d29ff8aa2e7afcfd9535e20f1dcdd66d02b0d24))
+
 # [2.0.0-alpha.33](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.32...v2.0.0-alpha.33) (2022-08-23)
 
 
