@@ -1,5 +1,6 @@
 import {__DO_NOT_USE__ as NebulaInternals} from '@nebula.js/stardust';
-import '@qlik/react-native-helium';
+import {installHelium} from '@qlik/react-native-helium';
+
 
 const {
   theme: {},
@@ -22,6 +23,7 @@ const CanvasPollyFill = {
 };
 
 export const enableCarbon = () => {
+  installHelium();
   if (!global.document) {
     global.document = {
       createElement: (_e) => {
