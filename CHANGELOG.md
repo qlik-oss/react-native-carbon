@@ -1,3 +1,10 @@
+# [2.0.0-alpha.33](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.32...v2.0.0-alpha.33) (2022-08-23)
+
+
+### Bug Fixes
+
+* install helium after JS Context is created ([6d6163c](https://github.com/qlik-oss/react-native-carbon/commit/6d6163c68bf8b69e2a55b5ab626c64239bf2110c))
+
 # [2.0.0-alpha.32](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.31...v2.0.0-alpha.32) (2022-08-22)
 
 
