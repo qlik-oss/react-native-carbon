@@ -1,3 +1,29 @@
+# [2.0.0](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.20...v2.0.0) (2022-09-30)
+
+
+### Features
+
+* merge alpha ([#53](https://github.com/qlik-oss/react-native-carbon/issues/53)) ([ee491dc](https://github.com/qlik-oss/react-native-carbon/commit/ee491dcfade897d659b0124c9eea694b95b89359)), closes [#43](https://github.com/qlik-oss/react-native-carbon/issues/43) [#45](https://github.com/qlik-oss/react-native-carbon/issues/45)
+
+
+### BREAKING CHANGES
+
+* removing old graphics engine and using helium
+
+* test: prerelease one
+
+* chore(release): 2.0.0-alpha.1 [skip ci]
+
+# [2.0.0-alpha.1](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.20...v2.0.0-alpha.1) (2022-05-11)
+
+### Features
+
+* getting ready for new helium engine ([cca2cab](https://github.com/qlik-oss/react-native-carbon/commit/cca2cabec171863b7923996536effbe017770c70))
+
+### BREAKING CHANGES
+
+* removing old graphics engine and using helium
+
 # [2.0.0-alpha.34](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.33...v2.0.0-alpha.34) (2022-08-23)
 
 
