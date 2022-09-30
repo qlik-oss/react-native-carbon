@@ -1,6 +1,6 @@
 {
   "name": "@qlik/react-native-carbon",
-  "version": "1.1.20",
+  "version": "2.0.0-alpha.34",
   "description": "React Native nebula engine",
   "main": "src/index.ts",
   "files": [
@@ -17,19 +17,9 @@
     "clean": "rm -rf node_modules",
     "test": "jest --coverage",
     "ci:install": "yarn install --frozen-lockfile",
-    "dev": "ditto src ./example/CarbonApp/node_modules/@qlik/react-native-carbon/src",
-    "watch": "npm-watch",
     "tsc-build": "tsc src/**/* --declaration --allowJs --emitDeclarationOnly && yarn lint --fix",
-    "build:dev": "node ./tools/build.js",
-    "dev-setup": "yarn && yarn build:dev && cd example/CarbonApp && yarn && cd ios && pod install"
-  },
-  "watch": {
-    "dev": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "js, jsx, ts, tsx"
-    }
+    "dev-setup": "yarn && yarn && cd example/Galaxy && yarn && bundle install && cd ios && pod install",
+    "generate-icons": "node tools/iconPaths.mjs --icons node_modules/@material-design-icons/svg/filled"
   },
   "repository": {
     "url": "git@github.com:qlik-oss/react-native-carbon.git"
@@ -39,8 +29,9 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "homepage": "git@github.com:qlik-oss/react-native-carbon.git",
+  "homepage": "https://github.com/qlik-oss/react-native-helium",
   "devDependencies": {
+    "@material-design-icons/svg": "^0.11.1",
     "@react-native-community/eslint-config": "3.0.1",
     "@semantic-release/changelog": "6.0.1",
     "@semantic-release/git": "10.0.1",
@@ -50,14 +41,15 @@
     "@types/react-test-renderer": "17.0.1",
     "color-rgba": "2.4.0",
     "commitlint": "16.2.3",
+    "d3-path": "^3.0.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
+    "fast-xml-parser": "^4.0.8",
     "husky": "7.0.4",
     "jest": "27.5.1",
     "jotai": "1.6.0",
-    "lodash": "4.17.21",
-    "npm-watch": "0.11.0",
+    "lodash": "^4.17.21",
     "picasso-plugin-q": "1.6.0",
     "picasso.js": "1.6.0",
     "prettier": "2.6.0",
@@ -68,7 +60,25 @@
     "react-native-uuid": "2.0.1",
     "semantic-release": "19.0.2",
     "string-pixel-width": "1.10.0",
-    "typescript": "4.6.2"
+    "typescript": "4.6.2",
+    "xml2js": "^0.4.23",
+    "yargs": "^17.5.1"
   },
-  "dev-build": 2
+  "peerDependencies": {
+    "@babel/core": "7.17.2",
+    "@babel/runtime": "7.17.2",
+    "@nebula.js/stardust": "2.4.1",
+    "eventemitter3": "4.0.7",
+    "jotai": "1.6.0",
+    "lodash": "4.17.21",
+    "picasso-plugin-q": "1.6.0",
+    "picasso.js": "1.6.0",
+    "react": "17.0.2",
+    "react-native": "0.67.4",
+    "react-native-gesture-handler": "^2.4.2",
+    "react-native-paper": "^4.12.1",
+    "react-native-reanimated": "^2.8.0",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-uuid": "2.0.1"
+  }
 }

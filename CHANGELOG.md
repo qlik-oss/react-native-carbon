@@ -1,3 +1,334 @@
+# [2.0.0-alpha.34](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.33...v2.0.0-alpha.34) (2022-08-23)
+
+
+### Bug Fixes
+
+* lint ([7d29ff8](https://github.com/qlik-oss/react-native-carbon/commit/7d29ff8aa2e7afcfd9535e20f1dcdd66d02b0d24))
+
+# [2.0.0-alpha.33](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.32...v2.0.0-alpha.33) (2022-08-23)
+
+
+### Bug Fixes
+
+* install helium after JS Context is created ([6d6163c](https://github.com/qlik-oss/react-native-carbon/commit/6d6163c68bf8b69e2a55b5ab626c64239bf2110c))
+
+# [2.0.0-alpha.32](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.31...v2.0.0-alpha.32) (2022-08-22)
+
+
+### Bug Fixes
+
+* set self to invisible ([075e6bd](https://github.com/qlik-oss/react-native-carbon/commit/075e6bdddc04a6e007abca85a8d810d6c4eade4a))
+
+# [2.0.0-alpha.31](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.30...v2.0.0-alpha.31) (2022-08-20)
+
+
+### Bug Fixes
+
+* handle tooltip ([6dde40c](https://github.com/qlik-oss/react-native-carbon/commit/6dde40cfce579051c88713cad2708ae5c06cd1f4))
+
+# [2.0.0-alpha.30](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.29...v2.0.0-alpha.30) (2022-08-19)
+
+
+### Bug Fixes
+
+* update snapshots ([b23ae23](https://github.com/qlik-oss/react-native-carbon/commit/b23ae2365ddf4fedd3b4772652216a7e97198059))
+
+# [2.0.0-alpha.29](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.28...v2.0.0-alpha.29) (2022-08-08)
+
+
+### Bug Fixes
+
+* unwrap auto charts ([190519e](https://github.com/qlik-oss/react-native-carbon/commit/190519e9aea8fe13dbcdb5718ad888b4272b2925))
+
+# [2.0.0-alpha.28](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.27...v2.0.0-alpha.28) (2022-07-08)
+
+
+### Bug Fixes
+
+* cleaned up title ([537aefd](https://github.com/qlik-oss/react-native-carbon/commit/537aefdc14ef8184cf42901dff486d3668eaf3c0))
+
+# [2.0.0-alpha.27](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.26...v2.0.0-alpha.27) (2022-07-08)
+
+
+### Bug Fixes
+
+* use lodash for object parsing ([c4ee0a0](https://github.com/qlik-oss/react-native-carbon/commit/c4ee0a06848758a3956128e54b523c081204c0d4))
+
+# [2.0.0-alpha.26](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.25...v2.0.0-alpha.26) (2022-07-06)
+
+
+### Bug Fixes
+
+* clean up ([47de9ac](https://github.com/qlik-oss/react-native-carbon/commit/47de9ac7915e2de2c94658938ff352b1135cee4a))
+
+# [2.0.0-alpha.25](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.24...v2.0.0-alpha.25) (2022-07-06)
+
+
+### Bug Fixes
+
+* add margin for top bar ([e893530](https://github.com/qlik-oss/react-native-carbon/commit/e8935309a068eab30510331c889055b26b1189df))
+* broken alpha release ([10b67a3](https://github.com/qlik-oss/react-native-carbon/commit/10b67a307e231f5045afa7ea810e10543f98881e))
+* clean up ([a66380d](https://github.com/qlik-oss/react-native-carbon/commit/a66380d49c675ea421f70572c1d0349ac442ffd9))
+* remove dead code ([e82206e](https://github.com/qlik-oss/react-native-carbon/commit/e82206e135b269815697bbba71fe7e63680a5fcc))
+* remove entering/exit ([74d89e9](https://github.com/qlik-oss/react-native-carbon/commit/74d89e9d82e2bb824d311291175df92fedc8f1ea))
+
+# [2.0.0-alpha.25](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.24...v2.0.0-alpha.25) (2022-07-06)
+
+
+### Bug Fixes
+
+* add margin for top bar ([e893530](https://github.com/qlik-oss/react-native-carbon/commit/e8935309a068eab30510331c889055b26b1189df))
+* broken alpha release ([10b67a3](https://github.com/qlik-oss/react-native-carbon/commit/10b67a307e231f5045afa7ea810e10543f98881e))
+* remove dead code ([e82206e](https://github.com/qlik-oss/react-native-carbon/commit/e82206e135b269815697bbba71fe7e63680a5fcc))
+* remove entering/exit ([74d89e9](https://github.com/qlik-oss/react-native-carbon/commit/74d89e9d82e2bb824d311291175df92fedc8f1ea))
+
+# [2.0.0-alpha.25](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.24...v2.0.0-alpha.25) (2022-07-06)
+
+
+### Bug Fixes
+
+* add margin for top bar ([e893530](https://github.com/qlik-oss/react-native-carbon/commit/e8935309a068eab30510331c889055b26b1189df))
+* remove dead code ([e82206e](https://github.com/qlik-oss/react-native-carbon/commit/e82206e135b269815697bbba71fe7e63680a5fcc))
+* remove entering/exit ([74d89e9](https://github.com/qlik-oss/react-native-carbon/commit/74d89e9d82e2bb824d311291175df92fedc8f1ea))
+
+# [2.0.0-alpha.25](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.24...v2.0.0-alpha.25) (2022-07-06)
+
+
+### Bug Fixes
+
+* add margin for top bar ([e893530](https://github.com/qlik-oss/react-native-carbon/commit/e8935309a068eab30510331c889055b26b1189df))
+* remove entering/exit ([74d89e9](https://github.com/qlik-oss/react-native-carbon/commit/74d89e9d82e2bb824d311291175df92fedc8f1ea))
+
+# [2.0.0-alpha.25](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.24...v2.0.0-alpha.25) (2022-07-01)
+
+
+### Bug Fixes
+
+* remove entering/exit ([74d89e9](https://github.com/qlik-oss/react-native-carbon/commit/74d89e9d82e2bb824d311291175df92fedc8f1ea))
+
+# [2.0.0-alpha.24](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.23...v2.0.0-alpha.24) (2022-06-25)
+
+
+### Bug Fixes
+
+* add prop disableSelections: ([d9b3734](https://github.com/qlik-oss/react-native-carbon/commit/d9b37345ac2433c6858339fdce9476168b223a1b))
+
+# [2.0.0-alpha.23](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.22...v2.0.0-alpha.23) (2022-06-24)
+
+
+### Bug Fixes
+
+* handle errors with grace ([ba073d5](https://github.com/qlik-oss/react-native-carbon/commit/ba073d525c5172a695f2b07a3ea315b9a5f943be))
+
+# [2.0.0-alpha.22](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.21...v2.0.0-alpha.22) (2022-06-24)
+
+
+### Bug Fixes
+
+* pass translator ([3a8c639](https://github.com/qlik-oss/react-native-carbon/commit/3a8c639cd17b94ddedecae13169d067b04d169e4))
+
+# [2.0.0-alpha.21](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.20...v2.0.0-alpha.21) (2022-06-21)
+
+
+### Bug Fixes
+
+* tweak tooling for icons generation and rendering ([9a28ad0](https://github.com/qlik-oss/react-native-carbon/commit/9a28ad06c459ec2d57260a1d6bca2b2995a33c09))
+
+# [2.0.0-alpha.20](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.19...v2.0.0-alpha.20) (2022-06-20)
+
+
+### Bug Fixes
+
+* remove dead dependencies ([3e7f502](https://github.com/qlik-oss/react-native-carbon/commit/3e7f5024b345caacd8135ea2c43d0ec3ad68879b))
+* update icons paths tooling ([495a0d5](https://github.com/qlik-oss/react-native-carbon/commit/495a0d5a1e0ff10dca0a569edf2cc56428a431c9))
+
+# [2.0.0-alpha.19](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.18...v2.0.0-alpha.19) (2022-06-20)
+
+
+### Bug Fixes
+
+* accept styles ([f155e79](https://github.com/qlik-oss/react-native-carbon/commit/f155e79806df7797c84f94fdd46e54f1eb307230))
+
+# [2.0.0-alpha.18](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.17...v2.0.0-alpha.18) (2022-06-13)
+
+
+### Bug Fixes
+
+* add icons ([deac42b](https://github.com/qlik-oss/react-native-carbon/commit/deac42b0f4a3479a408f28142804a5ded2187a1a))
+
+# [2.0.0-alpha.17](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.16...v2.0.0-alpha.17) (2022-06-13)
+
+
+### Bug Fixes
+
+* add snapshot data support ([3c86c8b](https://github.com/qlik-oss/react-native-carbon/commit/3c86c8b8ca2509bd816e087168917fa2132fb891))
+
+# [2.0.0-alpha.16](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.15...v2.0.0-alpha.16) (2022-06-08)
+
+
+### Bug Fixes
+
+* memory leak ([38738e2](https://github.com/qlik-oss/react-native-carbon/commit/38738e2cc9e691d5309faa4bb6ac3fa1d1705c24))
+
+# [2.0.0-alpha.15](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.14...v2.0.0-alpha.15) (2022-06-08)
+
+
+### Bug Fixes
+
+* get theme from themfn ([bfe28ba](https://github.com/qlik-oss/react-native-carbon/commit/bfe28ba12ad1599ffbb42eb5929f831935094f33))
+
+# [2.0.0-alpha.14](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.13...v2.0.0-alpha.14) (2022-06-08)
+
+
+### Bug Fixes
+
+* title properties ([3c7a682](https://github.com/qlik-oss/react-native-carbon/commit/3c7a6824b7da8b1c49c84d340355efd90804176f))
+
+# [2.0.0-alpha.13](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.12...v2.0.0-alpha.13) (2022-06-07)
+
+
+### Bug Fixes
+
+* invalid title fonts ([b34f319](https://github.com/qlik-oss/react-native-carbon/commit/b34f319631e902443eb0cd96d3860109b258122e))
+
+# [2.0.0-alpha.12](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.11...v2.0.0-alpha.12) (2022-06-04)
+
+
+### Bug Fixes
+
+* only unsubscribe during destroy ([6c2d7a2](https://github.com/qlik-oss/react-native-carbon/commit/6c2d7a2aaa5b0fd91ece383d3817c1897030abff))
+
+# [2.0.0-alpha.11](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2022-06-02)
+
+
+### Bug Fixes
+
+* selections notifcations ([f84b2ac](https://github.com/qlik-oss/react-native-carbon/commit/f84b2ac8946b8b74e8cf60ac76136e62ef5ada50))
+
+# [2.0.0-alpha.10](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.9...v2.0.0-alpha.10) (2022-06-02)
+
+
+### Bug Fixes
+
+* remove console.log ([c814a96](https://github.com/qlik-oss/react-native-carbon/commit/c814a96480983667102111307e6368850395d548))
+
+# [2.0.0-alpha.9](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.8...v2.0.0-alpha.9) (2022-06-01)
+
+
+### Bug Fixes
+
+* hook render bug ([b577883](https://github.com/qlik-oss/react-native-carbon/commit/b57788378e6f5d84e94a23006e1b13b85aed1ee4))
+
+# [2.0.0-alpha.8](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2022-05-31)
+
+
+### Bug Fixes
+
+* updated fonts in smaple project ([c6c3220](https://github.com/qlik-oss/react-native-carbon/commit/c6c3220ff1d7014c60964cae94d5f0b2ecdec202))
+
+# [2.0.0-alpha.7](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2022-05-25)
+
+
+### Bug Fixes
+
+* migrate to @qlik/sn-treemap ([653e368](https://github.com/qlik-oss/react-native-carbon/commit/653e36817668f744e0af8cb75fe593d78a2776db))
+
+# [2.0.0-alpha.6](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2022-05-24)
+
+
+### Bug Fixes
+
+* bump versions ([ee66ed1](https://github.com/qlik-oss/react-native-carbon/commit/ee66ed15455c57c499d63f2af67145ee8da06c0f))
+
+# [2.0.0-alpha.5](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2022-05-24)
+
+
+### Bug Fixes
+
+* use measure from rn ([6a6a8d9](https://github.com/qlik-oss/react-native-carbon/commit/6a6a8d96b9bed2ec3a8f38a54c4076d2c92e8695))
+
+# [2.0.0-alpha.4](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2022-05-24)
+
+
+### Bug Fixes
+
+* change selections behaviour ([a450c7d](https://github.com/qlik-oss/react-native-carbon/commit/a450c7d58c157ad1f7e370128e59699d12508493))
+
+# [2.0.0-alpha.3](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2022-05-23)
+
+
+### Bug Fixes
+
+* setSelectionsCOnfig atom ([78d11f3](https://github.com/qlik-oss/react-native-carbon/commit/78d11f3495be296cab2441e1e05ddc975041e8ac))
+
+# [2.0.0-alpha.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2022-05-23)
+
+
+### Bug Fixes
+
+* add github actions ([b5cad30](https://github.com/qlik-oss/react-native-carbon/commit/b5cad30c998a9665acac27f6c2b75e859e334a68))
+* dismiss toolbar on aborted ([7e796dd](https://github.com/qlik-oss/react-native-carbon/commit/7e796dd410b93d8de6bdcbf1b65d88b3a3b1f6bd))
+* release tag ([7355745](https://github.com/qlik-oss/react-native-carbon/commit/73557451b233c41eb978b8ff1c199a7479684ede))
+* remove comented code ([c8a514c](https://github.com/qlik-oss/react-native-carbon/commit/c8a514c123916bb302c65688e944b500ae5a1333))
+* update readme.md ([fd4e408](https://github.com/qlik-oss/react-native-carbon/commit/fd4e40848396b1b7c6693758c590e67e38356d13))
+* updated listeners ([e81406a](https://github.com/qlik-oss/react-native-carbon/commit/e81406a0b38148c3de7238bf541e2ba74d6948ea))
+* use logger provided from caller ([e95b800](https://github.com/qlik-oss/react-native-carbon/commit/e95b800665fb578e33d48a03b5702b94822121b8))
+
+# [2.0.0-alpha.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2022-05-23)
+
+
+### Bug Fixes
+
+* add github actions ([b5cad30](https://github.com/qlik-oss/react-native-carbon/commit/b5cad30c998a9665acac27f6c2b75e859e334a68))
+* dismiss toolbar on aborted ([7e796dd](https://github.com/qlik-oss/react-native-carbon/commit/7e796dd410b93d8de6bdcbf1b65d88b3a3b1f6bd))
+* release tag ([7355745](https://github.com/qlik-oss/react-native-carbon/commit/73557451b233c41eb978b8ff1c199a7479684ede))
+* update readme.md ([fd4e408](https://github.com/qlik-oss/react-native-carbon/commit/fd4e40848396b1b7c6693758c590e67e38356d13))
+* updated listeners ([e81406a](https://github.com/qlik-oss/react-native-carbon/commit/e81406a0b38148c3de7238bf541e2ba74d6948ea))
+* use logger provided from caller ([e95b800](https://github.com/qlik-oss/react-native-carbon/commit/e95b800665fb578e33d48a03b5702b94822121b8))
+
+# [2.0.0-alpha.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2022-05-23)
+
+
+### Bug Fixes
+
+* add github actions ([b5cad30](https://github.com/qlik-oss/react-native-carbon/commit/b5cad30c998a9665acac27f6c2b75e859e334a68))
+* dismiss toolbar on aborted ([7e796dd](https://github.com/qlik-oss/react-native-carbon/commit/7e796dd410b93d8de6bdcbf1b65d88b3a3b1f6bd))
+* release tag ([7355745](https://github.com/qlik-oss/react-native-carbon/commit/73557451b233c41eb978b8ff1c199a7479684ede))
+* update readme.md ([fd4e408](https://github.com/qlik-oss/react-native-carbon/commit/fd4e40848396b1b7c6693758c590e67e38356d13))
+* use logger provided from caller ([e95b800](https://github.com/qlik-oss/react-native-carbon/commit/e95b800665fb578e33d48a03b5702b94822121b8))
+
+# [2.0.0-alpha.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2022-05-23)
+
+
+### Bug Fixes
+
+* add github actions ([b5cad30](https://github.com/qlik-oss/react-native-carbon/commit/b5cad30c998a9665acac27f6c2b75e859e334a68))
+* dismiss toolbar on aborted ([7e796dd](https://github.com/qlik-oss/react-native-carbon/commit/7e796dd410b93d8de6bdcbf1b65d88b3a3b1f6bd))
+* release tag ([7355745](https://github.com/qlik-oss/react-native-carbon/commit/73557451b233c41eb978b8ff1c199a7479684ede))
+* update readme.md ([fd4e408](https://github.com/qlik-oss/react-native-carbon/commit/fd4e40848396b1b7c6693758c590e67e38356d13))
+
+# [2.0.0-alpha.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2022-05-21)
+
+
+### Bug Fixes
+
+* add github actions ([b5cad30](https://github.com/qlik-oss/react-native-carbon/commit/b5cad30c998a9665acac27f6c2b75e859e334a68))
+* dismiss toolbar on aborted ([7e796dd](https://github.com/qlik-oss/react-native-carbon/commit/7e796dd410b93d8de6bdcbf1b65d88b3a3b1f6bd))
+* release tag ([7355745](https://github.com/qlik-oss/react-native-carbon/commit/73557451b233c41eb978b8ff1c199a7479684ede))
+* update readme.md ([fd4e408](https://github.com/qlik-oss/react-native-carbon/commit/fd4e40848396b1b7c6693758c590e67e38356d13))
+
+# [2.0.0-alpha.1](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.20...v2.0.0-alpha.1) (2022-05-11)
+
+
+### Features
+
+* getting ready for new helium engine ([cca2cab](https://github.com/qlik-oss/react-native-carbon/commit/cca2cabec171863b7923996536effbe017770c70))
+
+
+### BREAKING CHANGES
+
+* removing old graphics engine and using helium
+
 ## [1.1.20](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.19...v1.1.20) (2022-04-04)
 
 

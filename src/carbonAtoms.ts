@@ -1,33 +1,30 @@
 import {atom} from 'jotai';
 import {atomWithReset} from 'jotai/utils';
-import type Element from './components/Element';
 
 export type SupernovaStateAtom = {
-  toggleLasso: (toggled: boolean) => void;
   confirmSelection: () => void;
   cancelSelection: () => void;
+  toggleLasso: (val: boolean) => void;
   clear: () => void;
-  element?: Element;
   position: any;
   id?: string;
   active: boolean;
-  disableLasso: boolean;
+  element: any;
 };
 
 export const supernovaStateAtom = atomWithReset<SupernovaStateAtom>({
-  toggleLasso: () => {},
   confirmSelection: () => {},
   cancelSelection: () => {},
   clear: () => {},
-  element: undefined,
-  position: undefined,
+  toggleLasso: (_val: boolean) => {},
   id: undefined,
   active: false,
-  disableLasso: false,
+  position: undefined,
+  element: null,
 });
 
 export const supernovaToolTipStateAtom = atomWithReset({
   config: undefined,
 });
 
-export const supernovaToolTipVisible = atom(false);
+export const supernovaToolTipVisible = atomWithReset(false);

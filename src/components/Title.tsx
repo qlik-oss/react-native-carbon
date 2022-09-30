@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useMemo} from 'react';
+import {getValue} from './internalTheme';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
 
@@ -12,23 +13,15 @@ export type TitleProps = {
 };
 
 const getTitleStyle = (theme: any) => {
-  let color = theme?.object?.title?.main?.color;
-  let fontSize = theme?.object?.title?.main?.fontSize || '20px';
-  fontSize = parseInt(fontSize, 10);
-  if (color) {
-    color = theme?._variables[color] || color;
-  }
-  return {color, fontSize};
+  const color = getValue(theme, 'object.title.main.color', '#404040')
+  const ff = getValue(theme, 'object.title.main.fontSize', "16px" );
+  return {color, fontSize: parseInt(ff, 10)};
 };
 
 const getSubtitleStyle = (theme: any) => {
-  let color = theme?.object?.title?.subTitle?.color;
-  let fontSize = theme?.object?.title?.subTitle?.fontSize || '5px';
-  fontSize = parseInt(fontSize, 10);
-  if (color) {
-    color = theme?._variables[color] || color;
-  }
-  return {color, fontSize};
+  const color = getValue(theme, 'object.title.main.color', "#404040")
+  const ff = getValue(theme, 'object.title.main.fontSize', "16px" );
+  return {color, fontSize: parseInt(ff, 10)};
 };
 
 export const Title: React.FC<TitleProps> = ({
@@ -39,34 +32,45 @@ export const Title: React.FC<TitleProps> = ({
   style,
   disableSubTitle,
 }) => {
-  const titleStyle = getTitleStyle(theme);
-  const subtitleStyle = getSubtitleStyle(theme);
-  const marginBottom = !disableSubTitle && layout?.subtitle?.length > 0 ? 8 : 0;
+
+
+  const titleStyles = useMemo(() => {
+    const titleStyle = getTitleStyle(theme);
+    const subtitleStyle = getSubtitleStyle(theme);
+    const marginBottom =
+      !disableSubTitle && layout?.subtitle?.length > 0 ? 8 : 0;
+
+    return {titleStyle, subtitleStyle, marginBottom};
+  }, [disableSubTitle, layout, theme]);
+
   return layout?.showTitles ? (
     <View
       onLayout={onLayout}
       style={[
         styles.titleBar,
-        // eslint-disable-next-line react-native/no-inline-styles
-        {minHeight: topPadding === 'none' ? undefined : 40},
-        {marginBottom},
+        {minHeight: topPadding || 40},
+        {marginBottom: titleStyles.marginBottom},
         style,
       ]}
     >
-      {layout?.title?.length > 0 ? (
-        <Text numberOfLines={1} style={[styles.title, {...titleStyle}]}>
-          {layout.title}
-        </Text>
-      ) : null}
+      <Text
+        numberOfLines={1}
+        style={[styles.title, {...titleStyles.titleStyle}, {lineHeight: titleStyles?.titleStyle?.fontSize}]}
+      >
+        {layout.title}
+      </Text>
       {!disableSubTitle && layout?.subtitle?.length > 0 ? (
-        <Text numberOfLines={1} style={[styles.subtitle, {...subtitleStyle}]}>
+        <Text
+          numberOfLines={1}
+          style={[styles.subtitle, {...titleStyles.subtitleStyle}, {lineHeight: titleStyles?.subtitleStyle?.fontSize}]}
+        >
           {layout.subtitle}
         </Text>
       ) : null}
     </View>
-  ) : topPadding === 'none' ? null : (
-    <View onLayout={onLayout} style={styles.filler} />
-  );
+  ) : topPadding ? (
+    <View onLayout={onLayout} style={[styles.filler, {minHeight: topPadding}]} />
+  ) : null;
 };
 
 const styles = StyleSheet.create({
@@ -85,6 +89,5 @@ const styles = StyleSheet.create({
   titleBar: {
     paddingLeft: 8,
     justifyContent: 'center',
-    paddingTop: 4,
   },
 });
