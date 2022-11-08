@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/qlik-oss/react-native-carbon/compare/v2.0.0...v2.0.1) (2022-11-08)
+
+
+### Bug Fixes
+
+* footer ([#58](https://github.com/qlik-oss/react-native-carbon/issues/58)) ([8649f40](https://github.com/qlik-oss/react-native-carbon/commit/8649f4094a06a4128ac922355b3d24ae1615f155))
+
 # [2.0.0](https://github.com/qlik-oss/react-native-carbon/compare/v1.1.20...v2.0.0) (2022-09-30)
 
 
