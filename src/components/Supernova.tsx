@@ -286,13 +286,14 @@ const Supernova: React.FC<SupernovaProps> = ({
           disableSelections={disableSelections}
         />
       </View>
-      {/* {showLegend ? <CatLegend layout={layout} element={element} /> : null} */}
-      <Footer layout={layout} theme={theme} />
       {jsxComponent ? (
         <View style={[styles.components, style]} pointerEvents="box-none">
           {renderJsxComponent()}
+          <Footer layout={layout} theme={theme} />
         </View>
-      ) : null}
+      ) : (
+        <Footer layout={layout} theme={theme} />
+      )}
       <Tooltip show={tooltipConfig.visible} content={tooltipConfig.content} />
     </View>
   );
