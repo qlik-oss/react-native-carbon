@@ -100,7 +100,7 @@ export const SelectionsApi = ({model, app, log}: any) => {
       eventEmitter.removeAllListeners();
     },
     on: (event: any, func: () => void) => {
-      eventEmitter.addListener(event, func);
+      return eventEmitter.addListener(event, func);
     },
   };
 };
