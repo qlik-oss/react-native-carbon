@@ -5,7 +5,11 @@ import {Footer} from './Footer';
 import {defaultLogger} from '../defaultLogger';
 import {useResetAtom, useUpdateAtom} from 'jotai/utils';
 import {useAtom} from 'jotai';
-import {supernovaStateAtom, supernovaToolTipVisible} from '../carbonAtoms';
+import {
+  supernovaStateAtom,
+  supernovaToolTipVisible,
+  writeOnlySupernovaStateAtom,
+} from '../carbonAtoms';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
@@ -42,9 +46,6 @@ const Supernova: React.FC<SupernovaProps> = ({
   app,
   theme,
   id,
-  fields,
-  measures,
-  showLegend,
   invalidMessage,
   object,
   topPadding,
@@ -62,7 +63,7 @@ const Supernova: React.FC<SupernovaProps> = ({
   const [layout, setLayout] = useState(snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
   const [tooltipVisible, setToolTipVisible] = useAtom(supernovaToolTipVisible);
-  const setSelectionsConfig = useUpdateAtom(supernovaStateAtom);
+  const setSelectionsConfig = useUpdateAtom(writeOnlySupernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
   const [componentData, setComponentData] = useState(undefined);
   const containerRef = useRef<any>(undefined);
@@ -228,6 +229,8 @@ const Supernova: React.FC<SupernovaProps> = ({
                 },
                 id,
                 active: true,
+                disableLasso:
+                  nebulaEngineRef.current.properties.initial.disableLasso,
               };
               setSelectionsConfig(config);
             },
