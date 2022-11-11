@@ -34,6 +34,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
   position,
 }) => {
   const [lasso, setLasso] = useState<boolean>(false);
+  const selectionsConfig = useAtomValue(supernovaStateAtom);
 
   const handleLasso = () => {
     onToggledLasso?.(!lasso);
@@ -64,12 +65,13 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
       ]}
     >
       <View style={[styles.toolbar, style]}>
-        <ToggleButton
-          icon="lasso"
-          // disabled={selectionsConfig?.disableLasso}
-          onPress={handleLasso}
-          status={lasso ? 'checked' : 'unchecked'}
-        />
+        {selectionsConfig.disableLasso ? null : (
+          <ToggleButton
+            icon="lasso"
+            onPress={handleLasso}
+            status={lasso ? 'checked' : 'unchecked'}
+          />
+        )}
         <IconButton
           icon={icons?.clear || 'clear_selections'}
           onPress={handleClear}

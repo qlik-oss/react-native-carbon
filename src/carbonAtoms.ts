@@ -10,6 +10,7 @@ export type SupernovaStateAtom = {
   id?: string;
   active: boolean;
   element: any;
+  disableLasso: boolean;
 };
 
 export const supernovaStateAtom = atomWithReset<SupernovaStateAtom>({
@@ -21,6 +22,11 @@ export const supernovaStateAtom = atomWithReset<SupernovaStateAtom>({
   active: false,
   position: undefined,
   element: null,
+  disableLasso: false,
+});
+
+export const writeOnlySupernovaStateAtom = atom(null, (get, set, value: SupernovaStateAtom) => {
+  set(supernovaStateAtom, value);
 });
 
 export const supernovaToolTipStateAtom = atomWithReset({
