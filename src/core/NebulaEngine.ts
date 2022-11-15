@@ -297,4 +297,9 @@ export default class NebulaEngine {
   getSupernovaTitle() {
     return this.supernovaTitle;
   }
+
+  clearSelections() {
+    this.canvasElement.clearSelections();
+    this.selectionsApi.clear();
+  }
 }
