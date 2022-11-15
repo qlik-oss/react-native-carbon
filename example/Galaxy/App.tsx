@@ -14,7 +14,7 @@ import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
-// import treemap from '@qlik/sn-treemap';
+import treemap from '@qlik/sn-treemap';
 import snKpi from '@nebula.js/react-native-sn-kpi';
 import horizon from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
 
@@ -53,7 +53,7 @@ const App = () => {
         <View style={styles.modelView}>
           {connection.model && display ? (
             <Supernova
-              sn={snKpi}
+              sn={treemap}
               style={styles.supernova}
               app={connection.app}
               theme={horizon}

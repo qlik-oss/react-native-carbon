@@ -199,7 +199,7 @@ const Supernova: React.FC<SupernovaProps> = ({
           };
 
           const handleClearSelections = () => {
-            nebulaEngineRef.current.selectionsApi.clear();
+            nebulaEngineRef.current.clearSelections();
           };
 
           const handleToggleLasso = (val: boolean) => {
