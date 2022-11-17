@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.1...v2.1.2) (2022-11-17)
+
+
+### Bug Fixes
+
+* add props ([#62](https://github.com/qlik-oss/react-native-carbon/issues/62)) ([6f0a34a](https://github.com/qlik-oss/react-native-carbon/commit/6f0a34a6dedc23d36d21ad96a6ccf0ab36747a81))
+
 ## [2.1.1](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.0...v2.1.1) (2022-11-15)
 
 
