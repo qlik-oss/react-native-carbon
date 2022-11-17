@@ -21,6 +21,7 @@ export type NebulaModelType = {
   appLayout?: any;
   onLayout: (layout: any) => void;
   translator?: (value: any) => string;
+  qaeProps: any;
 };
 
 export default class NebulaEngine {
@@ -40,6 +41,7 @@ export default class NebulaEngine {
   properties: any;
   supernovaTitle: string | undefined;
   icons: any;
+  qaeProps: any;
 
   constructor({
     app,
@@ -52,7 +54,9 @@ export default class NebulaEngine {
     loadLayout,
     appLayout,
     translator,
+    qaeProps,
   }: NebulaModelType) {
+    this.qaeProps = qaeProps;
     this.icons = IconsPath;
     this.panning = false;
     this.generator = generator;
@@ -84,6 +88,7 @@ export default class NebulaEngine {
       onLayout,
       appLayout,
       translator,
+      qaeProps,
     };
   }
 
@@ -209,6 +214,7 @@ export default class NebulaEngine {
       icons: this.icons,
       showLegend,
       invalidMessage: invalidMessage || 'Undefined',
+      qaeProps: this.qaeProps,
     };
     const theme = this.theme();
     theme.internalAPI.setTheme(vizTheme, 'horizon');
