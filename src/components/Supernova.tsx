@@ -7,8 +7,9 @@ import {useResetAtom, useUpdateAtom} from 'jotai/utils';
 import {useAtom} from 'jotai';
 import {
   supernovaStateAtom,
-  supernovaToolTipVisible,
+  SupernovaToolTipAtom,
   writeOnlySupernovaStateAtom,
+  writeOnlySupernovaToolTipAtom,
 } from '../carbonAtoms';
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
@@ -64,17 +65,13 @@ const Supernova: React.FC<SupernovaProps> = ({
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
-  const [tooltipVisible, setToolTipVisible] = useAtom(supernovaToolTipVisible);
+  const setToolTip = useUpdateAtom(writeOnlySupernovaToolTipAtom);
   const setSelectionsConfig = useUpdateAtom(writeOnlySupernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
   const [componentData, setComponentData] = useState(undefined);
   const containerRef = useRef<any>(undefined);
   const bodyRef = useRef<any>(undefined);
   const titleLayout = useRef(undefined);
-  const [tooltipConfig, setToolTipConfig] = useState({
-    visible: false,
-    content: {},
-  });
   const mounted = useRef(true);
 
   const onLayout = (newLayout: any) => {
@@ -82,6 +79,13 @@ const Supernova: React.FC<SupernovaProps> = ({
       setLayout(newLayout);
     }
   };
+
+  const onLongPress = (data: SupernovaToolTipAtom) => {
+    data.layout = layout;
+    data.visible = true;
+    console.log('yeyayayay', data)
+    setToolTip(data);
+  }
 
   const nebulaEngineRef = useRef(
     new NebulaEngine({
@@ -118,65 +122,17 @@ const Supernova: React.FC<SupernovaProps> = ({
     }
   }, [snapshot]);
 
-  useEffect(() => {
-    if (!tooltipVisible) {
-      setToolTipConfig({content: {}, visible: false});
-    }
-  }, [tooltipVisible]);
-
-  // useEffect(() => {
-  //   const fetchModel = async () => {
-  //     try {
-  //       const m = await app.getObject(id);
-  //       setModel(m);
-  //     } catch (error) {
-  //       log.error('Error fetching model', error);
-  //     }
-  //   };
-  //   if (object) {
-  //     setModel(object);
-  //   } else if (id && app) {
-  //     fetchModel();
-  //   }
-  // }, [id, app, object]);
-
-  // useEffect(() => {
-  //   const fetchModel = async () => {
-  //     try {
-  //       const type = Math.random().toString(32).substring(8);
-  //       const props = createHyperCubeDef({fields, measures, type});
-  //       const m = await app.createSessionObject(props);
-  //       setModel(m);
-  //     } catch (error) {
-  //       log.error('error', error);
-  //     }
-  //   };
-  //   if (fields && app) {
-  //     fetchModel();
-  //   }
-  // }, [fields, app]);
 
   const handleTitleLayout = ({nativeEvent}: any) => {
     titleLayout.current = nativeEvent.layout;
   };
 
-  const handleOnLongPressBegan = useCallback((event: any) => {
-    const touchesListener =
-      nebulaEngineRef.current.canvasElement.getTouchesStartListener();
-    if (touchesListener) {
-      setToolTipVisible(true);
-      const touches = [event.nativeEvent.x, event.nativeEvent.y];
-      touchesListener(touches);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const onCanvas = useCallback(
     async (canvas: any) => {
       const element = new Element(canvas);
-      element.addEventListener('onTooltipData', (data: any) => {
-        setToolTipConfig({visible: true, content: data});
-      });
+     
+      element.setLongPressHandler(onLongPress);
 
       element.addEventListener('renderComponentWithData', (data: any) => {
         if (mounted.current) {
@@ -255,10 +211,8 @@ const Supernova: React.FC<SupernovaProps> = ({
         return;
       }
       nebulaEngineRef.current.beginSelections();
-      setToolTipConfig({visible: false, content: {}});
-      setToolTipVisible(false);
     },
-    [disableSelections, onPress, setToolTipVisible],
+    [disableSelections, onPress],
   );
 
   const renderJsxComponent = useCallback(() => {
@@ -288,7 +242,6 @@ const Supernova: React.FC<SupernovaProps> = ({
           onResized={onResized}
           onBeganSelections={onBeganSelections}
           lasso={lasso}
-          onLongPressBegan={handleOnLongPressBegan}
           disableSelections={disableSelections}
         />
       </View>
@@ -300,7 +253,6 @@ const Supernova: React.FC<SupernovaProps> = ({
       ) : (
         <Footer layout={layout} theme={theme} />
       )}
-      <Tooltip show={tooltipConfig.visible} content={tooltipConfig.content} />
     </View>
   );
 };
