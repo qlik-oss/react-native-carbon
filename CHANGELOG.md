@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.2...v2.1.3) (2022-11-20)
+
+
+### Bug Fixes
+
+* long press on jsi ([#63](https://github.com/qlik-oss/react-native-carbon/issues/63)) ([c58e3d1](https://github.com/qlik-oss/react-native-carbon/commit/c58e3d1cbd3a1e8a84333e4289f65f2a7cbeb5a9))
+
 ## [2.1.2](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.1...v2.1.2) (2022-11-17)
 
 
