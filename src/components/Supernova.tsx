@@ -4,7 +4,6 @@ import {Title} from './Title';
 import {Footer} from './Footer';
 import {defaultLogger} from '../defaultLogger';
 import {useResetAtom, useUpdateAtom} from 'jotai/utils';
-import {useAtom} from 'jotai';
 import {
   supernovaStateAtom,
   SupernovaToolTipAtom,
@@ -14,7 +13,6 @@ import {
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
-import {Tooltip} from './Tooltip';
 
 export type SupernovaProps = {
   sn: any;
@@ -83,9 +81,8 @@ const Supernova: React.FC<SupernovaProps> = ({
   const onLongPress = (data: SupernovaToolTipAtom) => {
     data.layout = layout;
     data.visible = true;
-    console.log('yeyayayay', data)
     setToolTip(data);
-  }
+  };
 
   const nebulaEngineRef = useRef(
     new NebulaEngine({
@@ -122,16 +119,14 @@ const Supernova: React.FC<SupernovaProps> = ({
     }
   }, [snapshot]);
 
-
   const handleTitleLayout = ({nativeEvent}: any) => {
     titleLayout.current = nativeEvent.layout;
   };
 
-
   const onCanvas = useCallback(
     async (canvas: any) => {
       const element = new Element(canvas);
-     
+
       element.setLongPressHandler(onLongPress);
 
       element.addEventListener('renderComponentWithData', (data: any) => {
@@ -197,6 +192,7 @@ const Supernova: React.FC<SupernovaProps> = ({
         },
       );
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [id, invalidMessage, resetSelectionsConfig, setSelectionsConfig, sn, theme],
   );
 
