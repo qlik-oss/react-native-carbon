@@ -78,11 +78,6 @@ const Supernova: React.FC<SupernovaProps> = ({
     }
   };
 
-  const onLongPress = (data: SupernovaToolTipAtom) => {
-    data.layout = layout;
-    data.visible = true;
-    setToolTip(data);
-  };
 
   const nebulaEngineRef = useRef(
     new NebulaEngine({
@@ -126,8 +121,6 @@ const Supernova: React.FC<SupernovaProps> = ({
   const onCanvas = useCallback(
     async (canvas: any) => {
       const element = new Element(canvas);
-
-      element.setLongPressHandler(onLongPress);
 
       element.addEventListener('renderComponentWithData', (data: any) => {
         if (mounted.current) {
@@ -190,6 +183,11 @@ const Supernova: React.FC<SupernovaProps> = ({
             },
           );
         },
+        (t: SupernovaToolTipAtom, l: any) => {
+          t.layout = l;
+          t.visible = true;
+          setToolTip(t);
+        }
       );
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
