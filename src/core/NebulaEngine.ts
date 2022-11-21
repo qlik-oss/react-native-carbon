@@ -3,6 +3,7 @@ import {SelectionsApi} from './selectionsApi';
 const {generator, theme: themeFn} = NebulaInternals;
 import {debounce} from 'lodash';
 import IconsPath from '../IconPaths.json';
+import { SupernovaToolTipAtom } from '@qlik/react-native-carbon/src/carbonAtoms';
 
 export type TranslationType = {
   add: () => void;
@@ -42,6 +43,8 @@ export default class NebulaEngine {
   supernovaTitle: string | undefined;
   icons: any;
   qaeProps: any;
+  onLongPress?: (t: SupernovaToolTipAtom, l: any) => void;
+  layout?: any;
 
   constructor({
     app,
@@ -101,21 +104,21 @@ export default class NebulaEngine {
 
   async layoutChanged() {
     try {
-      let layout = await this.nebulaModel.model.getLayout();
+      this.layout = await this.nebulaModel.model.getLayout();
       if (
-        !layout.qSelectionInfo.qInSelections &&
+        !this.layout.qSelectionInfo.qInSelections &&
         this.selectionsApi?.isActive()
       ) {
         this.selectionsApi.noModal();
         this.selectionsApi.eventEmitter.emit('aborted');
       }
       if (this.snComponent) {
-        if (layout.visualization === 'auto-chart') {
-          layout = this.unwrapLayout(layout);
+        if (this.layout.visualization === 'auto-chart') {
+          this.layout = this.unwrapLayout(this.layout);
         }
-        this.currentLayout = layout;
-        this.renderSupernova(layout);
-        this.nebulaModel.onLayout(layout);
+        this.currentLayout = this.layout;
+        this.renderSupernova(this.layout);
+        this.nebulaModel.onLayout(this.layout);
       }
     } catch (error) {
       this.nebulaModel.log.error('Error', error);
@@ -191,6 +194,14 @@ export default class NebulaEngine {
     }
   }
 
+
+  onLongPressHandler(data: SupernovaToolTipAtom) {
+    if( this.onLongPress) {
+      console.log('ll - ', this.layout)
+      this.onLongPress(data, this.layout);
+    }
+  }
+
   async loadSupernova(
     element: any,
     supernova: any,
@@ -198,7 +209,10 @@ export default class NebulaEngine {
     showLegend: boolean,
     vizTheme: any,
     onSelectionsActivated: () => void,
+    onLongPress: (t: SupernovaToolTipAtom, l: any) => void,
   ) {
+    this.onLongPress = onLongPress;
+    element.setLongPressHandler(this.onLongPressHandler.bind(this));
     // android destroys the opengl surface when switching navigation screens, when comming back
     // it will re-create the surface, so make sure to clean everythng up first
     if (this.nebulaModel.model && this.changed) {
