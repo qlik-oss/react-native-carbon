@@ -1,3 +1,10 @@
+## [2.1.5](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.4...v2.1.5) (2022-11-22)
+
+
+### Bug Fixes
+
+* update to use device coordinates ([#65](https://github.com/qlik-oss/react-native-carbon/issues/65)) ([06034dd](https://github.com/qlik-oss/react-native-carbon/commit/06034dd227ef3d4aa11e9a428a7bbdab304bfee8))
+
 ## [2.1.4](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.3...v2.1.4) (2022-11-21)
 
 
