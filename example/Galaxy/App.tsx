@@ -16,7 +16,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
 import treemap from '@qlik/sn-treemap';
 import snKpi from '@nebula.js/react-native-sn-kpi';
-import horizon from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
+import horizon from './theme.json';
 
 import galaxy from './galaxy.json';
 import useConnectToApp from './useConnectToApp';
