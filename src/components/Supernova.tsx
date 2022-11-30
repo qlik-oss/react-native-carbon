@@ -38,7 +38,8 @@ export type SupernovaProps = {
   appLayout?: any;
   disableSelections?: boolean;
   translator?: (value: any) => string;
-  properties: any;
+  properties?: any;
+  disableTooltips?: boolean;
 };
 
 const Supernova: React.FC<SupernovaProps> = ({
@@ -59,6 +60,7 @@ const Supernova: React.FC<SupernovaProps> = ({
   disableSelections,
   translator,
   properties,
+  disableTooltips,
   log = defaultLogger,
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
@@ -79,10 +81,11 @@ const Supernova: React.FC<SupernovaProps> = ({
   };
 
   const onLongPress = (data: SupernovaToolTipAtom) => {
-    console.log('googogogo')
-    data.layout = layout;
-    data.visible = true;
-    setToolTip(data);
+    if(!disableTooltips) {
+      data.layout = layout;
+      data.visible = true;
+      setToolTip(data);
+    }
   };
 
   const nebulaEngineRef = useRef(
