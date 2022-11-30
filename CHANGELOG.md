@@ -1,3 +1,10 @@
+## [2.1.6](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.5...v2.1.6) (2022-11-30)
+
+
+### Bug Fixes
+
+* add disable tooltips props ([#68](https://github.com/qlik-oss/react-native-carbon/issues/68)) ([3586c35](https://github.com/qlik-oss/react-native-carbon/commit/3586c35544412973a6a93d4d17bb3b3185824948))
+
 ## [2.1.5](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.4...v2.1.5) (2022-11-22)
 
 
