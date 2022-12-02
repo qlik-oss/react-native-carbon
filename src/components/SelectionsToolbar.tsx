@@ -20,7 +20,6 @@ export type SelectionsToolbarProps = {
   bounds?: any;
   icons?: SelectionsToolbarIconConfig;
   visible: boolean;
-  position: any;
 };
 
 const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
@@ -31,38 +30,48 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
   onToggledLasso,
   visible,
   icons,
-  position,
 }) => {
   const [lasso, setLasso] = useState<boolean>(false);
   const selectionsConfig = useAtomValue(supernovaStateAtom);
+  const resetSupernovae = useResetAtom(supernovaStateAtom);
 
   const handleLasso = () => {
     onToggledLasso?.(!lasso);
     setLasso(!lasso);
+    selectionsConfig?.toggleLasso(!lasso);
   };
 
   const handleOnConfirm = () => {
     setLasso(false);
     onToggledLasso?.(false);
+    selectionsConfig?.confirmSelection();
+    selectionsConfig?.toggleLasso(!lasso);
+    resetSupernovae();
     onConfirm?.();
   };
 
   const handleOnCancel = () => {
     setLasso(false);
+    selectionsConfig?.cancelSelection();
+    selectionsConfig?.toggleLasso(!lasso);
+    resetSupernovae();
     onCancel?.();
   };
 
   const handleClear = () => {
     setLasso(false);
+    selectionsConfig?.clear();
+    selectionsConfig?.toggleLasso(!lasso);
     onClear?.();
   };
 
-  return visible ? (
+  return visible && selectionsConfig.active ? (
     <Animated.View
       style={[
         styles.container,
-        {left: position.x + position.width - 204, top: position.y},
       ]}
+      entering={ZoomIn}
+      exiting={ZoomOut}
     >
       <View style={[styles.toolbar, style]}>
         {selectionsConfig.disableLasso ? null : (
@@ -70,11 +79,13 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
             icon="lasso"
             onPress={handleLasso}
             status={lasso ? 'checked' : 'unchecked'}
+            size={20}
           />
         )}
         <IconButton
           icon={icons?.clear || 'clear_selections'}
           onPress={handleClear}
+          size={20}
         />
         <View style={styles.separator} />
         <Button
@@ -92,6 +103,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
           compact={true}
           mode="contained"
           children={undefined}
+          style={styles.confirm}
         />
       </View>
     </Animated.View>
@@ -101,6 +113,9 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
+    top: 0,
+    right: 0,
+    backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -108,8 +123,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    height: 42,
-    width: 200,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -119,12 +133,17 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 4,
     elevation: 5,
-    paddingHorizontal: 8,
+    paddingRight: 8,
+    height: 40,
+    borderRadius: 2,
   },
   cancel: {
     marginHorizontal: 8,
+    height: 32,
+  },
+  confirm: {
+    height: 32,
   },
   separator: {
     width: 2,

@@ -13,6 +13,7 @@ import {
 import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
+import SelectionsToolbar from '@qlik/react-native-carbon/src/components/SelectionsToolbar';
 
 export type SupernovaProps = {
   sn: any;
@@ -65,6 +66,8 @@ const Supernova: React.FC<SupernovaProps> = ({
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
+  const [selectionsToolbarVisible, setSelectionsToolbarVisible] =
+    useState(false);
   const setToolTip = useUpdateAtom(writeOnlySupernovaToolTipAtom);
   const setSelectionsConfig = useUpdateAtom(writeOnlySupernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
@@ -81,7 +84,7 @@ const Supernova: React.FC<SupernovaProps> = ({
   };
 
   const onLongPress = (data: SupernovaToolTipAtom) => {
-    if(!disableTooltips) {
+    if (!disableTooltips) {
       data.layout = layout;
       data.visible = true;
       setToolTip(data);
@@ -147,11 +150,13 @@ const Supernova: React.FC<SupernovaProps> = ({
         theme,
         () => {
           const handleCancelSelections = () => {
+            setSelectionsToolbarVisible(false);
             nebulaEngineRef.current.selectionsApi.cancel();
             resetSelectionsConfig();
           };
 
           const handleConfirmSelections = () => {
+            setSelectionsToolbarVisible(false);
             nebulaEngineRef.current.confirmSelections();
             resetSelectionsConfig();
           };
@@ -164,35 +169,19 @@ const Supernova: React.FC<SupernovaProps> = ({
             setLasso(val);
           };
 
-          bodyRef.current.measure(
-            (
-              _x: number,
-              _y: number,
-              width: number,
-              height: number,
-              pageX: number,
-              pageY: number,
-            ) => {
-              const config = {
-                confirmSelection: handleConfirmSelections,
-                cancelSelection: handleCancelSelections,
-                clear: handleClearSelections,
-                element: nebulaEngineRef.current.canvasElement,
-                toggleLasso: handleToggleLasso,
-                position: {
-                  x: pageX,
-                  y: pageY,
-                  height,
-                  width,
-                },
-                id,
-                active: true,
-                disableLasso:
-                  nebulaEngineRef.current.properties.initial.disableLasso,
-              };
-              setSelectionsConfig(config);
-            },
-          );
+          const config = {
+            confirmSelection: handleConfirmSelections,
+            cancelSelection: handleCancelSelections,
+            clear: handleClearSelections,
+            element: nebulaEngineRef.current.canvasElement,
+            toggleLasso: handleToggleLasso,
+            id,
+            active: true,
+            disableLasso:
+              nebulaEngineRef.current.properties.initial.disableLasso,
+          };
+          setSelectionsConfig(config);
+          setSelectionsToolbarVisible(true);
         },
       );
     },
@@ -253,6 +242,7 @@ const Supernova: React.FC<SupernovaProps> = ({
       ) : (
         <Footer layout={layout} theme={theme} />
       )}
+      <SelectionsToolbar visible={selectionsToolbarVisible} />
     </View>
   );
 };
