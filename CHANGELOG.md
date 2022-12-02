@@ -1,3 +1,10 @@
+## [2.1.7](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.6...v2.1.7) (2022-12-02)
+
+
+### Bug Fixes
+
+* refactor selections ([#69](https://github.com/qlik-oss/react-native-carbon/issues/69)) ([b245b64](https://github.com/qlik-oss/react-native-carbon/commit/b245b64461762a18f7709cbe55501be1c16b5815))
+
 ## [2.1.6](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.5...v2.1.6) (2022-11-30)
 
 
