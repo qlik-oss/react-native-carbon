@@ -103,6 +103,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
           compact={true}
           mode="contained"
           children={undefined}
+          style={styles.confirm}
         />
       </View>
     </Animated.View>
@@ -123,7 +124,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     height: 40,
-    width: 200,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -134,12 +134,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     elevation: 5,
-    paddingHorizontal: 8,
+    paddingRight: 8,
     height: 40,
     borderRadius: 2,
   },
   cancel: {
     marginHorizontal: 8,
+    height: 32,
+  },
+  confirm: {
+    height: 32,
   },
   separator: {
     width: 2,

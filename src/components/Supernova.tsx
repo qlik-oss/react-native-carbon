@@ -66,7 +66,8 @@ const Supernova: React.FC<SupernovaProps> = ({
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
   const [lasso, setLasso] = useState(false);
-  const [selectionsToolbarVisible, setSelectionsToolbarVisible] = useState(false);
+  const [selectionsToolbarVisible, setSelectionsToolbarVisible] =
+    useState(false);
   const setToolTip = useUpdateAtom(writeOnlySupernovaToolTipAtom);
   const setSelectionsConfig = useUpdateAtom(writeOnlySupernovaStateAtom);
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
@@ -169,20 +170,18 @@ const Supernova: React.FC<SupernovaProps> = ({
           };
 
           const config = {
-                  confirmSelection: handleConfirmSelections,
-                  cancelSelection: handleCancelSelections,
-                  clear: handleClearSelections,
-                  element: nebulaEngineRef.current.canvasElement,
-                  toggleLasso: handleToggleLasso,
-                  id,
-                  active: true,
-                  disableLasso:
-                    nebulaEngineRef.current.properties.initial.disableLasso,
-                };
-                setSelectionsConfig(config);
-                setSelectionsToolbarVisible(true);
-
-          
+            confirmSelection: handleConfirmSelections,
+            cancelSelection: handleCancelSelections,
+            clear: handleClearSelections,
+            element: nebulaEngineRef.current.canvasElement,
+            toggleLasso: handleToggleLasso,
+            id,
+            active: true,
+            disableLasso:
+              nebulaEngineRef.current.properties.initial.disableLasso,
+          };
+          setSelectionsConfig(config);
+          setSelectionsToolbarVisible(true);
         },
       );
     },
@@ -201,7 +200,6 @@ const Supernova: React.FC<SupernovaProps> = ({
         return;
       }
       nebulaEngineRef.current.beginSelections();
-      
     },
     [disableSelections, onPress],
   );
@@ -213,7 +211,6 @@ const Supernova: React.FC<SupernovaProps> = ({
     }
     return null;
   }, [componentData]);
-
 
   return (
     <View style={[styles.layer]} ref={bodyRef} collapsable={false}>
@@ -238,16 +235,14 @@ const Supernova: React.FC<SupernovaProps> = ({
         />
       </View>
       {jsxComponent ? (
-        
         <View style={[styles.components, style]} pointerEvents="box-none">
           {renderJsxComponent()}
           <Footer layout={layout} theme={theme} />
         </View>
-        
       ) : (
         <Footer layout={layout} theme={theme} />
       )}
-      <SelectionsToolbar visible={selectionsToolbarVisible}/>
+      <SelectionsToolbar visible={selectionsToolbarVisible} />
     </View>
   );
 };
