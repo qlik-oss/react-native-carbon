@@ -84,7 +84,7 @@ const Supernova: React.FC<SupernovaProps> = ({
   };
 
   const onLongPress = (data: SupernovaToolTipAtom) => {
-    if(!disableTooltips) {
+    if (!disableTooltips) {
       data.layout = layout;
       data.visible = true;
       setToolTip(data);
