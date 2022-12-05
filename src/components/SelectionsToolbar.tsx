@@ -45,7 +45,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
     setLasso(false);
     onToggledLasso?.(false);
     selectionsConfig?.confirmSelection();
-    selectionsConfig?.toggleLasso(!lasso);
+    selectionsConfig?.toggleLasso(false);
     resetSupernovae();
     onConfirm?.();
   };
@@ -53,7 +53,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
   const handleOnCancel = () => {
     setLasso(false);
     selectionsConfig?.cancelSelection();
-    selectionsConfig?.toggleLasso(!lasso);
+    selectionsConfig?.toggleLasso(false);
     resetSupernovae();
     onCancel?.();
   };
@@ -61,7 +61,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
   const handleClear = () => {
     setLasso(false);
     selectionsConfig?.clear();
-    selectionsConfig?.toggleLasso(!lasso);
+    selectionsConfig?.toggleLasso(false);
     onClear?.();
   };
 
