@@ -1,3 +1,10 @@
+## [2.1.8](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.7...v2.1.8) (2022-12-05)
+
+
+### Bug Fixes
+
+* disable lasso explicitly ([#71](https://github.com/qlik-oss/react-native-carbon/issues/71)) ([9f2145e](https://github.com/qlik-oss/react-native-carbon/commit/9f2145e8f56a57106ecfc89c72080c4230ab334e))
+
 ## [2.1.7](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.6...v2.1.7) (2022-12-02)
 
 
