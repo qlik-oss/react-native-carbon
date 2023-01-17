@@ -73,6 +73,7 @@ const Supernova: React.FC<SupernovaProps> = ({
   const resetSelectionsConfig = useResetAtom(supernovaStateAtom);
   const [componentData, setComponentData] = useState(undefined);
   const containerRef = useRef<any>(undefined);
+  const elementRef = useRef<Element>(undefined);
   const bodyRef = useRef<any>(undefined);
   const titleLayout = useRef(undefined);
   const mounted = useRef(true);
@@ -132,7 +133,10 @@ const Supernova: React.FC<SupernovaProps> = ({
 
   const onCanvas = useCallback(
     async (canvas: any) => {
-      const element = new Element(canvas);
+      if(!elementRef.current) {
+        elementRef.current = new Element(canvas);
+      }
+      const element = elementRef.current;
 
       element.setLongPressHandler(onLongPress);
 
