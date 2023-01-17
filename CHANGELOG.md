@@ -1,3 +1,10 @@
+## [2.1.9](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.8...v2.1.9) (2023-01-17)
+
+
+### Bug Fixes
+
+* element ref ([#80](https://github.com/qlik-oss/react-native-carbon/issues/80)) ([0af465d](https://github.com/qlik-oss/react-native-carbon/commit/0af465d03a9246b5dca7ab9b68a67d42d157aa80))
+
 ## [2.1.8](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.7...v2.1.8) (2022-12-05)
 
 
