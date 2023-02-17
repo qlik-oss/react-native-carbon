@@ -239,10 +239,12 @@ const Supernova: React.FC<SupernovaProps> = ({
         />
       </View>
       {jsxComponent ? (
-        <View style={[styles.components, style]} pointerEvents="box-none">
-          {renderJsxComponent()}
-          <Footer layout={layout} theme={theme} />
-        </View>
+        <>
+          <View style={[styles.components, style]} pointerEvents="box-none">
+            {renderJsxComponent()}
+            <Footer layout={layout} theme={theme} />
+          </View>
+        </>
       ) : (
         <Footer layout={layout} theme={theme} />
       )}

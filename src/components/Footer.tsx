@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Caption} from 'react-native-paper';
+import {Text} from 'react-native-paper';
 
 export type FooterType = {
   layout: any;
@@ -30,9 +30,9 @@ export const Footer: React.FC<FooterType> = ({layout, theme}) => {
   const footerStyle = getFootStyle(theme);
   return layout?.showTitles && layout?.footnote?.length > 0 ? (
     <View style={[styles.body, {backgroundColor: footerStyle.backgroundColor}]}>
-      <Caption numberOfLines={1} style={[styles.footer, {...footerStyle}]}>
+      <Text numberOfLines={1} style={[styles.footer, {...footerStyle}]}>
         {layout?.footnote}
-      </Caption>
+      </Text>
     </View>
   ) : null;
 };
@@ -40,9 +40,12 @@ export const Footer: React.FC<FooterType> = ({layout, theme}) => {
 const styles = StyleSheet.create({
   body: {
     backgroundColor: '#F7F7F7',
-    padding: 8,
+    paddingHorizontal: 8,
     borderRadius: 4,
     height: 36,
+    justifyContent: 'center',
+    borderTopWidth: 1,
+    borderTopColor: "#rgba(217, 217, 217, 0.5)"
   },
   footer: {
     fontStyle: 'italic',
