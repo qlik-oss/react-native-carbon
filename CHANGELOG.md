@@ -1,3 +1,10 @@
+## [2.1.10](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.9...v2.1.10) (2023-02-17)
+
+
+### Bug Fixes
+
+* **MD-4146:** adjust footer style for android and wrap in fragment ([#82](https://github.com/qlik-oss/react-native-carbon/issues/82)) ([7581fbd](https://github.com/qlik-oss/react-native-carbon/commit/7581fbde04d9ea7f94227dedea2b8ec9728b51e0))
+
 ## [2.1.9](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.8...v2.1.9) (2023-01-17)
 
 
