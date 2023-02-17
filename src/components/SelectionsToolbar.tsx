@@ -1,7 +1,7 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button, IconButton, ToggleButton} from 'react-native-paper';
-import {useAtomValue, useResetAtom, useUpdateAtom} from 'jotai/utils';
+import {useAtomValue, useResetAtom} from 'jotai/utils';
 import {supernovaStateAtom} from '../carbonAtoms';
 import Animated, {ZoomIn, ZoomOut} from 'react-native-reanimated';
 
@@ -67,9 +67,7 @@ const SelectionsToolbar: React.FC<SelectionsToolbarProps> = ({
 
   return visible && selectionsConfig.active ? (
     <Animated.View
-      style={[
-        styles.container,
-      ]}
+      style={[styles.container]}
       entering={ZoomIn}
       exiting={ZoomOut}
     >

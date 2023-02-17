@@ -13,14 +13,14 @@ export type TitleProps = {
 };
 
 const getTitleStyle = (theme: any) => {
-  const color = getValue(theme, 'object.title.main.color', '#404040')
-  const ff = getValue(theme, 'object.title.main.fontSize', "16px" );
+  const color = getValue(theme, 'object.title.main.color', '#404040');
+  const ff = getValue(theme, 'object.title.main.fontSize', '16px');
   return {color, fontSize: parseInt(ff, 10)};
 };
 
 const getSubtitleStyle = (theme: any) => {
-  const color = getValue(theme, 'object.title.main.color', "#404040")
-  const ff = getValue(theme, 'object.title.main.fontSize', "16px" );
+  const color = getValue(theme, 'object.title.main.color', '#404040');
+  const ff = getValue(theme, 'object.title.main.fontSize', '16px');
   return {color, fontSize: parseInt(ff, 10)};
 };
 
@@ -32,8 +32,6 @@ export const Title: React.FC<TitleProps> = ({
   style,
   disableSubTitle,
 }) => {
-
-
   const titleStyles = useMemo(() => {
     const titleStyle = getTitleStyle(theme);
     const subtitleStyle = getSubtitleStyle(theme);
@@ -55,21 +53,32 @@ export const Title: React.FC<TitleProps> = ({
     >
       <Text
         numberOfLines={1}
-        style={[styles.title, {...titleStyles.titleStyle}, {lineHeight: titleStyles?.titleStyle?.fontSize}]}
+        style={[
+          styles.title,
+          {...titleStyles.titleStyle},
+          {lineHeight: titleStyles?.titleStyle?.fontSize},
+        ]}
       >
         {layout.title}
       </Text>
       {!disableSubTitle && layout?.subtitle?.length > 0 ? (
         <Text
           numberOfLines={1}
-          style={[styles.subtitle, {...titleStyles.subtitleStyle}, {lineHeight: titleStyles?.subtitleStyle?.fontSize}]}
+          style={[
+            styles.subtitle,
+            {...titleStyles.subtitleStyle},
+            {lineHeight: titleStyles?.subtitleStyle?.fontSize},
+          ]}
         >
           {layout.subtitle}
         </Text>
       ) : null}
     </View>
   ) : topPadding ? (
-    <View onLayout={onLayout} style={[styles.filler, {minHeight: topPadding}]} />
+    <View
+      onLayout={onLayout}
+      style={[styles.filler, {minHeight: topPadding}]}
+    />
   ) : null;
 };
 

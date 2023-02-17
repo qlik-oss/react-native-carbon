@@ -15,7 +15,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Supernova, SelectionsToolbar} from '@qlik/react-native-carbon';
 import treemap from '@qlik/sn-treemap';
-import snKpi from '@nebula.js/react-native-sn-kpi';
 import horizon from './theme.json';
 
 import galaxy from './galaxy.json';
