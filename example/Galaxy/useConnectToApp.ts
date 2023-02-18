@@ -56,7 +56,7 @@ const useConnectTopApp = ({
       const globalSession = enigma.create(connecticonfig);
       const session = await globalSession.open();
       const app = await session.openDoc(appId);
-      console.log('app0', app)
+      console.log('app0', app);
       const appLayout = await app.getAppLayout();
       const props = await app.getAppProperties();
       const model = await app.getObject(modelId);

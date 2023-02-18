@@ -14,6 +14,7 @@ import NebulaEngine from '../core/NebulaEngine';
 import {Canvas} from '@qlik/react-native-helium';
 import {Element} from '@qlik/carbon-core';
 import SelectionsToolbar from '@qlik/react-native-carbon/src/components/SelectionsToolbar';
+import CalcConditionErrorView from './CalcConditionErrorView';
 
 export type SupernovaProps = {
   sn: any;
@@ -113,7 +114,8 @@ const Supernova: React.FC<SupernovaProps> = ({
     return () => {
       mounted.current = false;
       try {
-        nebulaEngineRef.current.destroy();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        nebulaEngineRef.current?.destroy?.();
       } catch (error) {
         log.debug(error);
       }
@@ -133,7 +135,7 @@ const Supernova: React.FC<SupernovaProps> = ({
 
   const onCanvas = useCallback(
     async (canvas: any) => {
-      if(!elementRef.current) {
+      if (!elementRef.current) {
         elementRef.current = new Element(canvas);
       }
       const element = elementRef.current;
@@ -237,12 +239,18 @@ const Supernova: React.FC<SupernovaProps> = ({
           lasso={lasso}
           disableSelections={disableSelections}
         />
+        {layout?.qHyperCube?.qCalcCondMsg?.length > 1 ? (
+          <CalcConditionErrorView layout={layout} />
+        ) : null}
       </View>
       {jsxComponent ? (
         <>
           <View style={[styles.components, style]} pointerEvents="box-none">
             {renderJsxComponent()}
             <Footer layout={layout} theme={theme} />
+            {layout?.qHyperCube?.qCalcCondMsg?.length > 1 ? (
+              <CalcConditionErrorView layout={layout} />
+            ) : null}
           </View>
         </>
       ) : (

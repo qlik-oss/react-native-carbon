@@ -26,20 +26,27 @@ export const supernovaStateAtom = atomWithReset<SupernovaStateAtom>({
 });
 
 export type SupernovaToolTipAtom = {
-  data: Array<any>,
-  x: number,
-  y: number,
+  data: Array<any>;
+  x: number;
+  y: number;
   layout?: any;
   visible: boolean;
-}
+};
 
-export const writeOnlySupernovaStateAtom = atom(null, (get, set, value: SupernovaStateAtom) => {
-  set(supernovaStateAtom, value);
-});
+export const writeOnlySupernovaStateAtom = atom(
+  null,
+  (get, set, value: SupernovaStateAtom) => {
+    set(supernovaStateAtom, value);
+  },
+);
 
-export const supernovaToolTipAtom = atom<SupernovaToolTipAtom|undefined>(undefined);
+export const supernovaToolTipAtom = atom<SupernovaToolTipAtom | undefined>(
+  undefined,
+);
 
-export const writeOnlySupernovaToolTipAtom = atom(null, (_get, set, value: SupernovaToolTipAtom) => {
-  set(supernovaToolTipAtom, value)
-});
-
+export const writeOnlySupernovaToolTipAtom = atom(
+  null,
+  (_get, set, value: SupernovaToolTipAtom) => {
+    set(supernovaToolTipAtom, value);
+  },
+);

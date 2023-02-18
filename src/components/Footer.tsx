@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     height: 36,
     justifyContent: 'center',
     borderTopWidth: 1,
-    borderTopColor: "#rgba(217, 217, 217, 0.5)"
+    borderTopColor: '#rgba(217, 217, 217, 0.5)',
   },
   footer: {
     fontStyle: 'italic',
