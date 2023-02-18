@@ -1,3 +1,10 @@
+## [2.1.11](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.10...v2.1.11) (2023-02-18)
+
+
+### Bug Fixes
+
+* check for calc error condition ([#83](https://github.com/qlik-oss/react-native-carbon/issues/83)) ([fde999c](https://github.com/qlik-oss/react-native-carbon/commit/fde999c29c210c5ce1ec9ed3f5be786ebca8daf8))
+
 ## [2.1.10](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.9...v2.1.10) (2023-02-17)
 
 
