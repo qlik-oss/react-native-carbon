@@ -1,3 +1,10 @@
+## [2.1.12](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.11...v2.1.12) (2023-02-19)
+
+
+### Bug Fixes
+
+* add calconderrorview ([#84](https://github.com/qlik-oss/react-native-carbon/issues/84)) ([399cc66](https://github.com/qlik-oss/react-native-carbon/commit/399cc66936c74f3f8fcfa98fba44db0de2588079))
+
 ## [2.1.11](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.10...v2.1.11) (2023-02-18)
 
 
