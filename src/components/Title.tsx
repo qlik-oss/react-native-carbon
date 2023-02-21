@@ -46,7 +46,7 @@ export const Title: React.FC<TitleProps> = ({
       onLayout={onLayout}
       style={[
         styles.titleBar,
-        {minHeight: topPadding || 40},
+        {minHeight: topPadding || 36},
         {marginBottom: titleStyles.marginBottom},
         style,
       ]}
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   filler: {
-    minHeight: 40,
+    minHeight: 36,
   },
   titleBar: {
     paddingLeft: 8,
