@@ -1,3 +1,10 @@
+## [2.1.13](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.12...v2.1.13) (2023-02-21)
+
+
+### Bug Fixes
+
+* change min height of title bar to 36 ([#85](https://github.com/qlik-oss/react-native-carbon/issues/85)) ([7c5ac7e](https://github.com/qlik-oss/react-native-carbon/commit/7c5ac7ee682fff6e0543f9e6a522102a32853f7c))
+
 ## [2.1.12](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.11...v2.1.12) (2023-02-19)
 
 
