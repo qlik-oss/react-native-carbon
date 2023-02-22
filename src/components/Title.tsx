@@ -19,8 +19,8 @@ const getTitleStyle = (theme: any) => {
 };
 
 const getSubtitleStyle = (theme: any) => {
-  const color = getValue(theme, 'object.title.main.color', '#404040');
-  const ff = getValue(theme, 'object.title.main.fontSize', '16px');
+  const color = getValue(theme, 'object.title.subTitle.color', '#404040');
+  const ff = getValue(theme, 'object.title.subTitle.fontSize', '16px');
   return {color, fontSize: parseInt(ff, 10)};
 };
 
