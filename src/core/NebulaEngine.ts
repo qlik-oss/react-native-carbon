@@ -115,8 +115,8 @@ export default class NebulaEngine {
         }
         this.currentLayout = layout;
         this.renderSupernova(layout);
-        this.nebulaModel.onLayout(layout);
       }
+      this.nebulaModel.onLayout(layout);
     } catch (error) {
       this.nebulaModel.log.error('Error', error);
     }
@@ -219,22 +219,32 @@ export default class NebulaEngine {
     const theme = this.theme();
     theme.internalAPI.setTheme(vizTheme, 'horizon');
     this.externalTheme = theme.externalAPI;
-    const sn = generator(supernova, {
-      sense: true,
-      theme: this.externalTheme,
-      translator: this.translation,
-      ...options,
-    });
-    this.properties = sn.qae.properties;
-    const {component} = sn.create({
-      ...this.renderContext,
-      selections: this.selectionsApi,
-      theme,
-    });
+    let sn;
+    let component;
+    try {
+      sn = generator(supernova, {
+        sense: true,
+        theme: this.externalTheme,
+        translator: this.translation,
+        ...options,
+      });
+
+      this.properties = sn?.qae?.properties || {};
+      const snc = sn.create({
+        ...this.renderContext,
+        selections: this.selectionsApi,
+        theme,
+      });
+      component = snc.component;
+    } catch (e) {
+      this.nebulaModel.log.error('Error', e);
+    }
     this.canvasElement = element;
-    this.snComponent = component;
-    this.snComponent.created();
-    this.snComponent.mounted(element);
+    if (component) {
+      this.snComponent = component;
+      this.snComponent.created();
+      this.snComponent.mounted(element);
+    }
     if (this.nebulaModel.snapshot) {
       this.renderSupernova(this.nebulaModel.snapshot);
     } else {
@@ -297,6 +307,9 @@ export default class NebulaEngine {
   }
 
   getJsxComponent() {
+    if (!this.snComponent) {
+      return null;
+    }
     return this?.canvasElement?.getJsxComponent();
   }
 
