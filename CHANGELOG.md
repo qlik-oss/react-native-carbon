@@ -1,3 +1,10 @@
+## [2.1.15](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.14...v2.1.15) (2023-02-24)
+
+
+### Bug Fixes
+
+* always do onLayout ([#87](https://github.com/qlik-oss/react-native-carbon/issues/87)) ([dc765d2](https://github.com/qlik-oss/react-native-carbon/commit/dc765d2abb1c39b3c2ed184bef5467767d788b2c))
+
 ## [2.1.14](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.13...v2.1.14) (2023-02-22)
 
 
