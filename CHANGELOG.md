@@ -1,3 +1,10 @@
+## [2.1.16](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.15...v2.1.16) (2023-03-06)
+
+
+### Bug Fixes
+
+* add carbon theme ([#88](https://github.com/qlik-oss/react-native-carbon/issues/88)) ([38432fb](https://github.com/qlik-oss/react-native-carbon/commit/38432fb491c1664734c83447e60bf405712da756))
+
 ## [2.1.15](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.14...v2.1.15) (2023-02-24)
 
 
