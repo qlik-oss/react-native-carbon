@@ -98,5 +98,6 @@ const styles = StyleSheet.create({
   titleBar: {
     paddingLeft: 8,
     justifyContent: 'center',
+    backgroundColor: 'transparent'
   },
 });

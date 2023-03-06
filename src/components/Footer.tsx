@@ -1,4 +1,5 @@
-import React from 'react';
+import CarbonTheme from '../core/CarbonTheme';
+import React, {useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 
@@ -7,30 +8,23 @@ export type FooterType = {
   theme: any;
 };
 
-const getFootStyle = (theme: any) => {
-  let color = theme?.object?.title?.footer?.color;
-  let fontSize = theme?.object?.title?.footer?.fontSize || '5px';
-  let fontStyle = theme?.object?.title?.footer?.fontVariant;
-  let backgroundColor =
-    theme?.object?.title?.footer?.backgroundColor || 'white';
-  fontSize = parseInt(fontSize, 10);
-  if (color) {
-    color = theme?._variables[color] || color;
-  }
-  if (backgroundColor) {
-    backgroundColor = theme?._variables[backgroundColor] || backgroundColor;
-  }
-  if (fontStyle === 'regular') {
-    fontStyle = 'normal';
-  }
+const getFootStyle = (theme: CarbonTheme) => {
+  let color = theme.getValue('object.title.footer.color', '#404040');
+  let fontSize = theme.getFont('object.title.footer.fontSize', '10');
+  let fontStyle = theme.getValue('object.title.footer.fontVariant', 'italic');
+  let backgroundColor = theme.getValue(
+    'object.title.footer.backgroundColor',
+    '#F0F0F0',
+  );
   return {color, fontSize, backgroundColor, fontStyle};
 };
 
 export const Footer: React.FC<FooterType> = ({layout, theme}) => {
-  const footerStyle = getFootStyle(theme);
+  const carbonTheme = useRef<CarbonTheme>(new CarbonTheme({theme}));
+  const footerStyle = getFootStyle(carbonTheme.current);
   return layout?.showTitles && layout?.footnote?.length > 0 ? (
     <View style={[styles.body, {backgroundColor: footerStyle.backgroundColor}]}>
-      <Text numberOfLines={1} style={[styles.footer, {...footerStyle}]}>
+      <Text numberOfLines={1} style={[styles.footer, footerStyle]}>
         {layout?.footnote}
       </Text>
     </View>

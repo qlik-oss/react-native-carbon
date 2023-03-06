@@ -213,10 +213,11 @@ const Supernova: React.FC<SupernovaProps> = ({
   const renderJsxComponent = useCallback(() => {
     const comp = nebulaEngineRef?.current?.getJsxComponent();
     if (comp && componentData) {
-      return comp(componentData);
+      // @ts-ignore
+      return comp({...componentData, themeData: theme});
     }
     return null;
-  }, [componentData]);
+  }, [componentData, theme]);
 
   return (
     <View style={[styles.layer]} ref={bodyRef} collapsable={false}>
