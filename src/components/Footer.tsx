@@ -12,6 +12,10 @@ const getFootStyle = (theme: CarbonTheme) => {
   let color = theme.getValue('object.title.footer.color', '#404040');
   let fontSize = theme.getFont('object.title.footer.fontSize', '10');
   let fontStyle = theme.getValue('object.title.footer.fontVariant', 'italic');
+  // regular is not supported in react native
+  if (fontStyle === 'regular') {
+    fontStyle = 'normal';
+  }
   let backgroundColor = theme.getValue(
     'object.title.footer.backgroundColor',
     '#F0F0F0',
