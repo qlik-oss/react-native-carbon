@@ -4,6 +4,7 @@ import Supernova from './components/Supernova';
 import SelectionsToolbar from './components/SelectionsToolbar';
 import {Title} from './components/Title';
 import {Footer} from './components/Footer';
+import CarbonTheme from './core/CarbonTheme';
 
 export {
   enableCarbon,
@@ -12,4 +13,5 @@ export {
   SelectionsToolbar,
   Title,
   Footer,
+  CarbonTheme,
 };
