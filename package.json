@@ -1,6 +1,6 @@
 {
   "name": "@qlik/react-native-carbon",
-  "version": "2.1.16",
+  "version": "2.1.17",
   "description": "React Native nebula engine",
   "main": "src/index.ts",
   "files": [

@@ -1,3 +1,10 @@
+## [2.1.17](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.16...v2.1.17) (2023-03-07)
+
+
+### Bug Fixes
+
+* add topbar disable prop ([#89](https://github.com/qlik-oss/react-native-carbon/issues/89)) ([f531a3f](https://github.com/qlik-oss/react-native-carbon/commit/f531a3fe081db30f9dbe0f703d24deed6e8215aa))
+
 ## [2.1.16](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.15...v2.1.16) (2023-03-06)
 
 
