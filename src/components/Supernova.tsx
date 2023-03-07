@@ -42,6 +42,7 @@ export type SupernovaProps = {
   translator?: (value: any) => string;
   properties?: any;
   disableTooltips?: boolean;
+  disableTopBar?: boolean;
 };
 
 const Supernova: React.FC<SupernovaProps> = ({
@@ -63,6 +64,7 @@ const Supernova: React.FC<SupernovaProps> = ({
   translator,
   properties,
   disableTooltips,
+  disableTopBar,
   log = defaultLogger,
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
@@ -227,6 +229,7 @@ const Supernova: React.FC<SupernovaProps> = ({
         onLayout={handleTitleLayout}
         topPadding={topPadding}
         theme={theme}
+        disableTopBar={disableTopBar}
       />
       <View
         style={[styles.supernovaView]}
@@ -246,7 +249,15 @@ const Supernova: React.FC<SupernovaProps> = ({
       </View>
       {jsxComponent ? (
         <>
-          <View style={[styles.components, style]} pointerEvents="box-none">
+          <View
+            style={[
+              styles.components,
+              style,
+              // eslint-disable-next-line react-native/no-inline-styles
+              {marginTop: disableTopBar ? 0 : 36},
+            ]}
+            pointerEvents="box-none"
+          >
             {renderJsxComponent()}
             <Footer layout={layout} theme={theme} />
             {layout?.qHyperCube?.qCalcCondMsg?.length > 1 ? (
