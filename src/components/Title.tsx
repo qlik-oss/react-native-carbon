@@ -10,6 +10,7 @@ export type TitleProps = {
   theme: any;
   style?: any;
   disableSubTitle?: boolean;
+  disableTopBar?: boolean;
 };
 
 const getTitleStyle = (theme: any) => {
@@ -31,6 +32,7 @@ export const Title: React.FC<TitleProps> = ({
   theme,
   style,
   disableSubTitle,
+  disableTopBar,
 }) => {
   const titleStyles = useMemo(() => {
     const titleStyle = getTitleStyle(theme);
@@ -41,7 +43,7 @@ export const Title: React.FC<TitleProps> = ({
     return {titleStyle, subtitleStyle, marginBottom};
   }, [disableSubTitle, layout, theme]);
 
-  return layout?.showTitles ? (
+  return layout?.showTitles && !disableTopBar ? (
     <View
       onLayout={onLayout}
       style={[
@@ -98,6 +100,6 @@ const styles = StyleSheet.create({
   titleBar: {
     paddingLeft: 8,
     justifyContent: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 });
