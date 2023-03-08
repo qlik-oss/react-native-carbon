@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 1,
   },
   toolbar: {
     flex: 0,
