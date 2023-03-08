@@ -40,7 +40,7 @@
     "@types/react-native": "0.67.3",
     "@types/react-test-renderer": "17.0.1",
     "color-rgba": "2.4.0",
-    "commitlint": "16.2.3",
+    "commitlint": "17.4.4",
     "d3-path": "^3.0.1",
     "eslint": "8.35.0",
     "eslint-config-prettier": "8.5.0",
