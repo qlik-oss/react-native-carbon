@@ -65,6 +65,7 @@ const Supernova: React.FC<SupernovaProps> = ({
   properties,
   disableTooltips,
   disableTopBar,
+  disableSelectionToolbar,
   log = defaultLogger,
 }) => {
   const [layout, setLayout] = useState(snapshot || loadLayout);
@@ -268,7 +269,9 @@ const Supernova: React.FC<SupernovaProps> = ({
       ) : (
         <Footer layout={layout} theme={theme} />
       )}
-      <SelectionsToolbar visible={selectionsToolbarVisible} />
+      {disableSelectionToolbar ? null : (
+        <SelectionsToolbar visible={selectionsToolbarVisible} />
+      )}
     </View>
   );
 };
