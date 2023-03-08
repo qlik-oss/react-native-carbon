@@ -1,3 +1,10 @@
+## [2.1.18](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.17...v2.1.18) (2023-03-08)
+
+
+### Bug Fixes
+
+* add disable selection toolbar prop ([#90](https://github.com/qlik-oss/react-native-carbon/issues/90)) ([2a8e411](https://github.com/qlik-oss/react-native-carbon/commit/2a8e411b4447f164d7d97604489d9dabb26a90b4))
+
 ## [2.1.17](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.16...v2.1.17) (2023-03-07)
 
 
