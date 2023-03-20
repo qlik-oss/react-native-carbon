@@ -1,3 +1,10 @@
+## [2.1.19](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.18...v2.1.19) (2023-03-20)
+
+
+### Bug Fixes
+
+* **MD-4206:** blank supernovas ([#97](https://github.com/qlik-oss/react-native-carbon/issues/97)) ([964ea10](https://github.com/qlik-oss/react-native-carbon/commit/964ea104f04ee0957485675a2da94fbb49227896))
+
 ## [2.1.18](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.17...v2.1.18) (2023-03-08)
 
 
