@@ -70,7 +70,7 @@ export default class NebulaEngine {
       () => {
         if (this.canvasElement) {
           this.canvasElement.resetSize();
-          this.snComponent.resize();
+          this.snComponent?.resize();
         }
       },
       100,
