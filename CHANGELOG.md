@@ -1,3 +1,10 @@
+## [2.1.20](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.19...v2.1.20) (2023-03-23)
+
+
+### Bug Fixes
+
+* **MD-4208:** don't recreated component if already there ([#98](https://github.com/qlik-oss/react-native-carbon/issues/98)) ([c325396](https://github.com/qlik-oss/react-native-carbon/commit/c325396847d8740c4246e56aac22dffef1446c4a))
+
 ## [2.1.19](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.18...v2.1.19) (2023-03-20)
 
 
