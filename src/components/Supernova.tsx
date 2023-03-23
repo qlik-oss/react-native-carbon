@@ -138,6 +138,9 @@ const Supernova: React.FC<SupernovaProps> = ({
 
   const onCanvas = useCallback(
     async (canvas: any) => {
+      if(elementRef.current) {
+        return;
+      }
       if (!elementRef.current) {
         elementRef.current = new Element(canvas);
       }
