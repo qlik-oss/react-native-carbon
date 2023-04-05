@@ -1,3 +1,10 @@
+## [2.1.21](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.20...v2.1.21) (2023-04-05)
+
+
+### Bug Fixes
+
+* **QB-18853:** don't return when snapshot ([#100](https://github.com/qlik-oss/react-native-carbon/issues/100)) ([55b2eb4](https://github.com/qlik-oss/react-native-carbon/commit/55b2eb4e8c0d7ecb6fd2425d3afc1195d83a8e8f))
+
 ## [2.1.20](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.19...v2.1.20) (2023-03-23)
 
 
