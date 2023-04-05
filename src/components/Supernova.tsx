@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, useCallback} from 'react';
+import React, {useEffect, useRef, useState, useCallback, useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Title} from './Title';
 import {Footer} from './Footer';
@@ -82,6 +82,12 @@ const Supernova: React.FC<SupernovaProps> = ({
   const titleLayout = useRef(undefined);
   const mounted = useRef(true);
 
+  const isSnapshot = useMemo(() => {
+    return !!snapshot;
+  }, [snapshot]);
+
+
+
   const onLayout = (newLayout: any) => {
     if (mounted.current) {
       setLayout(newLayout);
@@ -138,7 +144,7 @@ const Supernova: React.FC<SupernovaProps> = ({
 
   const onCanvas = useCallback(
     async (canvas: any) => {
-      if(elementRef.current) {
+      if(elementRef.current && !isSnapshot) {
         return;
       }
       if (!elementRef.current) {
@@ -198,7 +204,7 @@ const Supernova: React.FC<SupernovaProps> = ({
       );
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [id, invalidMessage, resetSelectionsConfig, setSelectionsConfig, sn, theme],
+    [id, invalidMessage, resetSelectionsConfig, setSelectionsConfig, sn, theme, isSnapshot],
   );
 
   const onResized = useCallback(() => {
