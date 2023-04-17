@@ -1,3 +1,10 @@
+## [2.1.22](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.21...v2.1.22) (2023-04-17)
+
+
+### Bug Fixes
+
+* **QB-18853:** check for jsx component ([#103](https://github.com/qlik-oss/react-native-carbon/issues/103)) ([e781245](https://github.com/qlik-oss/react-native-carbon/commit/e781245e421974dd7b4a3a8cf8858e152abaf6a4))
+
 ## [2.1.21](https://github.com/qlik-oss/react-native-carbon/compare/v2.1.20...v2.1.21) (2023-04-05)
 
 
