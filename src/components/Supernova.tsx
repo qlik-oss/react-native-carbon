@@ -144,7 +144,7 @@ const Supernova: React.FC<SupernovaProps> = ({
 
   const onCanvas = useCallback(
     async (canvas: any) => {
-      if(elementRef.current && !isSnapshot) {
+      if(elementRef.current && jsxComponent) {
         return;
       }
       if (!elementRef.current) {
@@ -204,7 +204,7 @@ const Supernova: React.FC<SupernovaProps> = ({
       );
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [id, invalidMessage, resetSelectionsConfig, setSelectionsConfig, sn, theme, isSnapshot],
+    [id, invalidMessage, resetSelectionsConfig, setSelectionsConfig, sn, theme, isSnapshot, jsxComponent],
   );
 
   const onResized = useCallback(() => {
