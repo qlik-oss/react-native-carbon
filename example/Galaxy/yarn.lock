@@ -1201,10 +1201,10 @@
   version "0.9.0-alpha.34"
   resolved "file:../../prebuilt/nebula.js-react-native-sn-kpi-0.9.0-alpha.34.tgz#573c19387635f115bc9a34bdc8a8bcc21ebc9b92"
 
-"@nebula.js/stardust@2.10.0":
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-2.10.0.tgz#eafaa13949a5684b519e0070dbf26386c632818f"
-  integrity sha512-s7QkuvkUdjBAW4IGdkHb/8K17Iqv9COL9BbZVcgsJYcNh857P1jtb1XCFXi4goz+2a3npA1c9uMjVgO4GOeKPg==
+"@nebula.js/stardust@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-3.3.0.tgz#8705317fa655049432e04c296e98b9dc85c1ca78"
+  integrity sha512-BSKQJLzbT6NZB4ceE9KXWPjScZ73GwRjfpi8W4qcKgFrM6gOV68nXkdnGOrqA/OEzQPE1esXKX9/wqr+7/mOlQ==
   dependencies:
     "@types/qlik-engineapi" "12.67.12"
 
@@ -1245,7 +1245,7 @@
   version "0.0.0"
 
 "@qlik/react-native-carbon@link:../..":
-  version "2.1.17"
+  version "2.1.22"
 
 "@qlik/react-native-helium@link:../../../react-native-helium":
   version "0.0.0"
