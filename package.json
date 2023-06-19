@@ -68,7 +68,7 @@
     "@babel/core": "7.17.2",
     "@babel/runtime": "7.17.2",
     "@nebula.js/stardust": "2.4.1",
-    "eventemitter3": "4.0.7",
+    "eventemitter3": "5.0.1",
     "jotai": "1.6.0",
     "lodash": "4.17.21",
     "picasso-plugin-q": "1.6.0",
