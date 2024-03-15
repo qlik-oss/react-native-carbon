@@ -1245,7 +1245,7 @@
   version "0.0.0"
 
 "@qlik/react-native-carbon@link:../..":
-  version "2.1.17"
+  version "2.1.22"
 
 "@qlik/react-native-helium@link:../../../react-native-helium":
   version "0.0.0"
@@ -5126,10 +5126,10 @@ joi@^17.2.1:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-jotai@^1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.6.6.tgz#ec3a8b4e5a323b00c2f9ca0d05825d0aeaeebe75"
-  integrity sha512-rzUyxHFImnDDjUmC0i0BXyppq1M6ZxrHjhp0SK3VQXvXYAu5Hz9wPJ6w207s2Mlv7jpfiIf26w9m82FLCP3eqw==
+jotai@^2.0.0:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.7.1.tgz#5d0db56e75375d4f41a2e9f1a23750e9e5d8cb24"
+  integrity sha512-bsaTPn02nFgWNP6cBtg/htZhCu4s0wxqoklRHePp6l/vlsypR9eLn7diRliwXYWMXDpPvW/LLA2afI8vwgFFaw==
 
 js-sdsl@^4.1.4:
   version "4.3.0"
