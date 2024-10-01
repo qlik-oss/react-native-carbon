@@ -8193,15 +8193,15 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-picasso-plugin-q@1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/picasso-plugin-q/-/picasso-plugin-q-1.6.0.tgz#89a67719e031ba1c5e8a6e33250d374a5516ec1a"
-  integrity sha512-fx2lQCRb6+b4eAEPIIQ6Ja/Ah7kHtV1AW2ofFa2hYIFKxxpi6yllO7EyuHoQw9KEOXkQE47nOXMZXQHtQpymiw==
+picasso-plugin-q@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/picasso-plugin-q/-/picasso-plugin-q-2.3.0.tgz#b67098485e9b41945b8056c48477edddb2cd3003"
+  integrity sha512-OXlZ7HlBG/STxwtyhFQZeRtd8q2JEdsYCpCBw9O7R3yXQ3oDw2D2MiwAqJRR79PSAbzedXmUm8eQ2hGRhD7/xQ==
 
-picasso.js@1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/picasso.js/-/picasso.js-1.6.0.tgz#861dd14111b60e02a4089851d0581007abc37ac9"
-  integrity sha512-+mCH7i7vDVOFlFYNshF79K+soIAR5uCVsKZIuD+nNgKqLiW9OJrK6VtqXfkoP7zOm6jTFMAiQ/XNFwMISdQSBA==
+picasso.js@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/picasso.js/-/picasso.js-2.3.0.tgz#a308b6703b330b00ec1a4df97dc81dae9447b17a"
+  integrity sha512-mSKG5eg7pqcDHDjPOunTYJwxvctURGxaDUSc9YM76CtK2jxnaXqghwu04yaRLTDhX9eGZxgN0mkrAwQwYRnZeA==
 
 picocolors@^1.0.0:
   version "1.0.0"
