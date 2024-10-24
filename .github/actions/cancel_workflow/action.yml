@@ -5,4 +5,4 @@ runs:
   steps:
       - name: Cancel previous run
         if: ${{ github.ref != 'refs/heads/master' }}
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.12.1
